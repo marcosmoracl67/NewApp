@@ -51,11 +51,28 @@ const fetchUser = async () => {
       const menuRes = await fetch(`${API_BASE_URL}/api/menu`, {
         credentials: "include",
       });
-      if (menuRes.ok) {
-        const menu = await menuRes.json();
-        setMenuItems(menu);
+     if (menuRes.ok) {
+        const rawMenu = await menuRes.json();
+        const formatMenu = (items = []) =>
+          items.map((it) => ({
+            opcion_id: it.opcion_id ?? it.id ?? it.menu_opcion_id,
+            text: it.text ?? it.nombre ?? it.label ?? it.titulo,
+            path: it.path ?? it.ruta,
+            icon: it.icon ?? it.icono,
+            children: it.children
+              ? formatMenu(it.children)
+              : it.submenu
+              ? formatMenu(it.submenu)
+              : it.opciones
+              ? formatMenu(it.opciones)
+              : [],
+          }));
+        setMenuItems(formatMenu(rawMenu));
       } else {
-        console.warn("AuthContext: Respuesta inesperada al obtener el menú -", menuRes.status);
+        console.warn(
+          "AuthContext: Respuesta inesperada al obtener el menú -",
+          menuRes.status,
+        );
       }
     } catch (menuErr) {
       console.error("AuthContext: Error recuperando menú:", menuErr);
