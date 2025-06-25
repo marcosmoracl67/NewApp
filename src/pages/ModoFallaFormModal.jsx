@@ -1,9 +1,9 @@
 // src/pages/hierarchy/ModoFallaFormModal.jsx
 import { useState, useEffect, useCallback } from 'react';
-import Modal from '../../components/Modal';
-import FormInput from '../../components/FormInput';
-import FormButton from '../../components/FormButton';
-import ToggleSwitch from '../../components/ToggleSwitch';
+import Modal from '../components/Modal';
+import FormInput from '../components/FormInput';
+import FormButton from '../components/FormButton';
+import ToggleSwitch from '../components/ToggleSwitch';
 import { FaSave, FaPlus } from 'react-icons/fa';
 
 const ModoFallaFormModal = ({ isOpen, onClose, onSubmit, initialData, mode, isLoading }) => {

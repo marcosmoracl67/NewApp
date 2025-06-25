@@ -4,17 +4,17 @@ import axios from "axios";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
 
 // Import Core Components
-import FormButton from "../../components/FormButton";
-import ConfirmDialog from "../../components/ConfirmDialog";
-import SearchBar from "../../components/SearchBar";
-import DataTable from "../../components/DataTable";
-import Container from "../../components/Container";
-import Titulo from "../../components/Titulo";
-import Parrafo from "../../components/Parrafo";
-import Pagination from "../../components/Pagination";
-import Loader from "../../components/Loader";
-import Alert from "../../components/Alert"; 
-import ToggleSwitch from '../../components/ToggleSwitch';
+import FormButton from "../components/FormButton";
+import ConfirmDialog from "../components/ConfirmDialog";
+import SearchBar from "../components/SearchBar";
+import DataTable from "../components/DataTable";
+import Container from "../components/Container";
+import Titulo from "../components/Titulo";
+import Parrafo from "../components/Parrafo";
+import Pagination from "../components/Pagination";
+import Loader from "../components/Loader";
+import Alert from "../components/Alert"; 
+import ToggleSwitch from '../components/ToggleSwitch';
 
 import ModoFallaFormModal from "./ModoFallaFormModal";
 
@@ -49,7 +49,7 @@ const ModoFalla = () => {
   const fetchModoFalla = useCallback(async () => {
 
     try {
-      const res = await axios.get("http://localhost:3000/api/modos-falla", { withCredentials: true });
+      const res = await axios.get("http://localhost:3000/api/modo-falla", { withCredentials: true });
       const parsedData = res.data.map(tn => ({
           IdModoFalla: parseInt(tn.IdModoFalla), 
           Nombre: tn.Nombre,         
@@ -84,8 +84,8 @@ const ModoFalla = () => {
   };
 
   const url = modoModal === 'crear'
-    ? "http://localhost:3000/api/modos-falla" // URL para crear
-    : `http://localhost:3000/api/modos-falla/${idParaActualizar}`; // Usar idParaActualizar
+    ? "http://localhost:3000/api/modo-falla" // URL para crear
+    : `http://localhost:3000/api/modo-falla/${idParaActualizar}`; // Usar idParaActualizar
 
   const method = modoModal === 'crear' ? 'post' : 'put';
 
@@ -114,7 +114,7 @@ const ModoFalla = () => {
     const numericId = parseInt(IdModoFalla);
     setLoading(numericId, 'delete', true);
     try {
-      await axios.delete(`http://localhost:3000/api/modos-falla/${numericId}`, { withCredentials: true });
+      await axios.delete(`http://localhost:3000/api/modo-falla/${numericId}`, { withCredentials: true });
       await fetchModoFalla();
       mostrarNotificacion("Modo de Falla Eliminado 🗑️");
     } catch (error) {
