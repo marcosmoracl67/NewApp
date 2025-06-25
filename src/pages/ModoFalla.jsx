@@ -103,7 +103,8 @@ const ModoFalla = () => {
     );
     setIsmodoFallaModalOpen(false);
   } catch (error) {
-
+      console.error('Error en handleFormSubmit:', error);
+      mostrarNotificacion('Ocurrió un problema al guardar ❌');
   } finally {
     setIsSubmittingModal(false);
   }
@@ -226,6 +227,7 @@ const columns = useMemo(() => [
   // --- Render ---
   return (
     <Container as="main" className="page-container tipos-nodo-page" maxWidth="80rem" centered padding="1rem">
+      {notificacion && <div className="notification-toast">{notificacion}</div>}
       <Alert
         isOpen={alertInfo.isOpen}
         message={alertInfo.message}

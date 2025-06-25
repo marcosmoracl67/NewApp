@@ -5,6 +5,10 @@ import Loader from '../components/Loader';
 import AppLayout from '../components/layout/AppLayout';
 import Home from '../pages/Home';
 import ModoFalla from '../pages/ModoFalla';
+import Usuario from '../pages/Usuarios';
+import Perfil from '../pages/Perfiles';
+import Menu from '../pages/MenuOpciones';
+import MenuOpciones from '../pages/MenuOpciones';
 
 const PrivateRoute = ({ children }) => {
   const { user, isLoading } = useAuth();
@@ -31,12 +35,56 @@ const AppRouter = () => {
           }
         />
 
-         <Route
+        <Route
           path="/modofalla"
           element={
             <PrivateRoute>
               <AppLayout>
                 <ModoFalla />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+         <Route
+          path="/usuarios"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Usuario />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/perfil"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Perfil />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        /> 
+
+        <Route
+          path="/menus"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <Menu />
+              </AppLayout>
+            </PrivateRoute>
+          }
+        /> 
+
+        <Route
+          path="/menuopciones"
+          element={
+            <PrivateRoute>
+              <AppLayout>
+                <MenuOpciones />
               </AppLayout>
             </PrivateRoute>
           }

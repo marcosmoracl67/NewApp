@@ -7,7 +7,6 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <h1>Vite + React</h1>
         <AppRouter />
       </AuthProvider>
     </ThemeProvider>
