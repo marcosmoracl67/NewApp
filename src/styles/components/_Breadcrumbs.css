@@ -1,0 +1,97 @@
+/* src/styles/components/_Breadcrumbs.css */
+
+.breadcrumbs {
+    font-size: 0.9rem;
+    overflow-x: auto; /* <<< AÑADIDO: Permitir scroll horizontal si no cabe */
+    padding-bottom: 5px; /* Espacio para la barra de scroll si aparece */
+     /* Estilo para la barra de scroll (opcional) */
+     &::-webkit-scrollbar {
+      height: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--input-stroke-idle);
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+     scrollbar-width: thin; /* Firefox */
+     scrollbar-color: var(--input-stroke-idle) transparent; /* Firefox */
+  }
+  
+  .breadcrumbs__list {
+    display: flex;
+    /* flex-wrap: wrap; */ /* <<< ELIMINADO: Forzar una sola línea */
+    flex-wrap: nowrap;   /* <<< AÑADIDO: Asegurar que no envuelva */
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap; /* <<< AÑADIDO: Evitar que el texto interno rompa línea */
+  }
+  
+  .breadcrumbs__item {
+    /* display: contents; */ /* Podemos quitarlo y aplicar flex al item directamente si es más fácil */
+    display: inline-flex; /* <<< AÑADIDO: Hacer que el li sea inline-flex */
+    align-items: center;  /* <<< AÑADIDO: Alinear contenido del li */
+  }
+  
+  /* Estilo para separadores */
+  .breadcrumbs__separator {
+    /* Ya no necesita ser un <li> separado si usamos gap */
+    display: inline-block; /* Asegurar que esté en línea */
+    color: var(--breadcrumbs-separator-color);
+    margin-left: var(--breadcrumbs-separator-margin);
+    margin-right: var(--breadcrumbs-separator-margin);
+    user-select: none;
+    /* Quitar si era un li */
+    /* list-style: none; */
+  }
+  
+  
+  /* Estilo para enlaces (<a>) y elemento actual (<span>) */
+  .breadcrumbs__link,
+  .breadcrumbs__current {
+    color: var(--breadcrumbs-link-color); /* Base para ambos */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--breadcrumbs-icon-margin);
+    transition: color 0.2s ease;
+    white-space: nowrap; /* <<< AÑADIDO: Evitar ruptura interna */
+    overflow: hidden;      /* <<< AÑADIDO: Ocultar desbordamiento */
+    text-overflow: ellipsis;/* <<< AÑADIDO: Mostrar '...' si no cabe */
+    max-width: 200px; /* <<< AÑADIDO: Limitar ancho máximo por ítem (ajustar) */
+  }
+  
+  .breadcrumbs__link:hover,
+  .breadcrumbs__link:focus-visible {
+    color: var(--breadcrumbs-link-hover-color);
+    text-decoration: underline;
+    outline: none;
+  }
+  
+  .breadcrumbs__current {
+    color: var(--breadcrumbs-current-color);
+    font-weight: 500;
+    cursor: default;
+  }
+  
+  /* Estilo para iconos opcionales */
+  .breadcrumbs__icon {
+    display: inline-flex;
+    flex-shrink: 0; /* <<< AÑADIDO: Evitar que el icono se encoja */
+    color: var(--breadcrumbs-icon-color);
+    font-size: var(--breadcrumbs-icon-size);
+  }
+  .breadcrumbs__icon svg {
+     vertical-align: middle;
+  }
+  
+  /* Estilo para la etiqueta de texto (opcional) */
+  .breadcrumbs__label {
+     /* Opcional: Para manejar desbordamiento si el link/current no lo hace bien */
+     /* overflow: hidden; */
+     /* text-overflow: ellipsis; */
+     /* white-space: nowrap; */
+  }

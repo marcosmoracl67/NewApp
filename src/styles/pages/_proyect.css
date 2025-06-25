@@ -1,0 +1,246 @@
+.dashboard-metrics {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .metric-card {
+    background-color: var(--input-bg, #262648);
+    color: var(--text-color, #fff);
+    padding: 1rem;
+    border-radius: 8px;
+    flex: 1 1 150px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .metric-label {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .metric-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .metric-card.warning {
+    background-color: var(--warning-color);
+    color: #000;
+  }
+  
+  .metric-card.warning .metric-icon {
+    color: var(--danger-color);
+  }
+
+  .metric-card.danger {
+    background-color: var(--danger-color);
+    color: #fff;
+  }
+  
+  .metric-card.danger .metric-icon {
+    color: #fff;
+  }
+  
+  .progreso-proyecto {
+    margin-bottom: 1rem;
+  }
+  
+  .proyecto-label {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .progreso-proyecto {
+    margin-bottom: 1rem;
+  }
+  
+  .proyecto-label {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  
+  .progress-bar-wrapper {
+    background-color: #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 12px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--success-color);
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .ranking-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .ranking-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #4444;
+  }
+  
+  .progress-bar-wrapper {
+    background-color: var(--background1);
+    border-radius: 4px;
+    overflow: hidden;
+    height: 12px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--highlight); 
+    transition: width 0.3s ease-in-out;
+  }
+  
+ /* Overlay oscuro de fondo */
+ .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--modal-overlay-bg);
+  z-index: 1000;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important; 
+}
+
+/* El modal en sí */
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: var(--background1);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90rem;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos internos */
+.modal-title {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.modal-body {
+  margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+  text-align: right;
+}
+
+.tarea-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+}
+
+/* Estilos Gantt */
+
+.gantt-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0.5rem 1rem;
+  background: var(--background2);
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-top: 0.5rem;
+  padding-top: 2rem;
+}
+
+.gantt-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.gantt-label {
+  width: 25%;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.gantt-bar-wrapper {
+  position: relative;
+  width: 75%;
+  height: 24px;
+  background: var(--background1);
+  border-radius: 4px;
+}
+
+.gantt-bar {
+  position: absolute;
+  height: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+  overflow: hidden; /* 👈 NUEVO: para que .gantt-avance no se desborde */
+  position: relative; /* 👈 NUEVO: para posicionar elementos internos */
+}
+
+.gantt-avance {
+  height: 50%;
+  background-color: var(--highlight);
+  border-radius: 4px 0 0 4px;
+  opacity: 0.9;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gantt-leyenda {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.leyenda-item {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 3px;
+  margin-right: 0.3rem;
+}
+
+.leyenda-item.pendiente {
+  background-color: #ccc;
+}
+.leyenda-item.enprogreso {
+  background-color: #3498db;
+}
+.leyenda-item.completada {
+  background-color: #2ecc71;
+}
+
+.leyenda-item.avance {
+  background-color: var(--highlight);
+}
+
+
+
+

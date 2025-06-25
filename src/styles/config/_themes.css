@@ -1,0 +1,579 @@
+/*Claro / oscuro, variables CSS*/
+
+ /* General Alert Styles */
+ :root {
+ --alert-border-radius: 0.375rem; /* 6px */
+ --alert-padding: 1rem;
+ --alert-margin-bottom: 1rem;
+ --alert-icon-size: 1.25em; /* Relativo al font-size del alert */
+ --alert-title-font-weight: 600;
+ --alert-close-button-color: var(--txt-secondary-color); /* Color del icono 'x' */
+ --tabs-sutil-border-radius: 0.375rem;      /* <<< AQUÍ (ej. 4px) - AJUSTA ESTE VALOR */
+ --tabs-pills-border-radius: 0.5rem;  
+
+ /* --- NUEVAS VARIABLES PARA PAGINATION --- */
+ --pagination-padding: 0.5rem 0;               /* Espaciado vertical alrededor del componente */
+ --pagination-gap: 0.375rem;                 /* Espacio entre botones/items */
+ --pagination-info-color: var(--txt-secondary-color);
+ --pagination-info-margin-right: 1rem;
+ --pagination-link-padding: 0.375rem 0.75rem; /* Padding interno de cada botón */
+ --pagination-link-min-width: 2.25rem;        /* Ancho mínimo para botones numéricos */
+
+  /* === Colores de Foco y Estado para Inputs === */
+  /* Ya tienes --input-stroke-focus, solo necesitamos su RGB */
+  --input-stroke-focus-rgb: 156, 39, 176; /* Para #9c27b0 (tu --input-stroke-focus actual) */
+                                        /* Si cambias --input-stroke-focus, actualiza este RGB */
+
+                                        /* === Colores de Peligro / Error (Rojos) === */
+  /* Es crucial tener un color de error distintivo, usualmente rojo.
+     Tu variable --danger actual es púrpura (var(--button-base)).
+     Sugiero renombrar tu --danger actual o añadir una nueva específica para errores.
+     Opción 1: Renombrar tu --danger actual a algo como --danger-button-bg y crear nuevo --danger
+     Opción 2: Usar un nuevo nombre como --error-color o --form-error-color
+     Vamos con la Opción 2 por ahora para minimizar cambios en tus botones.
+  */
+  --form-error-color: #dc3545;        /* Rojo estándar para errores */
+  --form-error-color-rgb: 220, 53, 69; /* RGB de #dc3545 */
+  --form-error-bg-light: #f8d7da;     /* Fondo claro para mensajes de error (tema light) */
+  --form-error-text-light: #721c24;   /* Texto oscuro para mensajes de error (tema light) */
+  --form-error-bg-dark: #4d1a1a;      /* Fondo oscuro para mensajes de error (tema dark) */
+  --form-error-text-dark: #ff8080;    /* Texto claro para mensajes de error (tema dark) */
+
+   /* === Colores para Select Arrow (SVG) === */
+  /* Usaremos variables existentes si es posible, o crearemos nuevas si se necesita más granularidad */
+  /* Para la flecha normal, podemos usar un color de texto secundario o un gris específico */
+  --select-arrow-color-value: #6c757d; /* Gris medio para la flecha */
+  --select-arrow-disabled-color-value: #adb5bd; /* Gris más claro para flecha deshabilitada */
+  /* Para la flecha inválida, usaremos --form-error-color */
+
+ /* --- NUEVAS VARIABLES PARA BREADCRUMBS (Opcionales, pueden usar existentes) --- */
+ --breadcrumbs-icon-size: 1em; /* Tamaño de iconos opcionales */
+ --breadcrumbs-separator-margin: 0.5em; /* Espacio alrededor del separador */
+ --breadcrumbs-icon-margin: 0.35em; /* Espacio después de un icono */
+
+ /* --- NUEVAS VARIABLES PARA TOOLTIP --- */
+
+ --tooltip-padding: 0.5rem 0.8rem;   /* Padding interno */
+ --tooltip-font-size: 0.8rem;      /* Tamaño de fuente pequeño */
+ --tooltip-max-width: 250px;       /* Ancho máximo */
+ --tooltip-z-index: 1050;          /* Asegurar que esté encima de otros elementos (ajustar si es necesario) */
+ --tooltip-opacity: 0.95;          /* Ligera transparencia opcional */
+ --tooltip-arrow-size: 12px;        /* Tamaño de la flecha */
+ --tooltip-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Sombra */
+
+ /* --- NUEVAS VARIABLES PARA BADGE --- */
+ --badge-padding: 0.25em 0.6em;     /* Padding vertical/horizontal relativo a la fuente */
+ --badge-fontsize: 0.75rem;        /* Tamaño de fuente base (12px si base es 16px) */
+ --badge-font-weight: bold;
+ --badge-line-height: 1;           /* Ajustado para badges pequeños */
+ --badge-border-radius: var(--tabs-sutil-border-radius); /* 0.25rem / 4px por defecto */
+ --badge-pill-border-radius: 999px; /* Para la variante píldora */
+ --badge-icon-margin: 0.35em;     /* Espacio entre icono y texto */
+ --badge-close-size: 1.25em;       /* Tamaño del botón de cierre relativo a fuente */
+ --badge-close-margin: -0.25em 0 -0.25em 0.35em; /* Margen para posicionarlo */
+
+ /* --- NUEVAS VARIABLES PARA DROPDOWN MENU --- */
+ --dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ --dropdown-padding-y: 0.5rem; /* Padding vertical del menú */
+ --dropdown-padding-x: 0;    /* Padding horizontal (se aplica a items) */
+ --dropdown-z-index: 1000;   /* Debe estar por encima de la mayoría de elementos */
+ --dropdown-item-padding-y: 0.4rem;
+ --dropdown-item-padding-x: 1rem;
+ --dropdown-icon-margin: 0.6em;
+ --dropdown-separator-margin: 0.5rem 0;
+
+ /* --- NUEVAS VARIABLES PARA AUTOCOMPLETE --- */
+  --autocomplete-list-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --autocomplete-list-padding-y: 0.25rem; /* Padding vertical del contenedor de la lista */
+  --autocomplete-list-max-height: 250px; /* Altura máxima antes de scroll */
+  --autocomplete-list-z-index: 990;   /* Ligeramente debajo de DropdownMenu o Modal */
+  --autocomplete-option-padding-y: 0.5rem;
+  --autocomplete-option-padding-x: 0.8rem;
+
+   /* --- NUEVAS VARIABLES PARA CARD --- */
+  --card-padding: 1rem; /* Padding general para el body */
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada en oscuro */
+  --card-hover-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  --card-header-font-size: 1.1em; /* Relativo al font-size base de la card */
+  --card-header-font-weight: 600;
+
+  /* --- NUEVAS VARIABLES PARA ACCORDION --- */
+ 
+  --accordion-item-margin-bottom: 0.5rem; /* Espacio entre ítems de acordeón */
+  --accordion-header-padding: 0.8rem 1rem;
+  --accordion-header-focus-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.3);
+  --accordion-header-font-size: 1rem;
+  --accordion-header-font-weight: 500;
+  --accordion-icon-size: 1em;
+  --accordion-icon-transition: transform 0.25s ease-in-out;
+  --accordion-panel-padding: 1rem;
+  --accordion-panel-transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out 0.05s, visibility 0s linear 0.3s;
+
+  /* --- NUEVAS VARIABLES PARA AVATAR --- */
+ 
+  --avatar-font-weight-initials: 600;
+
+  /* Tamaños (puedes ajustar estos o añadir más) */
+  --avatar-size-xs: 1.5rem;  /* 24px */
+  --avatar-size-sm: 2rem;    /* 32px */
+  --avatar-size-md: 2.5rem;  /* 40px (default) */
+  --avatar-size-lg: 3.5rem;  /* 56px */
+  --avatar-size-xl: 5rem;    /* 80px */
+
+  /* Badge superpuesto */
+  --avatar-badge-size: 0.75em; /* Relativo al tamaño de fuente del avatar (para un punto) o usar valor fijo */
+  --avatar-badge-offset: -0.15em; /* Desplazamiento para que se superponga bien */
+  --avatar-badge-border: 2px solid var(--card-bg); /* Borde para separar del avatar, usa el fondo de la tarjeta como borde */
+                                                /* (Esto asume que el avatar está sobre --card-bg) */
+                                                /* Si no, usa var(--avatar-bg-default) o var(--background2) */
+  --avatar-border-radius-default: var(--alert-border-radius); /* ej. 6px para 'rounded' */
+  
+  /* Spacing */
+  --spacing-xxs: 0.15rem; /* 4px */
+  --spacing-xs: 0.3rem;   /* 8px */
+  --spacing-sm: 0.7rem;  /* 12px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2rem;     /* 32px */
+  --spacing-xxl: 3rem;    /* 48px */
+
+}
+
+ 
+:root[data-theme='light'] {
+  --background1: #dddbdb;
+  --background2: #faf7f5;
+  --highlight: #9055a2;
+  --disable: #d6d6d6;
+  --txt-color: #1f1b24;
+  --txt-highlighted: #9055a2;
+  --txt-disabled: #9a9a9a;
+  --input-bg: #b5b4b7;
+  --input-stroke-focus: #9c27b0;
+  --input-stroke-idle: #a398b2;
+  --txt-input-color: #2c1b3b;
+  --button-base: #861098;
+  --success: var(--button-base);
+  --success-dark: var(--button-action); 
+  --danger: var(--button-base); /* Color de fondo del botón de peligro */
+  --danger-dark: var(--button-base); /* Color de fondo del botón de peligro al hacer hover */
+  --button-focus: #ba68c8;
+  --button-action: #6a1b9a;
+  --button-txt: #ffffff;
+  --button-hover: rgba(255, 255, 255, 0.1);
+  --highlight-nav: #c6bada;
+  --sidebar-bg: #eee9ee;
+  --modal-bg: var(--background2); /* <<< CAMBIADO - Ahora usa un color sólido */
+  --modal-overlay-bg: rgb(50, 50, 50, 0.9); /* El overlay sí debe ser translúcido */
+  --loader-background: var(--highlight); /* Color de fondo del loader */
+  --modal-link-color: var(--highlight); /* O un azul: #0d6efd */
+  --modal-link-color-hover: var(--button-action); /* O un azul más oscuro: #0a58ca */
+  --primary-rgb:  #9055a2; 
+
+    /* ... (variables existentes del tema light) ... */
+  --select-arrow-color: var(--select-arrow-color-value);
+  --select-arrow-disabled-color: var(--select-arrow-disabled-color-value);
+  --placeholder-text-color: var(--txt-disabled);
+  --required-indicator-color: var(--form-error-color);
+
+  /* Alert - Success */
+  --alert-success-bg: #e6fffa;
+  --alert-success-text: #1a745f;
+  --alert-success-icon: #27ad8a;
+  --alert-success-border: #27ad8a; /* Opcional, si usamos borde de acento */
+  --alert-success-close-button-hover-bg: #cff0e8;
+
+  /* Alert - Error */
+  --alert-error-bg: #ffe6e6;
+  --alert-error-text: #cc0000;
+  --alert-error-icon: #ff3333;
+  --alert-error-border: #ff3333;
+  --alert-error-close-button-hover-bg: #ffcccc;
+
+  /* Alert - Warning */
+  --alert-warning-bg: #fff8e1;
+  --alert-warning-text: #8c6d00;
+  --alert-warning-icon: #ffc107;
+  --alert-warning-border: #ffc107;
+  --alert-warning-close-button-hover-bg: #ffecb3;
+
+  /* Alert - Info */
+  --alert-info-bg: #e0f7fa;
+  --alert-info-text: #006064;
+  --alert-info-icon: #00bcd4;
+  --alert-info-border: #00bcd4;
+  --alert-info-close-button-hover-bg: #b2ebf2;
+
+  --tabs-border-color: var(--input-stroke-idle); /* Color del borde inferior de la lista de pestañas */
+  --tabs-tab-text-color: var(--txt-secondary-color);
+  --tabs-tab-hover-text-color: var(--txt-color);
+  --tabs-tab-active-text-color: var(--highlight);
+  --tabs-tab-active-border-color: var(--highlight);
+  --tabs-tab-disabled-text-color: var(--txt-disabled);
+  --tabs-tab-padding: 0.75rem 1rem; /* Padding para cada pestaña */
+  --tabs-tab-icon-spacing: 0.5rem; /* Espacio entre icono y label */
+  --tabs-panel-padding: 1rem;
+  --tabs-pills-bg: var(--background1); /* Para variante 'pills' */
+  --tabs-pills-active-bg: var(--highlight);
+  --tabs-pills-active-text-color: var(--button-txt);
+  --tabs-boxed-border-color: var(--input-stroke-idle);
+  --tabs-boxed-active-tab-bg: var(--background2);
+
+  /* Variables para paginación estilo light */
+
+  --pagination-link-border-radius: var(--alert-border-radius); /* Reutilizar radio de alerta/botón (6px) */
+  --pagination-link-border-color: var(--input-stroke-idle);
+  --pagination-link-color: var(--highlight);    /* Color del texto/número */
+  --pagination-link-bg: transparent;
+
+  --pagination-link-hover-bg: var(--background1); /* Fondo sutil en hover */
+  --pagination-link-hover-color: var(--button-action); /* Texto más oscuro/intenso en hover */
+  --pagination-link-hover-border-color: var(--button-focus);
+
+  --pagination-active-bg: var(--highlight);
+  --pagination-active-text-color: var(--button-txt);
+  --pagination-active-border-color: var(--highlight);
+
+  --pagination-disabled-color: var(--txt-disabled);
+  --pagination-disabled-bg: transparent;
+  --pagination-disabled-border-color: var(--disable);
+
+  --pagination-ellipsis-color: var(--txt-secondary-color);
+
+  /* --- NUEVAS VARIABLES PARA DATEPICKER --- */
+  --dp-bg: var(--background2); /* Fondo del popover del calendario */
+  --dp-text-color: var(--txt-color);
+  --dp-border-color: var(--input-stroke-idle);
+  --dp-border-radius: var(--alert-border-radius); /* Reutilizar radio */
+  --dp-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+  --dp-month-year-color: var(--txt-color);
+  --dp-nav-button-color: var(--highlight);
+  --dp-nav-button-hover-bg: var(--background1);
+  --dp-nav-button-disabled-color: var(--txt-disabled);
+
+  --dp-weekday-color: var(--txt-secondary-color);
+  --dp-weekday-font-weight: 600;
+
+  --dp-day-text-color: var(--txt-color);
+  --dp-day-hover-bg: var(--background1);
+  --dp-day-outside-color: var(--txt-disabled); /* Días fuera del mes */
+
+  --dp-day-today-color: var(--highlight);
+  --dp-day-today-font-weight: bold;
+  --dp-day-today-bg: transparent; /* O un fondo muy sutil */
+
+  --dp-day-selected-bg: var(--highlight);
+  --dp-day-selected-color: var(--button-txt);
+  --dp-day-selected-hover-bg: var(--button-action);
+
+  --dp-day-disabled-color: var(--txt-disabled);
+  --dp-day-disabled-bg: transparent;
+
+  /* --- NUEVAS VARIABLES PARA BREADCRUMBS (Opcionales, pueden usar existentes) --- */
+  --breadcrumbs-separator-color: var(--txt-secondary-color); /* Color para '/', '>', etc. */
+  --breadcrumbs-link-color: var(--highlight); /* Color de los enlaces */
+  --breadcrumbs-link-hover-color: var(--button-action); /* Color al pasar el cursor */
+  --breadcrumbs-current-color: var(--txt-color); /* Color del ítem actual (no enlace) */
+  --breadcrumbs-icon-color: var(--txt-secondary-color); /* Color de iconos opcionales */
+
+  /* --- NUEVAS VARIABLES PARA TOOLTIP --- */
+  --tooltip-bg: var(--background3); /* Un fondo oscuro pero no el más oscuro */
+  --tooltip-text-color: var(--txt-color); /* Texto claro sobre fondo oscuro */
+  --tooltip-border-radius: var(--tabs-sutil-border-radius); /* Radio sutil */
+  --tooltip-arrow-color: var(--tooltip-bg); /* Flecha del mismo color que el fondo */
+
+  /* Colores de Variante (Mapeados a tus variables existentes) */
+  --badge-primary-bg: var(--highlight);
+  --badge-primary-text: var(--button-txt);
+  --badge-success-bg: var(--success); /* Reusa variable success */
+  --badge-success-text: var(--button-txt);
+  --badge-danger-bg: var(--danger); /* Reusa variable danger */
+  --badge-danger-text: var(--button-txt);
+  --badge-warning-bg: var(--alert-warning-bg); /* Reusar color de alerta warning */
+  --badge-warning-text: var(--alert-warning-text);
+  --badge-info-bg: var(--alert-info-bg); /* Reusar color de alerta info */
+  --badge-info-text: var(--alert-info-text);
+  --badge-gray-bg: var(--disable); /* O var(--background1) */
+  --badge-gray-text: var(--txt-secondary-color); /* O var(--txt-color) */
+  --badge-close-color: rgba(0, 0, 0, 0.5); /* Color del botón de cierre */
+  --badge-close-hover-color: rgba(0, 0, 0, 0.8);
+  --badge-close-hover-bg: rgba(0, 0, 0, 0.1);
+
+  /* --- NUEVAS VARIABLES PARA DROPDOWN MENU --- */
+  --dropdown-bg: var(--background2); /* Fondo del menú */
+  --dropdown-border-color: var(--input-stroke-idle);
+  --dropdown-border-radius: var(--tabs-sutil-border-radius); /* Radio sutil */
+  --dropdown-separator-color: var(--input-stroke-idle);
+  --dropdown-item-text-color: var(--txt-color);
+  --dropdown-item-hover-bg: var(--background1);
+  --dropdown-item-hover-text-color: var(--txt-color); /* O var(--highlight) */
+  --dropdown-item-disabled-text-color: var(--txt-disabled);
+  --dropdown-item-disabled-bg: transparent;
+  --dropdown-icon-color: var(--txt-secondary-color);
+
+  /* --- NUEVAS VARIABLES PARA AUTOCOMPLETE --- */
+  --autocomplete-list-bg: var(--background2);
+  --autocomplete-list-border-color: var(--input-stroke-idle);
+  --autocomplete-list-border-radius: var(--tabs-sutil-border-radius);
+  --autocomplete-option-text-color: var(--txt-color);
+  --autocomplete-option-hover-bg: var(--background1);
+  --autocomplete-option-hover-text-color: var(--txt-color); /* O var(--highlight) */
+  --autocomplete-option-active-bg: var(--highlight); /* Cuando se navega con teclado */
+  --autocomplete-option-active-text-color: var(--button-txt);
+  --autocomplete-option-highlight-text-color: var(--highlight); /* Para texto coincidente */
+  --autocomplete-message-padding: var(--autocomplete-option-padding-y) var(--autocomplete-option-padding-x);
+  --autocomplete-message-text-color: var(--txt-secondary-color);
+
+  /* --- NUEVAS VARIABLES PARA CARD --- */
+  /* Para variante 'bordered' y separadores internos */
+  --card-border-color: var(--input-stroke-idle);
+  --card-bg: var(--background2);
+  --card-text-color: var(--txt-color); /* Heredado por defecto */
+  --card-border-radius: var(--alert-border-radius); /* ej. 6px */
+
+  /* Para header y footer */
+  --card-header-padding: 0.75rem var(--card-padding);
+  --card-footer-padding: 0.75rem var(--card-padding);
+  --card-header-footer-bg: transparent; /* Por defecto, mismo fondo que la card */
+  --card-header-footer-border-color: var(--card-border-color); /* Para línea separadora */
+
+  /* Para imagen */
+  --card-image-bg: var(--background1); /* Color de fondo si la imagen no carga o tiene transparencia */
+
+  /* --- NUEVAS VARIABLES PARA ACCORDION (LIGHT) --- */
+  --accordion-border-color: var(--input-stroke-idle); /* Color del borde entre ítems y del panel */
+  --accordion-border-radius: var(--tabs-sutil-border-radius); /* Radio para el contenedor y/o ítems */
+  --accordion-item-bg: var(--background2); /* Fondo de cada ítem (header + panel) */
+  --accordion-header-text-color: var(--txt-color);
+  --accordion-header-hover-bg: var(--background1);
+  --accordion-icon-color: var(--txt-secondary-color);
+  --accordion-panel-text-color: var(--txt-color); /* Heredado por defecto */
+  --accordion-panel-bg: transparent; /* Hereda de --accordion-item-bg o se puede definir */
+  --accordion-header-bg: transparent; /* O var(--background1) si se quiere diferenciar del panel */
+  --accordion-bg: transparent; /* Fondo del contenedor general del acordeón */
+
+    /* --- NUEVAS VARIABLES PARA AVATAR (LIGHT) --- */
+  --avatar-bg-default: var(--highlight-nav); /* Fondo para iniciales/icono fallback */
+  --avatar-text-color-default: var(--highlight); /* Color para iniciales/icono fallback */
+
+  --tree-guide-color: rgba(100, 100, 100, 0.5); /* Ejemplo: Gris más oscuro, opacidad 0.5 */
+
+  --overlay-bg-color: rgba(255, 255, 255, 0.8); /* Blanco semi-transparente (80% opacidad) */
+  --z-index-overlay: 100; /* Asegura que el overlay esté por encima de la mayoría de los elementos */
+}
+  
+  :root[data-theme='dark'] {
+    --background1: #0a0e2a;
+    --background2: #0d164d;
+    --background3: #212d79;
+    --highlight: #a66cff;
+    --disable: #3a3d56;
+    --txt-color: #ffffff;
+    --txt-highlighted: #ffffff;
+    --txt-disabled: #9093af;
+    --input-bg: #262a4a;
+    --input-stroke-focus: #ba68c8;
+    --input-stroke-idle: #4f5473;
+    --txt-input-color: #fafafa;
+    --button-base: #37196a;
+    --button-focus: #9575cd;
+    --button-action: #512da8;
+    --success: var(--button-base);
+    --success-dark: var(--button-action);
+    --button-txt: #ffffff;
+    --button-hover: rgba(255, 255, 255, 0.1);
+    --highlight-nav: #caa7ff;
+    --sidebar-bg: #0b1020;
+    --modal-bg: var(--background2); /* <<< CAMBIADO - Ahora usa un color sólido */
+    --modal-overlay-bg: rgb(50, 50, 50, 0.9);
+    --loader-background: var(--highlight);
+    --modal-link-color: #c7b3e9;
+    --modal-link-color-hover: #b09cd3; /* Azul aún más claro */
+    --primary-rgb: #a66cff; 
+
+    /* ... (variables existentes del tema dark) ... */
+  --select-arrow-color: var(--select-arrow-disabled-color-value); /* En tema oscuro, la flecha normal podría ser más clara */
+  --select-arrow-disabled-color: #4f5473; /* Un gris oscuro para la flecha deshabilitada en tema dark */
+  --placeholder-text-color: var(--txt-disabled);
+  --required-indicator-color: var(--form-error-color); /* O un rojo más brillante si es necesario para contraste */
+
+    /* Alert - Success */
+    --alert-success-bg: #1a3e35;
+    --alert-success-text: #6ee3c2;
+    --alert-success-icon: #6ee3c2;
+    --alert-success-border: #6ee3c2;
+    --alert-success-close-button-hover-bg: #255a4c;
+
+    /* Alert - Error */
+    --alert-error-bg: #4d1a1a;
+    --alert-error-text: #ff8080;
+    --alert-error-icon: #ff8080;
+    --alert-error-border: #ff8080;
+    --alert-error-close-button-hover-bg: #662222;
+
+    /* Alert - Warning */
+    --alert-warning-bg: #4d3e1a;
+    --alert-warning-text: #ffe082;
+    --alert-warning-icon: #ffe082;
+    --alert-warning-border: #ffe082;
+    --alert-warning-close-button-hover-bg: #665222;
+
+    /* Alert - Info */
+    --alert-info-bg: #1a3a40;
+    --alert-info-text: #80deea;
+    --alert-info-icon: #80deea;
+    --alert-info-border: #80deea;
+    --alert-info-close-button-hover-bg: #214e56;
+
+    /* Tabs */
+    --tabs-border-color: var(--input-stroke-idle);
+    --tabs-tab-text-color: var(--txt-secondary-color);
+    --tabs-tab-hover-text-color: var(--txt-color);
+    --tabs-tab-active-text-color: var(--highlight);
+    --tabs-tab-active-border-color: var(--highlight);
+    --tabs-tab-disabled-text-color: var(--txt-disabled);
+
+    --tabs-pills-bg: var(--background1); /* Para variante 'pills' */
+    --tabs-pills-active-bg: var(--highlight);
+    --tabs-pills-active-text-color: #ffffff; /* Asegurar contraste en tema oscuro */
+    --tabs-boxed-border-color: var(--input-stroke-idle);
+    --tabs-boxed-active-tab-bg: var(--background2); /* Podría ser background1 o 3 para diferenciar */
+
+    /* --- NUEVAS VARIABLES PARA PAGINATION (DARK) --- */
+    --pagination-info-color: var(--txt-secondary-color);
+
+    --pagination-link-border-color: var(--input-stroke-idle);
+    --pagination-link-color: var(--highlight);
+    --pagination-link-bg: transparent;
+
+    --pagination-link-hover-bg: var(--background3); /* Fondo sutil en hover (oscuro) */
+    --pagination-link-hover-color: var(--highlight-nav);
+    --pagination-link-hover-border-color: var(--button-focus);
+
+    --pagination-active-bg: var(--highlight);
+    --pagination-active-text-color: var(--txt-color); /* Usar color de texto base para contraste */
+    --pagination-active-border-color: var(--highlight);
+
+    --pagination-disabled-color: var(--txt-disabled);
+    --pagination-disabled-bg: transparent;
+    --pagination-disabled-border-color: var(--disable);
+
+    --pagination-ellipsis-color: var(--txt-secondary-color);
+
+    /* --- NUEVAS VARIABLES PARA DATEPICKER (DARK) --- */
+    --dp-bg: var(--background3); /* Un fondo ligeramente diferente para el popover */
+    --dp-text-color: var(--txt-color);
+    --dp-border-color: var(--input-stroke-idle);
+  
+    --dp-month-year-color: var(--txt-color);
+    --dp-nav-button-color: var(--highlight-nav); /* Más brillante */
+    --dp-nav-button-hover-bg: var(--background2);
+    --dp-nav-button-disabled-color: var(--txt-disabled);
+  
+    --dp-weekday-color: var(--txt-secondary-color);
+  
+    --dp-day-text-color: var(--txt-color);
+    --dp-day-hover-bg: var(--background2);
+    --dp-day-outside-color: var(--txt-disabled);
+  
+    --dp-day-today-color: var(--highlight-nav); /* Más brillante */
+    /* --dp-day-today-bg: transparent; (Hereda) */
+  
+    --dp-day-selected-bg: var(--highlight);
+    --dp-day-selected-color: var(--txt-color); /* Texto base para contraste */
+    --dp-day-selected-hover-bg: var(--button-focus); /* Un hover diferente para oscuro */
+  
+    --dp-day-disabled-color: var(--txt-disabled);
+    --dp-day-disabled-bg: transparent;
+
+    /* --- NUEVAS VARIABLES PARA BREADCRUMBS (DARK) --- */
+  --breadcrumbs-separator-color: var(--txt-secondary-color);
+  --breadcrumbs-link-color: var(--highlight-nav); /* Quizás un color más brillante */
+  --breadcrumbs-link-hover-color: var(--highlight);
+  --breadcrumbs-current-color: var(--txt-color);
+  --breadcrumbs-icon-color: var(--txt-secondary-color);
+
+  /* --- NUEVAS VARIABLES PARA TOOLTIP (DARK) --- */
+  --tooltip-bg: var(--background3); /* Un fondo oscuro pero no el más oscuro */
+  --tooltip-text-color: var(--txt-color); /* Texto claro sobre fondo oscuro */
+  --tooltip-border-radius: var(--tabs-sutil-border-radius); /* Radio sutil */
+  --tooltip-arrow-color: var(--tooltip-bg); /* Flecha del mismo color que el fondo */
+
+  /* --- NUEVAS VARIABLES PARA BADGE (DARK) --- */
+  --badge-primary-bg: var(--highlight);
+  --badge-primary-text: var(--txt-color); /* Texto claro para contraste */
+  --badge-success-bg: var(--success-dark); /* Usar variante oscura si existe */
+  --badge-success-text: var(--txt-color);
+  --badge-danger-bg: var(--danger-dark); /* Usar variante oscura si existe */
+  --badge-danger-text: var(--txt-color);
+  --badge-warning-bg: var(--alert-warning-bg); /* Reusar alerta oscura */
+  --badge-warning-text: var(--alert-warning-text);
+  --badge-info-bg: var(--alert-info-bg); /* Reusar alerta oscura */
+  --badge-info-text: var(--alert-info-text);
+  --badge-gray-bg: var(--disable); /* O var(--background2) */
+  --badge-gray-text: var(--txt-color); /* Texto claro */
+  --badge-close-color: rgba(255, 255, 255, 0.6);
+  --badge-close-hover-color: rgba(255, 255, 255, 0.9);
+  --badge-close-hover-bg: rgba(255, 255, 255, 0.15);
+
+  /* --- NUEVAS VARIABLES PARA DROPDOWN MENU (DARK) --- */
+  --dropdown-bg: var(--background3); /* Fondo oscuro para el menú */
+  --dropdown-border-color: var(--input-stroke-idle);
+  --dropdown-item-text-color: var(--txt-color);
+  --dropdown-item-hover-bg: var(--background2);
+  --dropdown-item-hover-text-color: var(--highlight-nav); /* Resaltar texto en hover */
+  --dropdown-item-disabled-text-color: var(--txt-disabled);
+  --dropdown-icon-color: var(--txt-secondary-color);
+  --dropdown-separator-color: var(--input-stroke-idle);
+
+  /* --- NUEVAS VARIABLES PARA AUTOCOMPLETE (DARK) --- */
+  --autocomplete-list-bg: var(--background3);
+  --autocomplete-list-border-color: var(--input-stroke-idle);
+  --autocomplete-list-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --autocomplete-option-text-color: var(--txt-color);
+  --autocomplete-option-hover-bg: var(--background2);
+  --autocomplete-option-hover-text-color: var(--highlight-nav);
+  --autocomplete-option-active-bg: var(--highlight);
+  --autocomplete-option-active-text-color: var(--txt-color);
+  --autocomplete-option-highlight-text-color: var(--highlight-nav);
+  --autocomplete-message-text-color: var(--txt-secondary-color);
+
+  /* --- NUEVAS VARIABLES PARA CARD --- */
+  /* Para variante 'bordered' y separadores internos */
+  --card-border-color: var(--input-stroke-idle);
+  --card-bg: var(--background2);
+  --card-text-color: var(--txt-color); /* Heredado por defecto */
+  --card-border-radius: var(--alert-border-radius); /* ej. 6px */
+
+  /* Para header y footer */
+  --card-header-padding: 0.75rem var(--card-padding);
+  --card-footer-padding: 0.75rem var(--card-padding);
+  --card-header-footer-bg: transparent; /* Por defecto, mismo fondo que la card */
+  --card-header-footer-border-color: var(--card-border-color); /* Para línea separadora */
+
+  /* Para imagen */
+  --card-image-bg: var(--background1); /* Color de fondo si la imagen no carga o tiene transparencia */
+
+/* --- NUEVAS VARIABLES PARA ACCORDION (DARK) --- */
+  --accordion-border-color: var(--input-stroke-idle);
+  --accordion-bg: transparent; 
+  --accordion-item-bg: var(--background1); /* Un poco más claro que el fondo general oscuro */
+  --accordion-item-margin-bottom: 0.5rem; 
+  --accordion-header-bg: transparent; /* O var(--background2) */
+  --accordion-header-text-color: var(--txt-color);
+  --accordion-header-hover-bg: var(--background2);
+  /* --accordion-header-focus-shadow: ... (Hereda o ajusta color RGBA) */ 
+  --accordion-icon-color: var(--txt-secondary-color);
+  --accordion-panel-bg: transparent;
+  --accordion-panel-text-color: var(--txt-color);
+
+   /* --- NUEVAS VARIABLES PARA AVATAR (DARK) --- */
+  --avatar-bg-default: var(--highlight); /* Fondo para iniciales/icono fallback */
+  --avatar-text-color-default: var(--background3); /* Color para iniciales/icono fallback */
+
+  --tree-guide-color: rgba(200, 200, 200, 0.4); /* Ejemplo: Gris más claro, opacidad 0.4 */
+
+  --overlay-bg-color: rgba(0, 0, 0, 0.8); /* Negro semi-transparente (80% opacidad) */
+  --z-index-overlay: 100; /* Mismo z-index */
+  } 

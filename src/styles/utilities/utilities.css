@@ -1,0 +1,90 @@
+/* UserCard */
+.user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background2);
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    gap: 0.7rem;
+  }
+  
+  .user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--disable);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user-name {
+    font-size: 1rem;
+    color: var(--txt-color);
+    text-align: center;
+    word-break: break-word;
+    font-weight: bold;
+  }
+  
+  .user-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.4rem;
+  }
+  
+  .user-action-button {
+    background-color: var(--button-base);
+    color: var(--button-txt);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-action-button:hover {
+    background-color: var(--button-focus);
+  }
+  
+  .notification-toast {
+    background-color: var(--highlight);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    text-align: center;
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    animation: fadeInOut 3s ease-in-out;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+
+/* Clase para ocultar texto visualmente pero mantenerlo para lectores de pantalla */
+.visually-hidden {
+  position: absolute !important; /* !important para asegurar que sobreescriba otras reglas */
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important; /* Evita que afecte el layout */
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important; /* Evita saltos de línea */
+  border: 0 !important;
+}

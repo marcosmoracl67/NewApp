@@ -1,0 +1,19 @@
+/* src/styles/pages/_TiposNodo.css */
+
+/* Ajustes de layout específicos para la página TiposNodo si son necesarios */
+.tipos-nodo-page .form-card {
+  /* Podrías ajustar el gap o alineación de .form-row aquí si es diferente */
+}
+
+.tipos-nodo__toolbar {
+  display: flex;
+  justify-content: flex-end; /* Para alinear SearchBar a la derecha */
+}
+
+.tipos-nodo__toolbar .tipos-nodo__search-input { /* Controla el ancho del SearchBar */
+  width: 30%; /* O el ancho que necesites */
+}
+
+/* Ajuste de ancho de columnas en DataTable (si no se usan clases genéricas col-*) */
+/* .tipos-nodo-page .col-80 { width: 80%; } */
+/* .tipos-nodo-page .col-10 { width: 10%; text-align: center; } */

@@ -1,0 +1,81 @@
+/* App containers, grid/flex, wrappers */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background1);
+  }
+
+  .form-page.centered {
+    background-color: var(--background1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    min-height: auto;
+    padding-bottom: 0rem; 
+  }
+  
+ /* En src/styles/layout/_layout.css (o donde lo pongas) */
+
+.app-main.sidebar-open {
+    /* Tus estilos existentes para cuando el sidebar de menú está abierto */
+    /* ej: padding-left: var(--sidebar-width-open); */
+    transition: padding-left 0.3s ease-in-out, margin-left 0.3s ease-in-out; /* Suavizar transición */
+}
+
+.app-main.sidebar-collapsed {
+    /* Tus estilos existentes para cuando el sidebar de menú está colapsado */
+    /* ej: padding-left: var(--sidebar-width-collapsed); */
+    transition: padding-left 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+}
+
+.app-main {
+    flex-grow: 1; /* Para que ocupe el espacio restante al lado del Sidebar de Menú */
+    height: 100vh; /* O la altura que deba tener */
+    overflow: hidden; /* Evitar que app-main tenga scroll, el scroll lo manejan sus hijos */
+    display: flex; /* Para que page-layout-with-hierarchy o main-content-area--full puedan crecer */
+    /* No pongas padding aquí si sidebar-open/collapsed ya lo manejan */
+}
+
+.page-layout-with-hierarchy {
+    display: flex;
+    flex-grow: 1; /* Ocupa todo el espacio de app-main */
+    height: 100%;
+    overflow: hidden; /* Evita que este contenedor tenga scroll */
+}
+
+/* ResizablePanel ya tiene .hierarchy-panel-wrapper como clase opcional */
+/* .hierarchy-panel-wrapper { ... } */
+
+.main-content-area { /* Contenido a la DERECHA del panel de jerarquía */
+    flex-grow: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    height: 100%;
+    background-color: var(--background);
+}
+
+.main-content-area--full { /* Contenido cuando NO hay panel de jerarquía */
+    flex-grow: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    height: 100%;
+    background-color: var(--background);
+    width: 100%; /* Asegurar que ocupe todo el ancho si es el único contenido en app-main */
+}
+
+.layout--panel {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.layout__contenido {
+  flex: 1;
+  overflow: auto;
+}

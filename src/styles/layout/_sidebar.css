@@ -1,0 +1,108 @@
+/*Sidebar, hamburguesa, navegación*/
+/* Contenedor lateral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.08);
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  /* Menú hamburguesa */
+  .hamburger-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1100;
+  }
+  
+  .hamburger-icon {
+    font-size: 1.8rem;
+    background-color: transparent;
+    color: var(--txt-color);
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .hamburger-icon:hover {
+    color: var(--highlight);
+  }
+  
+  /* Lista de navegación */
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 1rem;
+    margin-bottom: 0rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+    .sidebar-item-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .submenu-toggle {
+    background: none;
+    border: none;
+    color: var(--txt-color);
+    cursor: pointer;
+  }
+
+  .sidebar-submenu {
+    padding-left: 1rem;
+    display: none;
+  }
+
+  .sidebar-submenu.open {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .sidebar-item:hover {
+    background-color: var(--highlight-nav);
+  }
+  
+  .sidebar-icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .sidebar-text {
+    font-size: 1rem;
+    color: var(--txt-color);
+  }
+   

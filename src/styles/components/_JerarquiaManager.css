@@ -1,0 +1,267 @@
+/* src/styles/components/_JerarquiaManager.css */
+/* src/styles/components/_JerarquiaManager.css */
+.jerarquia-manager {
+    /* padding: var(--spacing-md); Quitado, Container lo maneja o clases hijas */
+    background-color: var(--background1);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    display: flex; /* Para organizar acciones y árbol-container */
+    flex-direction: column;
+    height: 100%; /* Para que ocupe el ResizablePanel */
+}
+
+.jerarquia-manager__titulo {
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.jerarquia-manager__acciones-globales {
+    /* margin-bottom: 0; */ /* Ya lo gestiona el padding interno */
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md); /* Añadir padding si es necesario */
+    flex-shrink: 0; /* No encoger */
+}
+/* No necesitas jerarquia-manager__acciones-globales--align-right si solo hay SearchBar */
+
+.jerarquia-manager__arbol-container{
+    margin-top: 0; /* elimina cualquier espacio entre el buscador y el árbol */
+    position: relative;
+    flex-grow: 1; /* Ocupar espacio restante */
+    overflow-y: auto; /* Scroll para el árbol */
+    padding: 0;
+    border-right: 1px solid var(--border-color);
+    /* Puedes dejar border-left, border-top, border-bottom si quieres */
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.jerarquia-manager__mensaje-vacio {
+    padding: var(--spacing-lg);
+    /* align="center" ya lo hace el Parrafo */
+    color: var(--text-muted-color);
+}
+
+/* Estilos para cada fila del árbol */
+.nodo-arbol__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: var(--spacing-sm);
+    padding-left: 0; /* El padding izquierdo ahora es manejado por las guías */
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
+}
+
+.nodo-arbol__item:last-child {
+    border-bottom: none;
+}
+
+.nodo-arbol__item:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.nodo-arbol__item--inactivo .nodo-arbol__descripcion {
+    color: var(--text-muted-color);
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+/* Contenedor del contenido principal del nodo (toggler, icono tipo, descripción) */
+.nodo-arbol__contenido {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs); /* Espacio reducido entre toggler, icono y descripción */
+    flex-grow: 1;
+}
+
+/* Contenedor del botón de expandir/colapsar */
+.nodo-arbol__toggler {
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Evitar que se encoja */
+}
+
+/* Estilos para el FormButton usado como toggler */
+.nodo-arbol__toggler .button { /* Apunta a la clase base '.button' del FormButton */
+    padding: 1px 2px;        /* Padding mínimo para hacerlo compacto */
+    min-width: auto;         /* Sin ancho mínimo */
+    line-height: 0.7;        /* Ayuda a compactar verticalmente */
+    gap: 0;                  /* Sin espacio interno si solo hay icono */
+    border: none !important; /* ELIMINA EL BORDE SIEMPRE PARA ESTE BOTÓN */
+    background-color: transparent !important; /* Asegurar fondo transparente */
+}
+
+/* Tamaño del icono SVG (chevron) DENTRO del FormButton del toggler */
+.nodo-arbol__toggler .button .button__icon svg {
+    width: 0.8em;            /* Relativo al font-size del botón (que será 'small' -> 0.8rem) */
+    height: 0.8em;
+    display: block;
+}
+
+/* Placeholder para nodos sin hijos (para mantener alineación) */
+.nodo-arbol__toggler-placeholder {
+    display: inline-block;
+    width: calc(0.8em + 4px); /* Tamaño del icono + padding horizontal del botón */
+    height: calc(0.8em + 2px);/* Tamaño del icono + padding vertical del botón */
+    flex-shrink: 0;
+}
+
+/* Icono que representa el tipo de nodo */
+.nodo-arbol__icono-tipo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+    font-size: 0.9rem; /* Ligeramente más pequeño que la descripción */
+    flex-shrink: 0;
+    margin-left: var(--spacing-xxs); /* Pequeño espacio después del toggler si el gap no es suficiente */
+}
+
+/* Descripción del nodo */
+.nodo-arbol__descripcion {
+    flex-grow: 1;
+    white-space: nowrap; /* Evitar que el texto se rompa en múltiples líneas */
+    overflow: hidden;    /* Ocultar el texto que desborda */
+    text-overflow: ellipsis; /* Añadir puntos suspensivos */
+    min-width: 0; /* Necesario para que text-overflow funcione en un contenedor flex */
+}
+
+/* Estilo específico para la descripción del nodo raíz */
+.nodo-arbol__item--raiz .nodo-arbol__descripcion {
+    font-weight: bold;
+}
+
+.nodo-arbol__debug-info {
+    color: var(--text-muted-color);
+    margin-left: var(--spacing-sm);
+}
+
+/* Contenedor de acciones a la derecha (actualmente vacío) */
+.nodo-arbol__acciones {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.nodo-arbol__item--seleccionado {
+    background-color: var(--button-focus);
+}
+
+.nodo-arbol__item--seleccionado .nodo-arbol__descripcion {
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+/* Contenedor de las líneas guía */
+.nodo-arbol__lineas-guia-container {
+    display: flex;      /* Alinear los segmentos de guía horizontalmente */
+    flex-shrink: 0;   /* No permitir que se encoja */
+    align-self: stretch; /* Hacer que ocupe toda la altura del item si es necesario */
+}
+
+/* Cada segmento de línea vertical */
+.nodo-arbol__guia-vertical {
+    width: 20px;        /* Ancho de cada nivel de indentación. AJUSTA ESTE VALOR */
+    position: relative; /* Para el pseudo-elemento que dibuja la línea */
+    flex-shrink: 0;
+}
+
+.nodo-arbol__guia-vertical::before {
+    content: "";
+    position: absolute;
+    left: 50%;         /* Centrar la línea dentro del 'width' de 20px */
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 2px;        /* Ancho de la línea guía */
+    background-color: var(--tree-guide-color, rgba(128, 128, 128, 0.4)); /* Define --tree-guide-color en _themes.css */
+}
+
+/* Wrapper para el contenido indentable (toggler, icono, texto) */
+.nodo-arbol__contenido-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Ocupa el espacio restante */
+    gap: var(--spacing-xxs); /* Espacio reducido entre toggler, icono y descripción */
+}
+
+/* src/styles/pages/_PaginaGestionJerarquia.css */
+
+.page-layout-with-hierarchy {
+  display: flex;
+  height: 100%; /* Asume que el padre (app-main) ya gestiona la altura de viewport */
+  overflow: hidden;
+}
+
+.main-content-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* El scroll interno lo manejan sus hijos */
+  background-color: var(--background);
+}
+
+.panel-principal__cabecera {
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  background-color: var(--background1);
+}
+
+.panel-principal__cabecera .titulo-component {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
+}
+
+.panel-principal__formulario-contenedor {
+  flex-grow: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+.mensaje-seleccion-nodo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detalle-nodo-form-fields { /* Clase para el formulario */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* Espacio entre campos del formulario (form-groups) */
+}
+
+.detalle-nodo-form-fields .form-group {
+  margin-bottom: 0; /* El 'gap' del padre '.detalle-nodo-form-fields' ya se encarga del espaciado vertical entre form-groups */
+}
+
+.detalle-nodo-form__actions-footer { /* Cambiado de .detalle-nodo-form__actions */
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color-light);
+  display: flex; /* Para que los botones se alineen horizontalmente */
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+}
+
+.dynamic-detail-form__actions-footer {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: var(--spacing-sm); /* Espacio entre botones */
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color-light);
+}
+
+.search-bar--jerarquia {
+  width: 100%;            /* o 100%, según convenga */
+  max-width: none;       /* opcional, si se desea permitir crecer más allá del 40% */
+}

@@ -1,0 +1,92 @@
+/* src/styles/components/_AutoComplete.css */
+
+/* Contenedor principal del AutoComplete (envuelve el input y la lista) */
+/* FormInput ya usa .form-group, así que este wrapper es principalmente para posicionamiento relativo */
+.autocomplete-wrapper {
+  position: relative; /* Necesario para posicionar la lista de sugerencias */
+  width: 100%; /* Ocupar el ancho del contenedor form-col/form-group */
+}
+
+/* Lista de Sugerencias (el popover) */
+.autocomplete__listbox {
+  position: absolute;
+  top: calc(100% + 4px); /* Debajo del input, con un pequeño espacio */
+  left: 0;
+  right: 0; /* Para que ocupe el mismo ancho que el input por defecto */
+  z-index: var(--autocomplete-list-z-index);
+
+  background-color: var(--autocomplete-list-bg);
+  border: 1px solid var(--autocomplete-list-border-color);
+  border-top: none; /* Evitar doble borde con el input, o ajustar */
+  border-radius: 0 0 var(--autocomplete-list-border-radius) var(--autocomplete-list-border-radius);
+  box-shadow: var(--autocomplete-list-shadow);
+  padding-top: var(--autocomplete-list-padding-y);
+  padding-bottom: var(--autocomplete-list-padding-y);
+  max-height: var(--autocomplete-list-max-height);
+  overflow-y: auto; /* Scroll si hay muchas sugerencias */
+  list-style: none; /* Quitar bullets si se usa <ul> */
+  margin: 0; /* Resetear margen */
+  outline: none; /* Se maneja el foco en las opciones */
+}
+
+/* Estilo para la barra de scroll de la lista (opcional) */
+.autocomplete__listbox::-webkit-scrollbar {
+  width: 6px;
+}
+.autocomplete__listbox::-webkit-scrollbar-thumb {
+  background-color: var(--input-stroke-idle);
+  border-radius: 3px;
+}
+.autocomplete__listbox::-webkit-scrollbar-track {
+  background-color: transparent; /* O var(--autocomplete-list-bg) */
+}
+.autocomplete__listbox { /* Fallback Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--input-stroke-idle) transparent;
+}
+
+
+/* Ítem de Sugerencia (<li> o <div>) */
+.autocomplete__option {
+  padding: var(--autocomplete-option-padding-y) var(--autocomplete-option-padding-x);
+  color: var(--autocomplete-option-text-color);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+/* Hover sobre un ítem */
+.autocomplete__option:hover {
+  background-color: var(--autocomplete-option-hover-bg);
+  color: var(--autocomplete-option-hover-text-color);
+}
+
+/* Ítem activo/enfocado con teclado */
+.autocomplete__option--active {
+  background-color: var(--autocomplete-option-active-bg);
+  color: var(--autocomplete-option-active-text-color);
+  outline: none; /* El foco se indica con el fondo */
+}
+.autocomplete__option--active:hover { /* Mantener estilo activo en hover */
+  background-color: var(--autocomplete-option-active-bg);
+  color: var(--autocomplete-option-active-text-color);
+}
+
+
+/* Para resaltar el texto coincidente dentro de una opción */
+.autocomplete__option-highlight {
+  font-weight: bold;
+  color: var(--autocomplete-option-highlight-text-color);
+  /* background-color: transparent; */ /* Asegurar que no tenga fondo propio si el padre lo tiene */
+}
+
+/* Mensajes (No hay sugerencias, Cargando) */
+.autocomplete__message {
+  padding: var(--autocomplete-message-padding);
+  color: var(--autocomplete-message-text-color);
+  font-style: italic;
+  text-align: center;
+  cursor: default; /* No es clickeable */
+}

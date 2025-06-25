@@ -1,0 +1,75 @@
+/* RadioGroup.css */
+/* Estilos para el componente RadioGroup */
+.form-radio-group {
+    /* Hereda margen de .form-group */
+    border: none; /* Quita el borde por defecto de fieldset si no se quiere */
+    padding: 0; /* Quita padding por defecto de fieldset */
+  }
+  
+  /* Estilo para la leyenda (usa .form-label) */
+  .form-radio-group legend.form-label {
+    margin-bottom: 0.6rem; /* Espacio debajo de la leyenda */
+    padding: 0; /* Asegurar que no tenga padding extraño */
+  }
+  
+  /* Contenedor de las opciones */
+  .form-radio-options-wrapper {
+    display: flex;
+    flex-direction: column; /* Layout vertical por defecto */
+    gap: 0.5rem; /* Espacio entre opciones verticales */
+  }
+  
+  /* Layout horizontal */
+  .form-radio-group--inline .form-radio-options-wrapper {
+    flex-direction: row; /* Cambia a horizontal */
+    flex-wrap: wrap; /* Permite que pasen a la siguiente línea si no caben */
+    gap: 1.5rem; /* Espacio mayor entre opciones horizontales */
+  }
+  
+  /* Estilo para cada item (input + label) */
+  .form-radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el radio y su label */
+  }
+  
+  /* Input de radio (estilos nativos por ahora) */
+  .form-radio__input {
+    margin: 0; /* Resetear margen */
+    flex-shrink: 0; /* Evitar que se encoja */
+    /* Podrías añadir tamaño/cursor aquí si los nativos no son consistentes */
+    cursor: pointer;
+  }
+  .form-radio__input:disabled {
+    cursor: not-allowed;
+  }
+  
+  /* Label del radio */
+  .form-radio-label {
+    margin-bottom: 0; /* Quitar margen si viene de .form-label general */
+    font-weight: normal; /* Peso normal para labels de opciones */
+    cursor: pointer;
+    /* Color podría ser slightly diferente si se desea */
+    /* color: var(--txt-color-secondary); */
+  }
+  .form-radio-group--disabled .form-radio-label {
+     cursor: not-allowed;
+  }
+  
+  
+  /* Estado deshabilitado para el grupo */
+  .form-radio-group--disabled {
+    opacity: 0.6;
+  }
+  /* (El atributo disabled en fieldset/input ya debería funcionar,
+     pero la opacidad ayuda visualmente) */
+  
+  
+  /* Mensaje de error (usa la clase estándar .form-error-message) */
+  .form-group--error .form-error-message {
+     /* Ajusta el margen superior si es necesario para separarlo de las opciones */
+     margin-top: 0.5rem;
+  }
+  
+  
+  /* --- Fin estilos Radio --- */

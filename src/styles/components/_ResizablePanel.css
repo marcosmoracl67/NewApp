@@ -1,0 +1,57 @@
+/* src/styles/layout/_ResizablePanel.css */
+
+/* Importa tus variables si este archivo no las hereda automáticamente */
+/* @import '../config/_themes.css'; */ /* Si es necesario */
+
+.resizable-panel {
+    background-color: var(--background-alt, #f0f0f0); /* Color de fondo del panel */
+    /* El borde se definirá basado en la clase --left o --right */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-shrink: 0; /* No encogerse */
+}
+
+.resizable-panel--left {
+    border-right: 1px solid var(--border-color, #ccc);
+}
+
+.resizable-panel__content {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 0; /* ❗ Elimina el margen extra */
+}
+
+.resizable-panel__resizer {
+    width: 8px;
+    cursor: col-resize;
+    background-color: var(--border-color-strong, #999);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.resizable-panel--left .resizable-panel__resizer {
+    right: -4px; /* Centrar la barra sobre el borde */
+}
+
+.resizable-panel__resizer:hover {
+    background-color: var(--primary-light, #777);
+}
+
+
+.resizable-panel--active-resizing .resizable-panel__resizer {
+    background-color: var(--primary); /* Ya aplicado inline, pero puede ser una clase */
+    /* Podrías añadir una sombra sutil o algo más si quieres */
+    /* box-shadow: 0 0 5px var(--primary-transparent); */
+}
+
+/* Para evitar que el contenido del panel sea seleccionable mientras se redimensiona desde el panel mismo */
+.resizable-panel--active-resizing .resizable-panel__content {
+    user-select: none;
+    pointer-events: none; /* Evita que el contenido capture eventos de ratón */
+}

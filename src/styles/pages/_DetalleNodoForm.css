@@ -1,0 +1,48 @@
+/* src/styles/components/_DetalleNodoForm.css */
+.detalle-nodo-form-container {
+    /* background-color: var(--background1); */ /* El container ya lo hace */
+    /* padding: var(--spacing-md); */ /* El container ya lo hace */
+}
+
+.detalle-nodo-form__subtitulo { /* Si decides tener un subtítulo dentro del form */
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.detalle-nodo-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); /* Espacio entre campos del formulario */
+}
+
+.detalle-nodo-form .form-group {
+    margin-bottom: 0; /* El gap del form padre ya maneja el espaciado */
+}
+
+.detalle-nodo-form__actions {
+    margin-top: var(--spacing-lg); /* Espacio antes de los botones */
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color-light);
+}
+
+/* Estilos para la cabecera del panel principal si están en _layout.css o similar */
+.panel-principal__cabecera {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0; /* Para que no se encoja si el contenido del form es grande */
+    background-color: var(--background1); /* O un color distintivo */
+}
+
+.panel-principal__cabecera .titulo-component { /* Si usas Titulo */
+    margin-bottom: 0; /* Quitar margen inferior del Titulo si está en cabecera */
+    display: flex;
+    align-items: center;
+}
+
+.panel-principal__formulario-contenedor {
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative; /* Para el loader overlay */
+}

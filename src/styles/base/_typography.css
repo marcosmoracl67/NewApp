@@ -1,0 +1,33 @@
+/* --- START OF FILE src/styles/components/Typography.css --- */
+
+/* Este archivo contiene estilos para variantes de Titulo y Parrafo si se usaran clases CSS */
+
+.titulo--h1 {
+  font-size: 2.3rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 0.8em;
+}
+
+.titulo--pageTitle {
+   font-size: 2rem;
+   font-weight: bold;
+   margin-bottom: 1.5rem;
+   text-align: center;
+}
+
+.parrafo--caption {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--txt-disabled);
+  margin-bottom: 0.5rem;
+}
+
+.parrafo--error {
+    color: var(--danger);
+    font-weight: 500;
+}
+
+/* Titulo y Parrafo se controlan principalmente con props inline. */
+
+/* Estilos base para h1-h6 y p deberían estar en base.css */

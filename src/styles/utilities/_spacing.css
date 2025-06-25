@@ -1,0 +1,51 @@
+/* Flex utilities */
+.u-flex {
+  display: flex;
+}
+.u-justify-end {
+  justify-content: flex-end;
+}
+.u-justify-between {
+  justify-content: space-between;
+}
+.u-align-center {
+  align-items: center;
+}
+.u-gap-sm {
+  gap: 0.5rem;
+}
+.u-gap-md {
+  gap: 1rem;
+}
+
+/* Margin spacing */
+.u-margin-top-sm {
+  margin-top: 0.5rem;
+}
+.u-margin-top-md {
+  margin-top: 1rem;
+}
+.u-margin-bottom-sm {
+  margin-bottom: 0.5rem;
+}
+.u-margin-bottom-md {
+  margin-bottom: 1rem;
+}
+
+/* Padding spacing */
+.u-padding-sm {
+  padding: 0.5rem;
+}
+.u-padding-md {
+  padding: 1rem;
+}
+.u-padding-top-sm {
+  padding-top: 0.5rem;
+}
+.u-padding-top-md {
+  padding-top: 1rem;
+}
+
+.u-margin-left-sm {
+  margin-left: 0.75rem;
+}

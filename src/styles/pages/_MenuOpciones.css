@@ -1,0 +1,38 @@
+/* src/styles/pages/_MenuOpciones.css */
+
+/* Contenedor de la barra de búsqueda en la página MenuOpciones */
+.menu-opciones__toolbar {
+    display: flex; /* Permite controlar la alineación del contenido */
+    justify-content: flex-end; /* <<< ALINEA el SearchBar a la derecha */
+    margin-top: 1.5rem; /* Espacio sobre la barra (ajusta según necesites) */
+    margin-bottom: 1rem; /* Espacio debajo de la barra (ajusta según necesites) */
+  
+    /* Controlar el ancho MÁXIMO del contenedor si es necesario,
+       para que no ocupe todo el ancho de page-container si este es muy grande */
+    max-width: 72rem; /* Igual que form-card y table-container? Ajustar */
+    width: 100%; /* Ocupa el ancho disponible hasta el max-width */
+    padding: 0; /* Añadir padding si page-container no lo tiene */
+    box-sizing: border-box;
+    margin-left: auto; /* Centrar el contenedor si es más pequeño que el viewport */
+    margin-right: auto;
+  }
+  
+  /* Estilo específico para el SearchBar DENTRO de este toolbar */
+  .menu-opciones__toolbar .search-bar { /* <<< Apunta al componente SearchBar */
+    width: 40%; /* <<< ANCHO deseado (ej: 40%) */
+    /* O puedes usar un ancho fijo: width: 350px; */
+    /* O un máximo: max-width: 400px; */
+  
+    /* No necesitas margin-left: auto aquí porque el
+       justify-content: flex-end del toolbar ya lo alinea */
+  }
+  
+  /* Media query opcional para ajustar en pantallas pequeñas */
+  @media (max-width: 768px) {
+    .menu-opciones__toolbar {
+      justify-content: center; /* Centrar en móvil */
+    }
+    .menu-opciones__toolbar .search-bar {
+      width: 80%; /* Más ancho en móvil */
+    }
+  }

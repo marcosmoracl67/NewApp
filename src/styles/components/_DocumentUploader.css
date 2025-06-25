@@ -1,0 +1,429 @@
+/* _DocumentUploader.css */
+
+/* Contenedor principal */
+.docuploader-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Zona de arrastre */
+.dropzone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  transition: border-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.dropzone--active {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-hover);
+}
+
+/* Vista previa de archivos */
+.doc-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+/* Tarjeta de archivo */
+.doc-card {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Imagen miniatura */
+.thumb {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Iconos para documentos */
+.doc-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.doc-icon.pdf {
+  color: var(--color-danger);
+}
+.doc-icon.word {
+  color: var(--color-accent-blue);
+}
+.doc-icon.excel {
+  color: var(--color-accent-green);
+}
+.doc-icon.default {
+  color: var(--color-text-muted);
+}
+
+/* Nombre de archivo */
+.doc-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+/* Botón de eliminar */
+.btn-trash {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  cursor: pointer;
+}
+
+.drop-icon {
+  font-size: 5.5rem;
+  color: var(--color-accent-blue);
+  margin-bottom: 0rem; 
+}
+
+.dropzone--active .drop-icon {
+  transform: scale(1.1);
+  color: var(--color-primary-hover);
+}
+
+/* src/components/_DocumentUploader.css */
+
+/* Contenedor principal */
+.docuploader-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  /* Añadir scroll y un max-height si la lista es muy larga */
+  /* max-height: 600px; */
+  /* overflow-y: auto; */
+}
+
+/* Zona de arrastre */
+.dropzone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  transition: border-color 0.2s ease-in-out;
+  cursor: pointer;
+  margin-bottom: var(--spacing-md); /* Un poco más de espacio */
+}
+
+.dropzone--active {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-hover);
+}
+.drop-icon {
+  font-size: 5.5rem;
+  color: var(--color-accent-blue);
+  margin-bottom: 0rem;
+}
+.dropzone--active .drop-icon {
+  transform: scale(1.1);
+  color: var(--color-primary-hover);
+}
+
+
+/* Vista previa de archivos */
+.doc-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Ajusta el minmax para tu gusto */
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  /* Si la lista es muy grande, podrías añadir un scroll interno */
+  /* max-height: 400px; */
+  /* overflow-y: auto; */
+}
+
+/* Tarjeta de archivo */
+.doc-card {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  /* Establecer un alto mínimo o fijo para la tarjeta si es necesario */
+  min-height: 160px; /* Ajusta según el contenido de la tarjeta */
+  box-shadow: var(--shadow-sm); /* Si tienes una variable de sombra */
+}
+
+/* --- ESTILOS CRÍTICOS PARA EL ÁREA VISUAL (ICONO O IMAGEN) --- */
+.doc-card__visual-area {
+  width: 100%; /* O un ancho fijo, ej. 100px */
+  height: 80px; /* <--- ALTO FIJO PARA TODOS LOS ELEMENTOS VISUALES --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-xs);
+  overflow: hidden; /* Asegura que nada se desborde */
+}
+
+/* Estilos para las imágenes dentro del área visual */
+.doc-card__visual-area img.doc-thumbnail {
+  max-width: 100%;
+  max-height: 100%; /* Se ajusta al alto del contenedor (.doc-card__visual-area) */
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Redimensiona para encajar, sin cortar, manteniendo aspecto */
+  display: block; /* Elimina espacio extra */
+}
+
+/* Estilos para los iconos dentro del área visual */
+.doc-card__visual-area .doc-icon {
+  font-size: 3rem; /* Tamaño de icono que se vea bien dentro de 80px */
+  margin: 0; /* Elimina márgenes extra si ya tiene el wrapper */
+}
+
+/* Estilos para los iconos (colores específicos) */
+.doc-icon.pdf { color: var(--color-danger); }
+.doc-icon.word { color: var(--color-accent-blue); }
+.doc-icon.excel { color: var(--color-accent-green); }
+.doc-icon.ppt { color: var(--color-accent-purple); } /* Asumiendo que tienes esta variable */
+.doc-icon.mpp { color: var(--color-accent-orange); } /* Asumiendo que tienes esta variable */
+.doc-icon.vsd { color: var(--color-accent-teal); } /* Asumiendo que tienes esta variable */
+.doc-icon.text { color: var(--color-accent-gray); } /* Para .txt y .csv */
+.doc-icon.csv { color: var(--color-accent-green-light); } /* Define este si quieres un verde más claro */
+.doc-icon.image { color: var(--color-accent-info); } /* Color para icono genérico de imagen */
+.doc-icon.audio { color: var(--color-accent-yellow); }
+.doc-icon.video { color: var(--color-accent-red); }
+.doc-icon.code { color: var(--color-accent-dark-gray); } /* Para código */
+.doc-icon.archive { color: var(--color-accent-brown); } /* Para comprimidos */
+.doc-icon.default { color: var(--color-text-muted); } /* Color para el fallback final */
+
+
+/* Nombre de archivo */
+.doc-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.8em; /* Limitar a 2 líneas de texto */
+  line-height: 1.4em;
+  width: 100%; /* Asegurar que el texto ocupe el ancho disponible */
+  padding: 0 var(--spacing-xs); /* Padding horizontal para el texto */
+  box-sizing: border-box; /* Incluir padding en el ancho */
+}
+
+/* Información adicional (subido por, fecha) */
+.doc-info {
+  font-size: var(--font-size-xs); /* Variable para font-size */
+  color: var(--color-text-secondary);
+  margin-top: auto; /* Empuja la información al final de la tarjeta */
+  width: 100%; /* Ocupa todo el ancho */
+  padding: 0 var(--spacing-xs) var(--spacing-xs) var(--spacing-xs); /* Padding */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Botón de eliminar (papelera) */
+.btn-trash {
+  position: absolute;
+  top: var(--spacing-xxs); /* Ajusta la posición */
+  right: var(--spacing-xxs); /* Ajusta la posición */
+  background: var(--color-surface-hover); /* Fondo sutil para que sea visible */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm); /* Bordes redondeados */
+  color: var(--color-danger); /* Color de la papelera */
+  font-size: 1em;
+  cursor: pointer;
+  padding: 4px 6px; /* Padding para el botón */
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.btn-trash:hover {
+  opacity: 1;
+  background-color: var(--color-danger-light); /* Un color de hover más fuerte */
+  color: var(--color-danger-dark);
+}
+
+/* Clases de utilidad de estado */
+.text-info { color: var(--color-info); }
+.text-danger { color: var(--color-danger); }
+.text-warning { color: var(--color-warning); }
+.text-muted { color: var(--color-text-muted); } /* Ya existe */
+
+
+/* Media Queries para Responsive */
+@media (max-width: 768px) {
+  .doc-preview-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Columnas más pequeñas en móviles */
+    gap: var(--spacing-xs);
+  }
+  .doc-card {
+    min-height: 140px; /* Ajusta min-height */
+    padding: var(--spacing-xxs);
+  }
+  .doc-card__visual-area {
+    height: 60px; /* Alto más pequeño para el área visual */
+  }
+  .doc-card__visual-area .doc-icon {
+    font-size: 2.2rem; /* Tamaño de icono más pequeño */
+  }
+  .doc-name {
+    font-size: var(--font-size-xs);
+  }
+  .doc-info {
+    font-size: 0.65em;
+  }
+  .drop-icon {
+      font-size: 4rem;
+  }
+}
+
+.btn-download {
+  position: absolute;
+  top: var(--spacing-xxs); /* Misma posición vertical que el de borrar */
+  left: var(--spacing-xxs); /* Posición horizontal en la esquina izquierda */
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary); /* Color para el icono de descarga */
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 4px 6px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  display: flex; /* Para centrar el icono si el padding lo necesita */
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* Asegúrate de que esté sobre la tarjeta si hay elementos superpuestos */
+}
+
+.btn-download:hover {
+  opacity: 1;
+  background-color: var(--color-primary-light); /* Un color de hover más fuerte */
+  color: var(--color-primary-dark);
+}
+
+.doc-card {
+  position: relative; /* Esencial para el posicionamiento absoluto de hijos */
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs); /* Vuelve a tu padding normal */
+  display: flex;
+  flex-direction: column; /* Organiza los elementos verticalmente */
+  align-items: center; /* Centra el contenido horizontalmente */
+  text-align: center;
+  overflow: hidden; /* Oculta contenido que se desborde */
+  min-height: 160px; /* Asegura una altura mínima para todas las tarjetas */
+  box-shadow: var(--shadow-sm);
+  /* Ajustar el padding-top para dejar espacio al botón de acciones si lo desea */
+  /* Por ejemplo, si el botón de acciones es de 30px de alto, deja 30px + 4px de margen superior. */
+ 
+}
+
+/* --- ESTILOS CRÍTICOS PARA EL CONTENEDOR DEL BOTÓN DE ACCIONES --- */
+/* Contenedor del DropdownMenu de acciones */
+.doc-card__actions-menu {
+  position: absolute; /* Posicionamiento absoluto respecto a .doc-card__visual-area */
+  top: 0;   /* Pegado al borde superior del área visual */
+  right: 0; /* Pegado al borde derecho del área visual */
+  z-index: 10; /* Asegura que esté por encima de la imagen y otros elementos */
+  /* Puedes añadir un poco de padding al botón mismo si quieres espacio del borde */
+  /* Si quieres que se vea un poco de margen, puedes poner top: var(--spacing-xxs); right: var(--spacing-xxs); */
+  padding: var(--spacing-xxs); /* Padding del contenedor para la separación visual */
+}
+
+/* Estilo para el botón de tres puntos (trigger del DropdownMenu) */
+.btn-icon-more-options {
+  background-color: var(--color-surface); /* Fondo sólido para que no se vea a través */
+  border: 1px solid var(--color-border-light); /* Borde sutil */
+  border-radius: var(--radius-sm); /* Bordes redondeados */
+  color: var(--color-text-secondary); /* Color del icono */
+  font-size: 0.9em;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px; /* Padding interno del botón */
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-icon-more-options:hover {
+  opacity: 1;
+  background-color: var(--color-surface-hover);
+  color: var(--color-primary);
+}
+
+
+.doc-card__visual-area {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-xs);
+  overflow: hidden;
+  position: relative; /* <--- CRÍTICO: Para que los hijos absolutos se posicionen respecto a él */
+}
+
+.image-zoom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 85vh; /* Limita la altura para que quepa en la ventana */
+  overflow: auto; /* Permite scroll si la imagen es más grande que el contenedor */
+}
+
+.image-zoom-display {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Asegura que la imagen se ajuste sin cortarse */
+  display: block;
+  /* Opcional: una sombra o borde sutil */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.image-zoom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 90vh; /* Limita la altura para que quepa en la ventana */
+  overflow: auto; /* Permite scroll si la imagen es más grande que el contenedor */
+}
+
+.image-zoom-display {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Asegura que la imagen se ajuste sin cortarse */
+  display: block;
+  /* Opcional: una sombra o borde sutil */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.doc-card__visual-area .doc-thumbnail {
+    cursor: pointer; /* Cursor de puntero para indicar interactividad */
+}

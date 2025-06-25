@@ -1,0 +1,100 @@
+/* src/styles/components/_Card.css */
+
+.card {
+  display: flex; /* Base para layout interno, especialmente con imagen lateral */
+  flex-direction: column; /* Por defecto, imagen arriba, contenido abajo */
+  background-color: var(--card-bg);
+  color: var(--card-text-color);
+  border-radius: var(--card-border-radius);
+  overflow: hidden; /* Para que la imagen no se salga con border-radius */
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  width: 100%; /* Ocupar ancho disponible por defecto */
+}
+
+/* --- Variantes --- */
+.card--variant-bordered {
+  border: 1px solid var(--card-border-color);
+}
+
+.card--variant-elevated {
+  box-shadow: var(--card-shadow);
+}
+.card--variant-elevated:hover { /* Sombra más pronunciada en hover, opcional */
+  /* box-shadow: var(--card-shadow-hover); */
+  /* transform: translateY(-2px); */ /* Ligero efecto de elevación */
+}
+
+.card--variant-flat {
+  border: none;
+  box-shadow: none;
+}
+
+
+/* --- Posicionamiento de Imagen --- */
+
+/* Imagen arriba (por defecto, implícito por flex-direction: column) */
+.card--image-position-top .card__image-wrapper {
+  width: 100%;
+  /* max-height: 200px; /* Opcional: limitar altura de imagen */
+  /* overflow: hidden; */
+}
+
+/* Imagen a la izquierda */
+.card--image-position-left {
+  flex-direction: row;
+}
+.card--image-position-left .card__image-wrapper {
+  width: 30%; /* O un ancho fijo, ej: 150px */
+  flex-shrink: 0;
+}
+.card--image-position-left .card__content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen a la derecha */
+.card--image-position-right {
+  flex-direction: row-reverse; /* Invierte el orden visual */
+}
+.card--image-position-right .card__image-wrapper {
+  width: 30%;
+  flex-shrink: 0;
+}
+.card--image-position-right .card__content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* --- Elementos Internos --- */
+.card__image-wrapper {
+  display: flex; /* Para centrar la imagen si no ocupa todo el espacio */
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-image-bg) /* imagen ocupe toda la altura de la card */
+}
+.card--image-position-left .card__image {
+   height: 100%; /* Si se quiere que la imagen ocupe toda la altura del wrapper */
+}
+
+
+.card--image-position-right {
+  flex-direction: row-reverse; /* Imagen a la derecha */
+}
+.card--image-position-right .card__image-wrapper {
+  width: 30%; /* O un ancho fijo: 150px */
+  flex-shrink: 0;
+  /* height: 100%; */
+}
+.card--image-position-right .card__image {
+   height: 100%;
+}
+
+/* Ajustes para cuando la imagen está al lado y hay header/footer */
+.card--image-position-left .card__content-wrapper,
+.card--image-position-right .card__content-wrapper {
+   width: 70%; /* El resto del espacio */
+   /* overflow: hidden; */ /* Evitar que el contenido se desborde si es muy largo */
+}

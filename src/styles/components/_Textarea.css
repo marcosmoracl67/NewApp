@@ -1,0 +1,48 @@
+/* .textarea-small {
+    font-size: 0.85rem;
+  }
+
+  .textarea-medium {
+    font-size: 1rem;
+  }
+
+  .textarea-large {
+    font-size: 1.125rem;
+  }
+
+  textarea.form-input {
+    font-family: "Fira Sans", "Lato", sans-serif;
+    font-size: 0.8rem;
+    color: var(--txt-color);
+    resize: vertical;
+    border-radius: 4px;
+    min-height: 3.5rem; /* si quieres mínimo 2 líneas 
+  } */
+
+  /* --- START OF FILE src/styles/components/FormTextarea.css --- */
+
+/*
+ * La mayoría de los estilos base (padding, border, background, focus, error)
+ * son heredados de la clase .form-input (definida en forms.css)
+ * que también se aplica al elemento <textarea> en FormTextarea.jsx.
+ */
+
+.form-textarea { /* Clase específica añadida en el componente por si acaso */
+    /* Estilos específicos SOLO para textareas */
+  
+    /* Permitir redimensionar verticalmente es común y útil */
+    resize: vertical;
+  
+    /* Ajustar altura mínima si es necesario (aunque 'rows' lo controla) */
+    min-height: calc( (1.5em * 3) + (0.6rem * 2) + 2px ); /* Aprox: (line-height * rows) + (padding-y * 2) + (border * 2) */
+  
+    /* Podrías querer una altura de línea ligeramente diferente para texto largo? */
+    /* line-height: 1.6; */
+  
+    /* Hereda font-family, font-size, color, etc. de .form-input */
+  }
+  
+  /* No suelen necesitarse estilos :disabled o .is-invalid específicos */
+  /* ya que los heredados de .form-input suelen ser suficientes. */
+  
+  /* --- END OF FILE src/styles/components/FormTextarea.css --- */

@@ -1,0 +1,29 @@
+/* src/styles/pages/_empresas.css */
+
+.page-toolbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* Espacio entre el searchbar y el botón */
+  margin-bottom: 1rem;
+}
+
+.toolbar-left {
+  flex-grow: 1; /* <<< AÑADIDO: Hace que este contenedor crezca */
+  /* Opcional: Establecer una base flexible o un ancho máximo si es necesario */
+  /* flex-basis: 70%; */ /* Por ejemplo, para que intente ocupar el 70% */
+  /* max-width: 500px; */ /* Un límite para que no se haga demasiado grande en pantallas anchas */
+}
+
+/* La clase específica para el SearchBar (si la tiene) puede seguir controlando estilos internos,
+   pero el ancho principal es manejado por .toolbar-left */
+.empresas__search-input {
+  width: 30%; /* <<< controla el ancho del SearchBar */
+}
+
+/* Estilos para la tabla y sus acciones si son específicos de Empresas */
+.empresas-page .table-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center; /* Centra los botones si la columna es más ancha */
+}

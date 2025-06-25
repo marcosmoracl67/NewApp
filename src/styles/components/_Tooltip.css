@@ -1,0 +1,67 @@
+/* src/styles/components/_Tooltip.css */
+
+.tooltip {
+  position: absolute; /* Esto es manejado por JS, pero es buena práctica tenerlo */
+  padding: var(--tooltip-padding);
+  font-size: var(--tooltip-font-size);
+  max-width: var(--tooltip-max-width);
+  word-wrap: break-word; /* Para que el texto largo no desborde */
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text-color);
+  border-radius: var(--tooltip-border-radius);
+  box-shadow: var(--tooltip-shadow);
+  opacity: 0; /* Controlado por JS, pero base */
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none; /* Permite clics a través del tooltip cuando no visible */
+  z-index: var(--tooltip-z-index);
+}
+
+.tooltip.tooltip--portal {
+  opacity: var(--tooltip-opacity); /* Aplica la opacidad cuando es visible */
+}
+
+/* Flecha del tooltip */
+.tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* Posición de la flecha según la posición del tooltip */
+.tooltip--position-top .tooltip__arrow {
+  border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0 0;
+  border-top-color: var(--tooltip-bg);
+  bottom: calc(var(--tooltip-arrow-size) * -1); /* Colocar debajo del tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--position-bottom .tooltip__arrow {
+  border-width: 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+  border-bottom-color: var(--tooltip-bg);
+  top: calc(var(--tooltip-arrow-size) * -1);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--position-left .tooltip__arrow {
+  border-width: var(--tooltip-arrow-size) 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+  border-left-color: var(--tooltip-bg);
+  right: calc(var(--tooltip-arrow-size) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--position-right .tooltip__arrow {
+  border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0;
+  border-right-color: var(--tooltip-bg);
+  left: calc(var(--tooltip-arrow-size) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Si tu `tooltip-doc-info` está en `_DocumentUploader.css`, sigue ahí */
+/* O si es general para todos los tooltips, muévelo aquí */
+/* .tooltip-doc-info { ... } */

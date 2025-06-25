@@ -1,0 +1,92 @@
+/* --- START OF FILE src/styles/components/FormSelect.css --- */
+
+/* Estilos específicos para el SELECT que difieren de .form-input */
+.form-select {
+  /* Hereda la mayoría de los estilos de .form-input (definidos en forms.css) */
+  /* incluyendo padding-top, padding-bottom, padding-left, font-size, line-height, etc. */
+
+  /* Quita apariencia nativa */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Flecha SVG personalizada */
+  /* Color normal: gris medio #6c757d (codificado %236c757d) */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236c757d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center; /* Posición de la flecha */
+  background-size: 16px 12px; /* Tamaño de la flecha */
+
+  /* Añade espacio extra a la DERECHA para que el texto no se solape con la flecha */
+  /* Asegúrate de que el padding-left venga de .form-input */
+  padding-right: 2.5rem !important; /* Sobrescribir padding-right de .form-input */
+}
+
+/* Flecha para estado deshabilitado */
+/* Usa el selector :disabled directamente */
+.form-select:disabled {
+   /* Color disabled: gris más claro #adb5bd (codificado %23adb5bd) */
+   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23adb5bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+   /* Hereda otros estilos :disabled de .form-input */
+}
+
+/* Flecha para estado inválido */
+/* Usa la clase .is-invalid directamente */
+.form-select.is-invalid {
+    /* Color inválido: Rojo #dc3545 (codificado %23dc3545) */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23dc3545' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    /* Hereda otros estilos .is-invalid de .form-input */
+}
+
+/* Ocultar flecha en IE (si necesitas soportarlo) */
+select.form-select::-ms-expand {
+  display: none;
+}
+
+/* Estilo opcional para selects dentro de tablas */
+.select-in-table.form-select {
+  padding-top: 0.3rem; /* Menos padding vertical */
+  padding-bottom: 0.3rem;
+  font-size: 0.9rem; /* Fuente más pequeña */
+  min-width: 150px; /* Ancho mínimo */
+   /* padding-right sigue siendo 2.5rem! */
+}
+
+.select-field {
+  /* ... (estilos base como en _Input.css) ... */
+  color: var(--txt-input-color); /* Color del texto DENTRO del select */
+  /* --- Estilos específicos de Select --- */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* SVG con currentColor */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  padding-right: 2.5rem !important;
+
+  /* Variable para el color de la flecha, afecta a currentColor en el SVG */
+  --_select-arrow-internal-color: var(--select-arrow-color); /* _ para indicar que es local al scope */
+  color: var(--_select-arrow-internal-color); /* ESTO COLOREARÁ LA FLECHA */
+                                            /* PERO TAMBIÉN EL TEXTO DEL SELECT SI NO SE SOBRESCRIBE */
+                                            /* Es mejor si el color del texto del select se maneja por la prop 'color' del select field en sí. */
+                                            /* La solución de masking o múltiples SVGs con variables inyectadas via build es más robusta para SVGs en data URIs */
+}
+
+.select-field:focus,
+.select-field:focus-visible {
+  border-color: var(--input-stroke-focus);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(var(--input-stroke-focus-rgb), 0.25);
+}
+
+.select-field--state-invalid {
+  border-color: var(--form-error-color); /* Usa el color de error general */
+  /* El background-image de la flecha ya está con color de error en tu _Select.css original */
+}
+.select-field--state-invalid:focus,
+.select-field--state-invalid:focus-visible {
+  border-color: var(--form-error-color);
+  box-shadow: 0 0 0 0.2rem rgba(var(--form-error-color-rgb), 0.25);
+}

@@ -1,0 +1,26 @@
+/* --- START OF FILE src/styles/components/Container.css --- */
+
+.container {
+    /* Estilos base mínimos, la mayoría controlados por props */
+    box-sizing: border-box;
+    /* background-color, width, padding, maxWidth, margin, textAlign se aplican inline */
+  }
+  
+  /* Modificador BEM para borde */
+  .container--bordered {
+    border: 1px solid var(--border-color, var(--disable, #ccc)); /* Usa variable de borde o disable como fallback */
+    border-radius: 12px; /* Borde redondeado para contenedores con borde */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  }
+  
+  /* Modificador BEM para animación */
+  .container--animated {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }

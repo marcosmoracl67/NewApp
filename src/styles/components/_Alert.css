@@ -1,0 +1,141 @@
+/* src/styles/components/_Alert.css */
+
+.alert {
+    display: flex;
+    align-items: flex-start; /* Alinea items al inicio si el contenido es multilínea */
+    padding: var(--alert-padding);
+    margin-bottom: var(--alert-margin-bottom);
+    border-radius: var(--alert-border-radius);
+    border: 1px solid transparent; /* Borde base, el color lo da el tipo */
+    position: relative; /* Para el posicionamiento absoluto del botón de cierre si se desea */
+    font-size: 0.9375rem; /* 15px, ajustar según necesidad */
+    line-height: 1.5;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil opcional */
+  }
+  
+  /* Modificadores de Tipo */
+  .alert--type-success {
+    background-color: var(--alert-success-bg);
+    color: var(--alert-success-text);
+    border-color: var(--alert-success-border); /* Borde completo */
+    /* O usar border-left para un acento:
+    border-left: 4px solid var(--alert-success-border);
+    */
+  }
+  .alert--type-success .alert__icon {
+    color: var(--alert-success-icon);
+  }
+  
+  .alert--type-error {
+    background-color: var(--alert-error-bg);
+    color: var(--alert-error-text);
+    border-color: var(--alert-error-border);
+  }
+  .alert--type-error .alert__icon {
+    color: var(--alert-error-icon);
+  }
+  
+  .alert--type-warning {
+    background-color: var(--alert-warning-bg);
+    color: var(--alert-warning-text);
+    border-color: var(--alert-warning-border);
+  }
+  .alert--type-warning .alert__icon {
+    color: var(--alert-warning-icon);
+  }
+  
+  .alert--type-info {
+    background-color: var(--alert-info-bg);
+    color: var(--alert-info-text);
+    border-color: var(--alert-info-border);
+  }
+  .alert--type-info .alert__icon {
+    color: var(--alert-info-icon);
+  }
+  
+  /* Elementos Internos */
+  .alert__icon {
+    flex-shrink: 0; /* Evita que el icono se encoja */
+    margin-right: 0.75rem; /* Espacio entre icono y contenido */
+    font-size: var(--alert-icon-size); /* Tamaño del icono */
+    /* Centrado vertical si el texto es corto y está en una línea */
+    /* Podría necesitar ajuste si el contenido es muy largo */
+    position: relative;
+    top: 0.1em; /* Pequeño ajuste vertical para alinear mejor con la primera línea de texto */
+  }
+  
+  .alert__content {
+    flex-grow: 1; /* Ocupa el espacio restante */
+  }
+  
+  .alert__title {
+    margin-top: 0;
+    margin-bottom: 0.25rem; /* Espacio entre título y mensaje */
+    font-weight: var(--alert-title-font-weight);
+    font-size: 1em; /* Hereda el tamaño de .alert pero con más peso */
+    /* El color es heredado de .alert--type-* */
+  }
+  
+  .alert__message {
+    /* El color es heredado de .alert--type-* */
+    /* No necesita muchos estilos propios, es el contenedor del mensaje */
+  }
+  
+  .alert__message p:last-child { /* Si el mensaje contiene párrafos */
+      margin-bottom: 0;
+  }
+  
+  
+  .alert__close-button {
+    flex-shrink: 0;
+    margin-left: 1rem; /* Espacio entre contenido y botón de cierre */
+    padding: 0.25rem; /* Área clickeable más grande */
+    background-color: transparent;
+    border: none;
+    color: var(--alert-close-button-color);
+    font-size: 1.25rem; /* Tamaño del icono 'x' */
+    line-height: 1; /* Para centrar el icono 'x' si es un carácter */
+    cursor: pointer;
+    border-radius: var(--alert-border-radius);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  
+    /* Posicionamiento alternativo (absoluto en la esquina) */
+    /* position: absolute; */
+    /* top: 0.5rem; */
+    /* right: 0.75rem; */
+  }
+  
+  .alert__close-button:hover,
+  .alert__close-button:focus {
+    opacity: 1;
+  }
+  
+  .alert--type-success .alert__close-button:hover,
+  .alert--type-success .alert__close-button:focus {
+    background-color: var(--alert-success-close-button-hover-bg);
+  }
+  .alert--type-error .alert__close-button:hover,
+  .alert--type-error .alert__close-button:focus {
+    background-color: var(--alert-error-close-button-hover-bg);
+  }
+  .alert--type-warning .alert__close-button:hover,
+  .alert--type-warning .alert__close-button:focus {
+    background-color: var(--alert-warning-close-button-hover-bg);
+  }
+  .alert--type-info .alert__close-button:hover,
+  .alert--type-info .alert__close-button:focus {
+    background-color: var(--alert-info-close-button-hover-bg);
+  }
+  
+  /* Opcional: Transición para mostrar/ocultar (si no se usa una librería de transición) */
+  /* .alert {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .alert--is-open { // Clase a añadir cuando isOpen es true
+    opacity: 1;
+    transform: translateY(0);
+  } */

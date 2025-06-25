@@ -1,0 +1,5 @@
+.actions-column .table-actions {
+    justify-content: center; /* O flex-end si prefieres alinear a la derecha */
+  }
+
+  

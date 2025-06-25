@@ -1,0 +1,43 @@
+/* Reset, tipografía base, helpers */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Fira Sans", "Lato", sans-serif;
+  background-color: var(--background1);
+  color: var(--txt-color);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p {
+  font-family: "Lato", sans-serif;
+}
+
+h1 { font-size: 2.3rem; }
+h2 { font-size: 1.8rem; margin-top: 1.7em; }
+h3 { font-size: 1.5rem; margin-top: 1.5em; }
+p  { font-size: 1rem; }
+
+[data-font-size='small']  { font-size: 14px; }
+[data-font-size='normal'] { font-size: 16px; }
+[data-font-size='large']  { font-size: 18px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+

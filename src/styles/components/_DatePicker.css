@@ -1,0 +1,276 @@
+/* src/styles/components/_DatePicker.css */
+
+/* Contenedor del Popover (añadido en FormDatePicker.jsx) */
+.datepicker-popover {
+    background-color: var(--dp-bg);
+    border-radius: var(--dp-border-radius);
+    box-shadow: var(--dp-shadow);
+    border: 1px solid var(--dp-border-color);
+    /* Añadir padding interno si DayPicker no lo tiene por defecto suficiente */
+    /* padding: 0.5rem; */
+  }
+  
+  /* Estilos generales de DayPicker (usando variables --rdp-* que define la librería,
+     o sobrescribiendo clases directamente) */
+  .rdp {
+    --rdp-cell-size: 36px; /* Tamaño de las celdas de día */
+    --rdp-accent-color: var(--dp-day-selected-bg); /* Color principal para selección */
+    --rdp-background-color: var(--dp-day-hover-bg); /* Color de fondo para hover */
+    /* Variables para colores de texto (pueden no ser necesarias si sobrescribimos clases) */
+    /* --rdp-color: var(--dp-text-color); */
+    /* --rdp-accent-color-dark: var(--dp-day-selected-bg); */ /* Ya usamos variables de tema */
+  
+    margin: 0.5em; /* Margen interno del calendario */
+    font-size: 0.875rem; /* Tamaño de fuente base */
+    color: var(--dp-text-color);
+  }
+  
+  /* Cabecera: Mes y Año */
+  .rdp-caption_label {
+    font-weight: bold;
+    color: var(--dp-month-year-color);
+  }
+  .rdp-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--dp-border-color);
+    margin-bottom: 0.75em;
+  }
+  
+  /* Botones de Navegación Mes Anterior/Siguiente */
+  .rdp-nav_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--rdp-cell-size); /* Mismo tamaño que día */
+    height: var(--rdp-cell-size);
+    padding: 0.25em;
+    border-radius: 50%; /* Hacerlos redondos */
+    color: var(--dp-nav-button-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .rdp-nav_button:hover:not(:disabled) {
+    background-color: var(--dp-nav-button-hover-bg);
+  }
+  .rdp-nav_button:focus-visible {
+     outline: 2px solid var(--highlight);
+     outline-offset: 1px;
+  }
+  .rdp-nav_button:disabled {
+    color: var(--dp-nav-button-disabled-color);
+    cursor: default;
+    opacity: 0.5;
+  }
+  .rdp-nav_button svg { /* Tamaño de iconos flecha */
+      width: 1em;
+      height: 1em;
+  }
+  
+  
+  /* Tabla del Calendario */
+  .rdp-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%; /* Asegurar que no se desborde */
+  }
+  
+  /* Cabecera de Días de la Semana */
+  .rdp-head_cell {
+    font-size: 0.8em;
+    font-weight: var(--dp-weekday-font-weight);
+    color: var(--dp-weekday-color);
+    padding: 0.5em 0;
+    text-align: center;
+  }
+  
+  /* Celdas y Días */
+  .rdp-cell {
+    padding: 0; /* Quitar padding de celda */
+    text-align: center;
+    height: var(--rdp-cell-size);
+  }
+  
+  /* Botón de Día individual */
+  .rdp-button_reset.rdp-button { /* Selector específico de DayPicker */
+    width: 100%; /* Ocupar toda la celda */
+    height: 100%;
+    font-weight: normal;
+    border-radius: 50%; /* Días redondos */
+    border: none;
+    background-color: transparent;
+    color: var(--dp-day-text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.15s ease;
+  }
+  .rdp-button_reset.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+    background-color: var(--dp-day-hover-bg);
+  }
+  .rdp-button_reset.rdp-button:focus-visible {
+      outline: none; /* Quitar outline por defecto */
+      box-shadow: 0 0 0 2px var(--highlight); /* Sombra de foco */
+      z-index: 1; /* Asegurar visibilidad */
+      position: relative; /* Necesario para z-index */
+  }
+  
+  /* Modificadores de Día */
+  .rdp-day_selected,
+  .rdp-day_selected:hover { /* Estilo seleccionado es prioritario */
+    background-color: var(--dp-day-selected-bg);
+    color: var(--dp-day-selected-color);
+    font-weight: bold;
+  }
+  .rdp-day_selected:hover {
+     background-color: var(--dp-day-selected-hover-bg); /* Hover sutil sobre seleccionado */
+  }
+  
+  .rdp-day_today {
+    color: var(--dp-day-today-color);
+    font-weight: var(--dp-day-today-font-weight);
+    /* Añadir un borde o fondo sutil si se desea */
+    /* border: 1px solid var(--dp-day-today-color); */
+  }
+  .rdp-day_today:not(.rdp-day_selected) {
+     background-color: var(--dp-day-today-bg); /* Solo si no está seleccionado */
+  }
+  
+  
+  .rdp-day_outside {
+    color: var(--dp-day-outside-color);
+    opacity: 0.7;
+  }
+  
+  .rdp-day_disabled,
+  .rdp-day_disabled:hover {
+    color: var(--dp-day-disabled-color);
+    background-color: var(--dp-day-disabled-bg);
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  /* En _DatePicker.css */
+
+.rdp-caption_dropdowns {
+  display: inline-flex; /* O flex, para que se muestren */
+  gap: 0.5rem; /* Espacio entre mes y año */
+  /* Quitar cualquier estilo que los oculte si viene de los estilos base */
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.rdp-dropdown_month,
+.rdp-dropdown_year {
+  /* Estilos para que se parezcan a tus otros <select> o inputs */
+  font-size: inherit; /* Heredar tamaño de fuente */
+  font-weight: bold; /* Como el resto de la cabecera */
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--dp-border-color);
+  border-radius: var(--tabs-sutil-border-radius); /* Radio sutil */
+  background-color: var(--dp-bg); /* Fondo del calendario */
+  color: var(--dp-text-color);
+  cursor: pointer;
+  margin: 0; /* Resetear margen */
+  -webkit-appearance: none; /* Quitar apariencia nativa si se quiere estilizar flecha */
+  -moz-appearance: none;
+  appearance: none;
+  /* Añadir espacio para flecha personalizada si se desea */
+  /* padding-right: 1.5rem; */
+  /* background-image: url('...'); */ /* Flecha personalizada */
+  /* background-repeat: no-repeat; */
+  /* background-position: right 0.5rem center; */
+}
+
+.rdp-dropdown_month:focus-visible,
+.rdp-dropdown_year:focus-visible {
+    outline: 2px solid var(--highlight);
+    outline-offset: 1px;
+}
+
+/* Ocultar la etiqueta visual si no se quiere (DayPicker la añade por accesibilidad) */
+ .rdp-vhidden {
+     /* display: none; */ /* O usar técnica de visually-hidden si prefieres */
+ }
+
+/* Ajustar el contenedor del label si es necesario */
+.rdp-caption_label {
+   /* Puede que necesite display: none si los dropdowns están visibles */
+   /* O ajustar su estilo/posición */
+    flex-grow: 1; /* Para que ocupe espacio */
+    text-align: center; /* Centrar si es necesario */
+ }
+
+ .rdp-caption_dropdowns {
+  display: inline-flex !important; /* Forzar display */
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important; /* Resetear posicionamiento extraño */
+  width: auto !important;
+  height: auto !important;
+  gap: 0.5rem;
+}
+
+/* src/styles/components/_DatePicker.css */
+
+/* ... (Estilos existentes para .datepicker-popover, .rdp, etc.) ... */
+
+/* Contenedor de los Dropdowns */
+.rdp-caption_dropdowns {
+  display: inline-flex;
+  gap: 0.5rem; /* Espacio entre mes y año */
+  align-items: center;
+}
+
+/* Estilos para AMBOS desplegables (Mes y Año) */
+.rdp-dropdown_month select, /* Apuntar al select interno */
+.rdp-dropdown_year select { /* Apuntar al select interno */
+  font-family: inherit; /* Heredar fuente */
+  font-size: 0.9em; /* Ligeramente más pequeño que el texto normal del picker */
+  font-weight: 500; /* O 'bold' si prefieres */
+  padding: 0.3rem 2rem 0.3rem 0.6rem; /* Espacio interno, dejar espacio a la derecha para flecha */
+  border: 1px solid var(--dp-border-color); /* Borde consistente */
+  border-radius: var(--tabs-sutil-border-radius); /* Mismo radio que otros elementos */
+  background-color: var(--dp-bg); /* Fondo del calendario */
+  color: var(--dp-text-color); /* Color de texto */
+  cursor: pointer;
+  margin: 0;
+
+  /* --- Estilización de Flecha (Truco Común) --- */
+  appearance: none; /* Quitar apariencia nativa */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Flecha personalizada usando background-image (SVG encodeado) */
+  /* Puedes generar tu propio SVG encodeado (busca "css url encode svg")
+     o usar una imagen simple. Este es un ejemplo de un chevron hacia abajo. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23${(props) => encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--dp-nav-button-color').trim().substring(1))}'%3E%3Cpath fill-rule='evenodd' d='M7.21 10.27a.75.75 0 0 1 1.08 0l3.5 3.25a.75.75 0 1 1-1.03 1.1l-3-2.75a.75.75 0 0 1-.05-.053l-3 2.75a.75.75 0 1 1-1.03-1.1l3.5-3.25Z' clip-rule='evenodd' /%3E%3C/svg%3E"); /* Necesita adaptarse para obtener el color CSS dinámicamente si no se usa JS */
+   /* --- Fallback con variable CSS (más simple si el color no cambia mucho) --- */
+   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23${encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--dp-nav-button-color').substring(1))}" ><path fill-rule="evenodd" d="M7.21 10.27a.75.75 0 0 1 1.08 0l3.5 3.25a.75.75 0 1 1-1.03 1.1l-3-2.75a.75.75 0 0 1-.05-.053l-3 2.75a.75.75 0 1 1-1.03-1.1l3.5-3.25Z" clip-rule="evenodd" /></svg>');
+   /* --- Versión SÚPER SIMPLE (si la anterior da problemas) --- */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%208%208%22%20fill%3D%22%23${encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--dp-nav-button-color').substring(1))}%22%3E%3Cpath%20d%3D%22M%202%203%20L%204%205%20L%206%203%20Z%22%2F%3E%3C%2Fsvg%3E');
+
+
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 0.8em; /* Tamaño de la flecha */
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rdp-dropdown_month select:focus-visible, /* Apuntar al select interno */
+.rdp-dropdown_year select:focus-visible { /* Apuntar al select interno */
+    outline: none; /* Quitar outline por defecto */
+    border-color: var(--input-stroke-focus);
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2); /* Sombra de foco */
+}
+
+/* Ocultar el label que DayPicker añade (si no lo queremos visible) */
+.rdp-vhidden {
+  display: none; /* O técnica visually-hidden */
+}

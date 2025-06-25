@@ -1,0 +1,281 @@
+/*  Estilos de formularios */
+.form-auth {
+    background-color: var(--background2);
+    padding: 0rem 2rem 2rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 18rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.5rem; */
+    margin-bottom: 1rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    height: 2.0rem; /* más compacto */
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--input-stroke-idle);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--txt-input-color);
+    transition: border-color 0.3s, box-shadow 0.2s ease;
+  }
+
+  .form-select-box {
+    width: 100%;
+    height: 1.8rem; /* más compacto */
+    padding: 0.5rem 0.8rem;
+    font-size: 0.7rem;
+    border: 1px solid var(--input-stroke-idle);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--txt-input-color);
+    transition: border-color 0.3s, box-shadow 0.2s ease;
+  }
+
+  .select-small {
+    height: 1.8rem;
+    font-size: 0.85rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+  }
+  
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--input-stroke-focus);
+  }
+  
+   .section-title {
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    color: var(--txt-highlighted);
+    text-align: center;
+    margin-bottom: -1.5rem;
+    margin-top: -1.5rem;
+  } 
+  
+  .form-card {
+    width: 100%;
+    max-width: 72rem;  
+    padding: 0rem 2.0rem 0rem;
+    background-color: var(--background2);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 1rem  ;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .form-row > * {
+    flex: 1;
+    min-width: auto;
+  }
+  
+  .form-actions.centered {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-row.align-center {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .form-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-col.grow-1 {
+    flex: 1;
+    min-width: 180px;
+  }
+  
+  .form-col.grow-2 {
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  .form-col.fixed {
+    flex: 0 0 auto;
+  }
+
+  .form-wrapper-align {
+    width: 100%;
+    max-width: 74rem;       /* mismo ancho que .form-card */
+    margin: 0 rem auto;
+    box-sizing: border-box; /* para que el padding no expanda el ancho */
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+  .form-label {
+  font-weight: 600; /* O 500 */
+  /* margin-bottom: 0.25rem; */ /* <<< ANTES tenías 0.25rem aquí */
+  margin-bottom: 0.25rem;   /* <<< AJUSTA ESTE VALOR. Prueba con 0.375rem (6px) o 0.25rem (4px)
+                                   Este es el espacio ENTRE la etiqueta y SU input. */
+  display: block;
+  color: var(--txt-color); /* O tu variable --text-primary si es diferente y está definida */
+  font-size: 0.875rem; /* ej. 14px, es común que la etiqueta sea un poco más pequeña */
+  text-align: left !important;
+  line-height: 1.4; /* Una altura de línea normal */
+}
+
+  .fit-content {
+    width: fit-content !important;
+    max-width: fit-content !important;
+    display: inline-flex !important;
+    flex-shrink: 0 !important;
+  }
+
+/* Indicador Visual para Campos Requeridos */
+.required-indicator {
+  color: var(--danger, #b00020); /* Color de peligro */
+  margin-left: 0.25rem; /* Espacio pequeño antes del asterisco */
+  font-weight: bold;
+}
+
+
+.form-error-message {
+  width: 100%;
+  margin-top: 0.25rem; /* Espacio entre el input y el mensaje de error */
+  font-size: 0.85rem;  /* Ligeramente más pequeño */
+  color: var(--form-error-color); /* Usando la variable de error que definimos */
+  text-align: left;
+  line-height: 1.3;
+}
+
+.form-group--disabled {
+  opacity: 0.7;
+  /* cursor: not-allowed; (Se aplica a elementos internos) */
+}
+.form-group--disabled .form-label {
+  cursor: default; /* No clickeable si está deshabilitado */
+}
+
+/* --- Estilos de Layout de Formularios (Mantener aquí temporalmente) --- */
+/* Estos podrían moverse a _layout.css o _pages.css si son específicos */
+
+.form-auth { /* Específico de página login/registro? -> _login.css */
+    background-color: var(--background2);
+    padding: 2rem; /* Añadir padding superior */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 25rem; /* Un poco más ancho */
+    margin: 2rem auto; /* Centrar */
+}
+
+/* Contenedor tipo tarjeta para formularios más grandes */
+.form-card { /* Layout reutilizable? -> _layout.css */
+    width: 100%;
+    max-width: 72rem;
+    padding: 1.5rem 2rem; /* Padding más consistente */
+    background-color: var(--background2);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espacio entre filas/elementos */
+    margin: 2rem auto 1rem auto; /* Margen arriba/abajo y centrado */
+}
+
+/* Filas dentro de un formulario */
+.form-row { /* Layout reutilizable? -> _layout.css */
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los elementos pasen abajo */
+    gap: 1rem;      /* Espacio entre elementos en la fila */
+    width: 100%;
+    /* justify-content: space-between; /* Opcional, depende del diseño */
+    align-items: flex-end; /* Alinear elementos por la base por defecto */
+}
+
+/* Alinear items al centro verticalmente */
+.form-row--align-center {
+    align-items: center;
+}
+/* Alinear items al inicio verticalmente */
+.form-row--align-start {
+    align-items: flex-start;
+}
+
+/* Indicador visual opcional para campos requeridos */
+.required-indicator {
+  color: var(--danger, #b00020); /* O el color que prefieras para indicar requerido */
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* Contenedor para alinear acciones (ej: botones a la derecha) */
+.form-actions { /* Layout reutilizable? -> _layout.css */
+    display: flex;
+    width: 100%;
+    padding-bottom: 0.5rem;
+}
+.form-actions--align-right {
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+.form-actions--align-center {
+    justify-content: center;
+    gap: 0.75rem;
+}
+.form-actions--align-space-between {
+     justify-content: space-between;
+     gap: 0.75rem;
+}
+
+
+/* Wrapper para alinear contenido (como SearchBar) */
+.form-wrapper-align { /* Específico de página? -> _paginaX.css */
+    width: 100%;
+    /* max-width: 74rem; */ /* Heredar de form-card o contenedor padre */
+    margin: 1rem auto 0 auto; /* Espacio arriba y centrado */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end; /* Por defecto a la derecha */
+    padding: 0 1rem; /* Padding similar a form-card si es necesario */
+}
+.form-wrapper-align--align-left { justify-content: flex-start; }
+.form-wrapper-align--align-center { justify-content: center; }
+
+.form-label .required-indicator {
+  color: var(--required-indicator-color); /* <<< USA VARIABLE */
+  margin-left: 0.25rem;
+  font-weight: bold;
+}
+
+.form-col {
+   align-items: flex-start; /* O flex-start, si .form-group ya es display:flex; flex-direction:column */
+                        /* 'stretch' es el valor por defecto para align-items en un contenedor flex */
+                        /* y haría que la label y el input ocupen todo el ancho. */
+                        /* 'flex-start' los alinearía a la izquierda si fueran más estrechos que el .form-group */
+}

@@ -1,0 +1,97 @@
+/* src/styles/components/_DropdownMenu.css */
+
+/* Contenedor del menú emergente (el elemento flotante) */
+.dropdown-menu {
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--dropdown-border-color);
+    border-radius: var(--dropdown-border-radius);
+    box-shadow: var(--dropdown-shadow);
+    padding-top: var(--dropdown-padding-y);
+    padding-bottom: var(--dropdown-padding-y);
+    z-index: var(--dropdown-z-index);
+    min-width: 160px; /* Ancho mínimo o ajustarlo según necesidad */
+    overflow: hidden; /* Para asegurar que border-radius funcione bien */
+    list-style: none; /* Si usamos ul/li internamente */
+    margin: 0; /* Resetear margen */
+  }
+  
+  /* Estilo base para cada item dentro del menú (podría ser button, div, a) */
+  .dropdown-menu__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--dropdown-item-padding-y) var(--dropdown-item-padding-x);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--dropdown-item-text-color);
+    text-align: left;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  }
+  
+  /* Hover y Focus para items interactivos */
+  .dropdown-menu__item:not([disabled]):hover,
+  .dropdown-menu__item:not([disabled]):focus-visible {
+    color: var(--dropdown-item-hover-text-color);
+    background-color: var(--dropdown-item-hover-bg);
+    text-decoration: none;
+    outline: none;
+  }
+  
+  /* Estado deshabilitado */
+  .dropdown-menu__item[disabled] {
+    color: var(--dropdown-item-disabled-text-color);
+    background-color: var(--dropdown-item-disabled-bg);
+    cursor: not-allowed;
+    pointer-events: none; /* Asegurar que no capture eventos */
+    opacity: 0.7;
+  }
+  
+  /* Icono dentro del item */
+  .dropdown-menu__item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--dropdown-icon-margin);
+    color: var(--dropdown-icon-color);
+    width: 1.2em; /* Ancho fijo para alinear texto */
+    flex-shrink: 0;
+  }
+  .dropdown-menu__item-icon svg {
+      width: 1em;
+      height: 1em;
+  }
+  
+  /* Texto/Label dentro del item */
+  .dropdown-menu__item-label {
+    flex-grow: 1; /* Ocupar espacio restante */
+  }
+  
+  /* Separador */
+  .dropdown-menu__separator {
+    height: 1px;
+    margin: var(--dropdown-separator-margin);
+    overflow: hidden;
+    background-color: var(--dropdown-separator-color);
+    border: 0; /* Asegurar que no tenga borde */
+  }
+  /* En _DropdownMenu.css */
+.dropdown-menu__item.danger-action:not([disabled]) {
+    color: var(--danger, #b00020); /* O tu variable de color de peligro */
+  }
+  .dropdown-menu__item.danger-action:not([disabled]):hover,
+  .dropdown-menu__item.danger-action:not([disabled]):focus-visible {
+     /* Puedes definir un fondo hover específico para danger si quieres */
+     /* background-color: var(--danger-bg-hover); */
+     color: var(--danger-dark); /* O un rojo más oscuro */
+  }
+  [data-theme="dark"] .dropdown-menu__item.danger-action:not([disabled]) {
+       color: var(--alert-error-text); /* Usar un rojo visible en tema oscuro */
+  }
+  [data-theme="dark"] .dropdown-menu__item.danger-action:not([disabled]):hover,
+  [data-theme="dark"] .dropdown-menu__item.danger-action:not([disabled]):focus-visible {
+       color: #ff8080; /* O un rojo más brillante en hover */
+  }

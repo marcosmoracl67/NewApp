@@ -1,0 +1,119 @@
+/* src/styles/components/_Badge.css */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--badge-padding);
+    font-size: var(--badge-fontsize);
+    font-weight: var(--badge-font-weight);
+    line-height: var(--badge-line-height);
+    text-align: center;
+    white-space: nowrap; /* Evitar que el badge se rompa en líneas */
+    vertical-align: baseline; /* Buena alineación por defecto con texto */
+    border-radius: var(--badge-border-radius);
+    /* Variante por defecto (gris) */
+    background-color: var(--badge-gray-bg);
+    color: var(--badge-gray-text);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+  }
+  
+  /* Modificadores de Variante */
+  .badge--variant-primary {
+    background-color: var(--badge-primary-bg);
+    color: var(--badge-primary-text);
+  }
+  .badge--variant-success {
+    background-color: var(--badge-success-bg);
+    color: var(--badge-success-text);
+  }
+  .badge--variant-danger {
+    background-color: var(--badge-danger-bg);
+    color: var(--badge-danger-text);
+  }
+  .badge--variant-warning {
+    background-color: var(--badge-warning-bg);
+    color: var(--badge-warning-text);
+  }
+  .badge--variant-info {
+    background-color: var(--badge-info-bg);
+    color: var(--badge-info-text);
+  }
+  .badge--variant-gray { /* Explícito por si se cambia el default */
+    background-color: var(--badge-gray-bg);
+    color: var(--badge-gray-text);
+  }
+  
+  /* Modificador Píldora */
+  .badge--pill {
+    border-radius: var(--badge-pill-border-radius);
+  }
+  
+  /* Elementos Internos */
+  .badge__icon {
+    display: inline-flex; /* Alinear icono */
+    margin-right: var(--badge-icon-margin);
+    /* Hereda color del texto del badge por defecto */
+  }
+  .badge__icon svg {
+      width: 1em; /* Tamaño basado en font-size */
+      height: 1em;
+      vertical-align: middle;
+  }
+  
+  .badge__content {
+    /* Contenedor del texto principal */
+    display: inline-block; /* Comportamiento normal */
+  }
+  
+  /* Botón de Cierre */
+  .badge__close {
+    display: inline-flex; /* Oculto por defecto, se muestra si .badge--closable */
+    align-items: center;
+    justify-content: center;
+    font-size: var(--badge-close-size);
+    font-weight: bold;
+    line-height: 1;
+    color: var(--badge-close-color);
+    text-shadow: none; /* Quitar sombra de texto si la hubiera */
+    background-color: transparent;
+    border: 0;
+    border-radius: 50%; /* Hacerlo redondo */
+    padding: 0; /* Resetear padding */
+    width: 1.1em; /* Tamaño clickeable basado en font-size */
+    height: 1.1em;
+    margin: var(--badge-close-margin);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: color .1s ease-in-out, background-color .1s ease-in-out, opacity .1s ease-in-out;
+  }
+  
+  .badge__close:hover,
+  .badge__close:focus-visible {
+    color: var(--badge-close-hover-color);
+    background-color: var(--badge-close-hover-bg);
+    opacity: 1;
+    text-decoration: none;
+    outline: none;
+  }
+  .badge__close:focus-visible {
+      box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.3); /* Sombra de foco */
+  }
+  
+  
+  /* Ocultar botón si no es closable */
+  .badge:not(.badge--closable) .badge__close {
+     display: none;
+  }
+  /* Ajustar padding si es closable para que el texto no quede pegado al botón */
+  .badge--closable {
+      padding-right: calc(var(--badge-close-size) + var(--badge-padding) + 0.2em);
+      /* Puede necesitar ajustes finos */
+      position: relative; /* Para posicionar el botón si se quisiera absoluto */
+  }
+  /* Posicionamiento alternativo absoluto para el botón de cierre */
+  /* .badge--closable .badge__close {
+      position: absolute;
+      top: 50%;
+      right: 0.3em;
+      transform: translateY(-50%);
+  } */

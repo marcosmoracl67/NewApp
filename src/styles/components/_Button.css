@@ -1,0 +1,274 @@
+/* src/styles/components/_Button.css */
+
+.button {
+  /* --- Estilos Base --- */
+  display: inline-flex; /* Clave para alinear contenido interno */
+  align-items: center;
+  justify-content: center; /* Centra contenido por defecto (se puede sobrescribir con --align-*) */
+  gap: 0.5em; /* Espacio entre icono y texto */
+  padding: 0.6rem 1.5rem; /* Default a 'medium' */
+  font-size: 1rem;      /* Default a 'medium' */
+  font-weight: bold;
+  line-height: 1.5;     /* Asegura altura consistente */
+  text-align: center;
+  vertical-align: middle; /* Buena práctica para botones inline */
+  cursor: pointer;
+  user-select: none;     /* Evita selección de texto */
+  border: 1px solid transparent; /* Base para variantes outline */
+  border-radius: 6px;    /* Borde redondeado estándar */
+  background-color: var(--button-base, #7b4f94); /* Color base por defecto */
+  color: var(--button-txt, #ffffff); /* Color texto por defecto */
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-decoration: none; /* Asegura que no haya subrayado si se usa como enlace */
+  position: relative; /* Para posicionamiento absoluto del loader */
+  overflow: hidden; /* Ayuda a contener efectos */
+}
+
+/* --- Estados Base --- */
+.button:hover {
+  background-color: var(--button-action, #6a3f84);
+  /* Asegurar que el texto se mantenga visible en hover */
+  color: var(--button-txt, #ffffff);
+  border-color: transparent; /* Resetear borde en hover si no es outline */
+}
+
+.button:focus,
+.button:focus-visible { /* Mejor usar focus-visible */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb, 156, 39, 176), 0.35); /* Sombra de foco, usa variable RGB */
+  /* Necesitarás definir --primary-rgb en :root si usas este efecto */
+}
+
+.button:active {
+  /* Opcional: estilo al presionar */
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.button:disabled,
+.button[disabled] { /* Aplicar a ambos */
+  cursor: not-allowed;
+  opacity: 0.65;
+  box-shadow: none;
+  /* Evitar cambios en hover/focus cuando está deshabilitado */
+  pointer-events: none;
+}
+
+/* --- Variantes (Modifiers: --variant-*) --- */
+
+/* Default (ya aplicado en base, pero explícito por si acaso) */
+.button--variant-default {
+  background-color: var(--button-base, #7b4f94);
+  color: var(--button-txt, #ffffff);
+}
+.button--variant-default:hover {
+  background-color: var(--button-action, #6a3f84);
+}
+
+/* Outline */
+.button--variant-outline {
+  background-color: transparent;
+  color: var(--primary, #9c27b0); /* Color del texto = color primario */
+  border: 2px solid var(--primary, #9c27b0); /* Borde con color primario */
+}
+.button--variant-outline:hover {
+  background-color: var(--primary, #9c27b0); /* Relleno al hacer hover */
+  color: var(--button-txt, #ffffff); /* Texto blanco al hacer hover */
+  border-color: var(--primary, #9c27b0);
+}
+/* Asegurar que :disabled se vea bien en outline */
+.button--variant-outline:disabled,
+.button--variant-outline[disabled] {
+  color: var(--primary, #9c27b0);
+  border-color: var(--primary, #9c27b0);
+  background-color: transparent;
+}
+
+
+/* Danger */
+.button--variant-danger {
+  background-color: var(--danger, #b00020);
+  color: #ffffff;
+}
+.button--variant-danger:hover {
+  background-color: var(--danger-dark, #8c0018); /* Usar variable si existe, o color más oscuro */
+}
+
+/* Success */
+.button--variant-success {
+  background-color: var(--success, #4caf50);
+  color: #ffffff;
+}
+.button--variant-success:hover {
+  background-color: var(--success-dark, #388e3c);
+}
+
+/* Subtle */
+.button--variant-subtle {
+  background-color: transparent;
+  color: var(--txt-color); /* Color de texto normal */
+  border: 1px solid var(--disable, #d0c9d6); /* Borde sutil */
+}
+.button--variant-subtle:hover {
+  background-color: var(--highlight-nav, #4d445b); /* Fondo sutil al hacer hover */
+  border-color: var(--highlight-nav, #4d445b);
+  /* color: var(--txt-highlighted); */ /* Opcional: cambiar color texto en hover */
+}
+
+/* Add (Ejemplo si se necesita variante específica) */
+.button--variant-add {
+  background-color: var(--success, #4caf50); /* O el color que prefieras */
+  color: #ffffff;
+  /* Añadir otros estilos específicos si es necesario */
+}
+.button--variant-add:hover {
+   background-color: var(--success-dark, #388e3c);
+}
+
+
+/* --- Tamaños (Modifiers: --size-*) --- */
+.button--size-small {
+  padding: 0.4rem 1rem; /* Menos padding */
+  font-size: 0.8rem;  /* Fuente más pequeña */
+  border-radius: 6px;
+}
+
+.button--size-medium {
+  padding: 0.6rem 1.5rem; /* Padding por defecto */
+  font-size: 1rem;      /* Fuente por defecto */
+  border-radius: 6px;   /* Redondez por defecto */
+}
+
+.button--size-large {
+  padding: 0.8rem 2rem; /* Más padding */
+  font-size: 1.1rem; /* Fuente más grande */
+  border-radius: 8px; /* Quizás más redondeado */
+}
+
+/* --- Modificadores Adicionales --- */
+
+/* Full Width */
+.button--fullwidth {
+  display: flex; /* Asegura que funcione bien con flex */
+  width: 100%;
+}
+
+/* Estado de Carga */
+.button--state-loading {
+  cursor: wait;
+  /* Opacidad y pointer-events ya controlados por :disabled */
+}
+
+/* --- Elementos Internos (Elements: __*) --- */
+
+/* Contenedor del contenido visible (icono + label) */
+.button__content {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit; /* Hereda el gap del botón */
+  /* Se oculta vía JS/React cuando isLoading es true */
+  visibility: visible; /* Por defecto visible */
+  opacity: 1;
+  transition: opacity 0.1s ease-out;
+}
+.button--state-loading .button__content {
+  visibility: hidden; /* Ocultar contenido cuando carga */
+  opacity: 0;
+}
+
+/* Contenedor del Loader */
+.button__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 0; /* Evita espacio extra por line-height */
+  /* Se muestra vía JS/React cuando isLoading es true */
+  display: none; /* Oculto por defecto */
+}
+.button--state-loading .button__loader {
+   display: block; /* Mostrar loader cuando carga */
+}
+
+
+/* Icono (si necesita estilo propio) */
+.button__icon {
+  display: inline-flex; /* Ayuda a la alineación */
+  /* Ajustar tamaño/margen si es necesario, ej: */
+  /* font-size: 1.1em; */
+}
+
+/* Label (si necesita estilo propio) */
+.button__label {
+  display: inline-block; /* Comportamiento normal de texto */
+}
+/*
+/* Ex -forms.css
+.form-button {
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+} */
+
+/* Tamaños 
+.form-button--small {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+}
+
+.form-button--medium {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+}
+
+.form-button--large {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+}*/
+
+/* Variantes 
+.form-button--default {
+  background-color: var(--primary);
+  color: white;
+}
+
+.form-button--outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.form-button--danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+.form-button--success {
+  background-color: var(--success);
+  color: white;
+}*/
+
+/* Alineaciones 
+.form-button--align-left {
+  display: inline-block;
+}
+
+.form-button--align-center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-button--align-right {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}*/
+
+/* Fullwidth opcional 
+.form-button--fullwidth {
+  width: 100%;
+} */

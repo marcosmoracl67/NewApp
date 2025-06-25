@@ -1,0 +1,86 @@
+/* src/styles/components/_Input.css */
+
+/* --- Bloque Principal: .input-field --- */
+.input-field {
+  display: block; /* O inline-block si necesitas que esté en línea */
+  width: 100%;
+  padding: 0.6rem 0.8rem; /* Padding base */
+  font-size: 1rem;        /* Tamaño de fuente base */
+  font-family: inherit;   /* Hereda la fuente del body/contenedor */
+  line-height: 1.5;       /* Altura de línea base */
+  
+  color: var(--txt-input-color); /* Color del texto dentro del input */
+  background-color: var(--input-bg);/* Fondo del input */
+  background-clip: padding-box;
+  border: 1px solid var(--input-stroke-idle); /* Borde normal */
+  border-radius: 6px;   /* Redondez estándar */
+  box-sizing: border-box; /* Incluye padding y borde en el width/height total */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-field {
+  /* ... */
+  color: var(--txt-input-color);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-stroke-idle);
+}
+
+/* --- Estados --- */
+
+.input-field:focus,
+.input-field:focus-visible {
+  border-color: var(--input-stroke-focus);
+  outline: 0;
+  /* Define --input-stroke-focus-rgb en :root (ej: 156, 39, 176) para la sombra */
+  box-shadow: 0 0 0 0.2rem rgba(var(--input-stroke-focus-rgb), 0.25); 
+}
+
+.input-field::placeholder {
+  color: var(--placeholder-text-color); /* <<< USA VARIABLE */
+  opacity: 1;
+}
+
+/* Estado Deshabilitado */
+.input-field:disabled,
+.input-field[disabled] {
+  background-color: var(--disable);
+  border-color: var(--input-stroke-idle);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.input-field[readonly] {
+    background-color: var(--disable);
+    opacity: 0.8;
+    cursor: default;
+}
+
+/* --- Modificador de Estado: Inválido --- */
+.input-field--state-invalid {
+  border-color: var(--form-error-color); /* <<< USA VARIABLE DE ERROR */
+}
+
+/* Foco en estado inválido */
+.input-field--state-invalid:focus,
+.input-field--state-invalid:focus-visible {
+  border-color: var(--form-error-color); /* <<< USA VARIABLE DE ERROR */
+  box-shadow: 0 0 0 0.2rem rgba(var(--form-error-color-rgb), 0.25); /* <<< USA VARIABLE RGB DE ERROR */
+}
+
+/* --- Modificadores de Tamaño (Opcional, si se necesitan) --- */
+.input-field--size-small {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.875rem;
+}
+
+.input-field--size-large {
+  padding: 0.8rem 1rem;
+  font-size: 1.125rem;
+}
+
+
+/* --- Notas --- */
+/* - Los estilos de .form-group, .form-label, .required-indicator, .form-error-message
+     DEBEN estar en layout/_forms.css ya que son compartidos por Input, Textarea, Select, etc.
+   - Si necesitas un icono dentro del input (ej: para búsqueda o password),
+     se añadiría un elemento __icon y se ajustarían los paddings. */

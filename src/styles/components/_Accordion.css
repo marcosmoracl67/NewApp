@@ -1,0 +1,115 @@
+/* src/styles/components/_Accordion.css */
+
+/* ... (estilos de .accordion, .accordion__item, .accordion__header sin cambios) ... */
+.accordion {
+  background-color: var(--accordion-bg);
+}
+
+.accordion__item {
+  background-color: var(--accordion-item-bg);
+  border: 1px solid var(--accordion-border-color);
+  border-radius: var(--accordion-border-radius);
+}
+
+.accordion__item:not(:last-child) {
+  margin-bottom: var(--accordion-item-margin-bottom);
+}
+
+.accordion__header-container {
+  margin: 0;
+}
+
+.accordion__header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--accordion-header-padding);
+  background-color: var(--accordion-header-bg);
+  color: var(--accordion-header-text-color);
+  font-family: inherit;
+  font-size: var(--accordion-header-font-size);
+  font-weight: var(--accordion-header-font-weight);
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  outline: none;
+}
+
+.accordion__header:hover {
+  background-color: var(--accordion-header-hover-bg);
+}
+
+.accordion__header:focus-visible {
+  outline: 2px solid var(--highlight);
+  outline-offset: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+.accordion__header[disabled] {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+.accordion__header[disabled]:hover {
+  background-color: var(--accordion-header-bg);
+}
+
+.accordion__header-title-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5em;
+  color: var(--accordion-icon-color);
+  font-size: var(--accordion-icon-size);
+}
+.accordion__header-title-icon svg {
+    width: 1em;
+    height: 1em;
+}
+
+.accordion__header-title {
+  flex-grow: 1;
+}
+
+.accordion__header-expand-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  padding-left: 1rem;
+  color: var(--accordion-icon-color);
+  font-size: var(--accordion-icon-size);
+  transition: var(--accordion-icon-transition);
+}
+.accordion__item--open .accordion__header-expand-icon {
+  transform: rotate(180deg);
+}
+.accordion__header[disabled] .accordion__header-expand-icon {
+  opacity: 0.5;
+}
+
+
+/* Panel de contenido */
+.accordion__panel {
+  background-color: var(--accordion-panel-bg);
+  color: var(--accordion-panel-text-color);
+  overflow: hidden;
+  /* max-height: 0; // Ahora controlado por style en JS */
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--accordion-panel-transition); /* Referencia a la variable en _themes.css */
+                                                /* Asegúrate que la variable defina transición para max-height, opacity, visibility */
+}
+
+.accordion__item--open .accordion__panel {
+  /* max-height es ahora un style inline desde JS */
+  opacity: 1;
+  visibility: visible;
+  /* Ajustar delays en la variable --accordion-panel-transition si es necesario */
+}
+
+/* Contenido real dentro del panel (para padding) */
+.accordion__panel-content {
+  padding: var(--accordion-panel-padding);
+  border-top: 1px solid var(--accordion-border-color);
+  /* Quitar los estilos de diagnóstico (bordes y fondos de colores) */
+}

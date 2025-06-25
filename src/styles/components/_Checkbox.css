@@ -1,0 +1,89 @@
+/* --- START OF FILE src/styles/components/FormCheckBox.css --- */
+
+/* Contenedor interno para alinear */
+.form-checkbox-inner {
+  display: flex;
+  align-items: center; /* Alinea verticalmente caja y texto */
+  gap: 0.6rem; /* Espacio entre caja y texto */
+  cursor: pointer;
+  position: relative; /* Para el input oculto */
+}
+
+/* Input real oculto */
+.form-checkbox__input--hidden {
+  position: absolute;
+  opacity: 0;
+  width: 1.1rem; /* Mismo tamaño que el visual para mejor área de click */
+  height: 1.1rem;
+  margin: 0; /* Sin margen */
+  padding: 0;
+  z-index: 1; /* Encima del visual pero invisible */
+  cursor: pointer;
+}
+
+/* Caja visual */
+.form-checkbox__visual {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--input-stroke-idle, #a398b2);
+  border-radius: 3px;
+  background-color: var(--input-bg, #b5b4b7);
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Checkmark (icono) */
+.form-checkbox__checkmark {
+  display: block;
+  color: var(--button-txt, #ffffff);
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+/* --- Estados --- */
+
+/* Estilos cuando está checked */
+.form-checkbox__input--hidden:checked + .form-checkbox__visual {
+  background-color: var(--highlight, #9055a2);
+  border-color: var(--highlight, #9055a2);
+}
+.form-checkbox__input--hidden:checked + .form-checkbox__visual .form-checkbox__checkmark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Estilo de foco */
+.form-checkbox__input--hidden:focus-visible + .form-checkbox__visual { /* Usar focus-visible para mejor UX */
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(var(--input-stroke-focus-rgb, 156, 39, 176), 0.35);
+  border-color: var(--input-stroke-focus, #9c27b0);
+}
+
+/* Estado deshabilitado */
+/* .form-group--disabled .form-checkbox-inner { ... } ya en forms.css o similar */
+.form-checkbox__visual.form-checkbox--disabled { /* Clase añadida opcionalmente en el componente */
+   background-color: var(--disable);
+   border-color: var(--disable);
+   cursor: not-allowed;
+}
+
+/* Estado de error */
+.form-checkbox__visual.form-checkbox--error { /* Clase añadida opcionalmente en el componente */
+   border-color: var(--danger, #dc3545);
+}
+/* El mensaje usa .form-error-message */
+
+/* Label de texto */
+.form-label.checkbox-label {
+  margin-bottom: 0;
+  cursor: pointer;
+  /* Alinear con otros labels si es necesario */
+  padding-top: 0.1em; /* Ajuste fino vertical opcional */
+  padding-bottom: 0.1em;
+}

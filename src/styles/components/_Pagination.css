@@ -1,0 +1,107 @@
+/* src/styles/components/_Pagination.css */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar por defecto, puede ajustarse en la página si es necesario */
+    flex-wrap: wrap; /* Permitir que pase a múltiples líneas en pantallas pequeñas */
+    padding: var(--pagination-padding);
+    width: 100%; /* Ocupar ancho para centrar correctamente */
+  }
+  
+  .pagination__info {
+    color: var(--pagination-info-color);
+    font-size: 0.875rem; /* Un poco más pequeño */
+    margin-right: var(--pagination-info-margin-right);
+    margin-bottom: 0.5rem; /* Espacio si envuelve */
+    white-space: nowrap;
+  }
+  
+  .pagination__list {
+    display: inline-flex; /* Usar inline-flex para que la lista no ocupe todo el ancho si no es necesario */
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: var(--pagination-gap);
+    margin-bottom: 0.5rem; /* Espacio si envuelve */
+  }
+  
+  .pagination__link {
+    display: inline-flex; /* Usar flex para centrar contenido */
+    align-items: center;
+    justify-content: center;
+    padding: var(--pagination-link-padding);
+    min-width: var(--pagination-link-min-width); /* Ancho mínimo para números */
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500; /* Ligeramente menos bold que botones normales */
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--pagination-link-color);
+    background-color: var(--pagination-link-bg);
+    border: 1px solid var(--pagination-link-border-color);
+    border-radius: var(--pagination-link-border-radius);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  /* Hover para botones normales/control */
+  .pagination__link:hover:not(:disabled) {
+    background-color: var(--pagination-link-hover-bg);
+    color: var(--pagination-link-hover-color);
+    border-color: var(--pagination-link-hover-border-color);
+    text-decoration: none; /* Asegurar que no haya subrayado */
+  }
+  
+  /* Estilo de foco */
+  .pagination__link:focus-visible {
+    outline: 0;
+    border-color: var(--input-stroke-focus); /* Usar borde de foco de input */
+    box-shadow: 0 0 0 0.15rem rgba(var(--primary-rgb, 156, 39, 176), 0.25); /* Sombra de foco sutil, necesita --primary-rgb */
+    z-index: 1; /* Asegurar que el foco se vea sobre otros elementos */
+  }
+  
+  /* Estado deshabilitado */
+  .pagination__link:disabled,
+  .pagination__link[disabled] {
+    color: var(--pagination-disabled-color);
+    background-color: var(--pagination-disabled-bg);
+    border-color: var(--pagination-disabled-border-color);
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  
+  /* Estado activo (solo para item numérico) */
+  .pagination__item--active .pagination__link {
+    background-color: var(--pagination-active-bg);
+    color: var(--pagination-active-text-color);
+    border-color: var(--pagination-active-border-color);
+    font-weight: bold;
+    cursor: default;
+    pointer-events: none; /* Ya está en la página activa */
+  }
+  
+  /* Elipsis */
+  .pagination__item--ellipsis {
+    color: var(--pagination-ellipsis-color);
+    padding: var(--pagination-link-padding); /* Mismo padding para alinear */
+    line-height: 1.4; /* Mismo line-height */
+    min-width: var(--pagination-link-min-width); /* Mismo ancho mínimo */
+    text-align: center;
+  }
+  
+  /* Estilos específicos para botones de control si es necesario */
+  /* (ej: si no queremos min-width para ellos) */
+  .pagination__item--control .pagination__link {
+     min-width: auto; /* Permitir que se ajuste al icono/texto */
+     /* Podría tener un padding ligeramente diferente si se quiere */
+     /* padding: 0.375rem 0.6rem; */
+  }

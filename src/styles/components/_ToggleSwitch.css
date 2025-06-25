@@ -1,0 +1,91 @@
+/* === Toggle base === */
+.toggle-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+/* === Hidden checkbox input === */
+.toggle-switch__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* === Slider track === */
+.toggle-switch__slider {
+  position: relative;
+  display: inline-block;
+  border-radius: 999px;
+  background-color: #444;
+  transition: background-color 0.3s ease;
+}
+
+/* === Handle (thumb) === */
+.toggle-switch__slider::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.2);
+}
+
+/* === States === */
+.toggle-switch input:checked ~ .toggle-switch__slider {
+  background-color: #9055a2;
+}
+.toggle-switch input:checked ~ .toggle-switch__slider::after {
+  transform: translateX(var(--toggle-handle-move));
+}
+.toggle-switch input:focus-visible ~ .toggle-switch__slider {
+  box-shadow: 0 0 0 0.125rem rgba(156, 39, 176, 0.35);
+}
+
+/* === Sizes (using rem) === */
+
+/* Small */
+.toggle-switch--size-small .toggle-switch__slider {
+  width: 2rem;
+  height: 1rem;
+}
+.toggle-switch--size-small .toggle-switch__slider::after {
+  width: 0.75rem;
+  height: 0.75rem;
+  top: 0.125rem;
+  left: 0.125rem;
+}
+.toggle-switch--size-small {
+  --toggle-handle-move: 1rem;
+}
+
+/* Medium */
+.toggle-switch--size-medium .toggle-switch__slider {
+  width: 2.5rem;
+  height: 1.375rem;
+}
+.toggle-switch--size-medium .toggle-switch__slider::after {
+  width: 1rem;
+  height: 1rem;
+  top: 0.1875rem;
+  left: 0.1875rem;
+}
+.toggle-switch--size-medium {
+  --toggle-handle-move: 1.125rem;
+}
+
+/* Large */
+.toggle-switch--size-large .toggle-switch__slider {
+  width: 3.25rem;
+  height: 1.75rem;
+}
+.toggle-switch--size-large .toggle-switch__slider::after {
+  width: 1.375rem;
+  height: 1.375rem;
+  top: 0.1875rem;
+  left: 0.1875rem;
+}
+.toggle-switch--size-large {
+  --toggle-handle-move: 1.5rem;
+}

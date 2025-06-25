@@ -1,0 +1,30 @@
+.document-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .document-table th,
+  .document-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .upload-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .upload-row input[type="file"] {
+    max-width: auto;
+  }
+  
+  .upload-row input[type="file"] {
+    max-width: auto;
+    flex: 0 0 auto;
+  }

@@ -1,0 +1,56 @@
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 1rem 0 0;
+    width: 80%;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--input-stroke-idle);
+    background-color: var(--input-bg);
+    height: 2rem; /* <= reduce altura total */
+    border-radius: 6px;
+    padding: 0 0.5rem;
+    width: 40%;
+    max-width: 100% !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-bottom: 0rem;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--txt-input-color);
+    outline: none;
+    padding-top: 0rem;
+    padding-top: 0rem;
+    font-size: 0.9rem;
+  }
+
+  .search-icon {
+    margin-left: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem !important;
+  }
+  
+  .search-bar svg {
+    color: var(--txt-input-color);
+    font-size: 1rem;
+  }
+
+  /* En _layout.css o _pages.css */
+.mi-toolbar {
+  display: flex;
+  justify-content: flex-end; /* Alinea items a la derecha */
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.mi-toolbar .search-bar { /* Estiliza el search-bar DENTRO del toolbar */
+  width: 300px; /* Ancho específico */
+  /* O flex-grow: 1; max-width: 400px; para que crezca */
+}

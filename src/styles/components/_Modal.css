@@ -1,0 +1,210 @@
+/* src/styles/components/_Modal.css */
+
+/* --- Bloque: .modal --- */
+
+/* Overlay de Fondo */
+.modal__overlay { /* Antes: .custom-modal-overlay */
+  position: fixed;
+  inset: 0; /* Equivalente a top, right, bottom, left = 0 */
+  background-color: var(--modal-overlay-bg, rgba(0, 0, 0, 0.6));
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Opcional: Añadir animación de fade-in al overlay */
+  /* opacity: 0;
+     animation: fadeInOverlay 0.3s ease forwards; */
+}
+/* @keyframes fadeInOverlay { to { opacity: 1; } } */
+
+
+/* Contenedor Principal del Modal */
+.modal { /* Antes: .custom-modal */
+  position: relative; /* Cambiado de fixed a relative para posicionar dentro del overlay flex */
+  /* top/left/transform ya no son necesarios si el overlay usa flex */
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Altura máxima */
+  width: 40rem; /* Ancho por defecto (se sobrescribe con style prop) */
+  background-color: var(--background1);
+  color: var(--txt-color);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden; /* Clave para manejar scroll del body */
+  z-index: 1001; /* Encima del overlay */
+  box-sizing: border-box;
+  /* Opcional: Animación de entrada para el modal */
+   opacity: 0;
+   transform: scale(0.95);
+   animation: fadeInModal 0.2s 0.1s ease-out forwards; /* Delay opcional */
+}
+@keyframes fadeInModal {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Elementos del Modal (__*) --- */
+
+/* Botón de Cierre (si se muestra) */
+.modal__close-button { /* Antes: .custom-modal-close */
+  position: absolute;
+  top: 0.75rem; /* Ajuste de posición */
+  right: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  line-height: 1;
+  font-size: 1.6rem; /* Tamaño icono */
+  color: var(--txt-disabled, #9093af);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.modal__close-button:hover {
+  color: var(--txt-color);
+  transform: scale(1.1);
+}
+
+/* Header (Contenedor opcional para título y cierre si se necesita layout complejo) */
+/* .modal__header { padding: 1.5rem 1.5rem 0 1.5rem; } */
+
+/* Título */
+.modal__title { /* Antes: .custom-modal-title */
+  font-size: 1.4rem; /* Ligeramente más pequeño */
+  font-weight: 600;
+  color: var(--txt-highlighted, var(--primary));
+  line-height: 1.4;
+  padding: 1.5rem 3rem 0.5rem 1.5rem; /* Padding: Arriba, Derecha (para botón X), Abajo, Izquierda */
+  margin: 0; /* Resetear margen */
+  text-align: left; /* Default */
+}
+.modal__title--centered { /* Modificador para título centrado */
+    text-align: center;
+    padding-right: 1.5rem; /* Quitar padding extra si está centrado */
+}
+
+
+/* Cuerpo del Modal */
+.modal__body { /* Antes: .custom-modal-body */
+  flex-grow: 1;
+  overflow-y: auto; /* Scroll interno */
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem; /* Padding: Arriba, H, Abajo, H */
+  text-align: left; /* Default */
+}
+.modal__body--centered { /* Modificador para cuerpo centrado */
+    text-align: center;
+}
+
+/* Footer (Contenedor opcional para acciones) */
+.modal__footer { /* Antes: .modal-actions */
+  padding: 0 1.5rem 1.5rem 1.5rem; /* Padding: Arriba(0), H, Abajo, H */
+  margin-top: 1rem; /* Espacio sobre el footer */
+  display: flex;
+  justify-content: flex-end; /* Acciones a la derecha por defecto */
+  gap: 0.75rem; /* Espacio entre botones */
+  flex-wrap: wrap; /* Para que los botones pasen abajo si no caben */
+}
+.modal__footer--centered { /* Modificador para acciones centradas */
+  justify-content: center;
+}
+.modal__footer--spaced { /* Modificador para espacio igual */
+   justify-content: space-between; /* O space-around */
+}
+
+/* --- Modificadores del Modal (--*) --- */
+
+/* Ejemplo: Modal para formularios */
+.modal--layout-form .modal__body {
+    /* Padding específico si es necesario */
+}
+
+/* Ejemplo: Modal de diálogo simple */
+.modal--dialog .modal__body {
+    text-align: center; /* Centrar texto en diálogos */
+}
+.modal--dialog .modal__footer {
+    justify-content: center; /* Centrar botones en diálogos */
+}
+
+
+/* --- Estilos Específicos para Modales Derivados --- */
+
+/* Confirm Dialog (Usando elementos/modificadores del modal base) */
+.confirm-dialog__message { /* Aplicar a un <p> dentro de modal__body */
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  /* text-align: center; (Heredado de modal__body--centered si se usa) */
+}
+/* Las acciones usarán modal__footer--centered */
+
+
+/* Login Error Modal (Usando elementos/modificadores del modal base) */
+.login-error-modal__content { /* Aplicar a un <div> dentro de modal__body */
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+   /* text-align: center; (Heredado de modal__body--centered si se usa) */
+}
+
+.login-error-modal__link { /* Antes: .modal-link */
+  color: var(--highlight, #a66cff);
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+.login-error-modal__link:hover {
+  color: var(--button-action, #512da8);
+}
+
+.modal-link {
+  color: var(--modal-link-color); /* <<< Usa la nueva variable */
+  text-decoration: underline;
+  font-weight: 500; /* Mantener o ajustar si es necesario */
+  cursor: pointer;
+  transition: color 0.2s ease; /* Añadir transición suave */
+}
+.modal-link:hover {
+  color: var(--modal-link-color-hover); /* <<< Usa la nueva variable de hover */
+  text-decoration: none; /* Opcional: quitar subrayado en hover */
+}
+/* Las acciones usarán modal__footer--centered */
+
+
+/* --- Media Query --- */
+@media (max-width: 768px) { /* Ajustar breakpoint */
+  .modal {
+    width: 90%;
+    max-width: 90%; /* Asegurar que no exceda */
+  }
+  .modal__title {
+    font-size: 1.2rem;
+  }
+  .modal__footer {
+    padding: 0 1.5rem 0.5rem 1.5rem; /* Padding actual */
+    /* Reducir el margen superior o ajustarlo según necesidad */
+    margin-top: 0rem;
+    display: flex;
+    justify-content: flex-end; /* O centrado/spaced según modificador */
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+}
+
+
+/* Estilos para el mensaje dentro del ConfirmDialog */
+.confirm-dialog__message {
+  padding: var(--spacing-sm) 0; /* Espacio vertical alrededor del mensaje */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  text-align: center; /* O left, según preferencia */
+  margin-bottom: var(--spacing-md); /* Espacio antes de los botones */
+}
+
+/* Estilos para el contenedor de los botones en el footer del ConfirmDialog */
+.confirm-dialog__footer .form-actions { /* Si usas la clase form-actions */
+  gap: var(--spacing-md); /* Aumentar el espacio entre los botones */
+}
+

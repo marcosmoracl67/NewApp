@@ -1,0 +1,93 @@
+/* src/styles/index.css */
+
+/* -------------------------------------------------------------------------- */
+/*                             1. CONFIGURATION                             */
+/* -------------------------------------------------------------------------- */
+/* Variables CSS (Temas, colores base, fuentes, etc.) y configuraciones globales. */
+/* Importa themes.css primero. */
+
+@import './config/_themes.css';
+/* @import './config/_variables.css'; */ /* Descomentar si creas variables adicionales */
+
+/* -------------------------------------------------------------------------- */
+/*                                  2. BASE                                   */
+/* -------------------------------------------------------------------------- */
+/* Estilos base para elementos HTML (reset, body, tipografía base, enlaces). */
+
+@import './base/_base.css';
+@import './base/_typography.css';  
+
+/* -------------------------------------------------------------------------- */
+/*                                 3. LAYOUT                                  */
+/* -------------------------------------------------------------------------- */
+/* Estilos para la estructura principal de la aplicación (contenedores, grid, sidebar, header, footer, formularios generales). */
+
+@import './layout/_layout.css';       /* Contenedores principales como app-container, app-main */
+@import './layout/_sidebar.css';      /* Estilos del componente Sidebar */
+@import './layout/_forms.css';        /* Estilos generales de formularios: .form-group, .form-row, .form-label (si no están en _Input.css, etc.), .form-error-message */
+
+/* -------------------------------------------------------------------------- */
+/*                               4. COMPONENTS                               */
+/* -------------------------------------------------------------------------- */
+/* Estilos específicos para cada componente reutilizable. UNO POR ARCHIVO. */
+
+@import './components/_Button.css';
+@import './components/_Input.css';        /* Para FormInput */
+@import './components/_Textarea.css';     /* Para FormTextarea */
+@import './components/_Select.css';       /* Para FormSelect */
+@import './components/_Checkbox.css';     /* Para FormCheckBox */
+@import './components/_RadioGroup.css';   /* Para FormRadioGroup */
+@import './components/_ToggleSwitch.css'; /* Para ToggleSwitch */
+@import './components/_Modal.css';        /* Para Modal base y potencialmente ConfirmDialog */
+@import './components/_Loader.css';
+@import './components/_DataTable.css';    /* Estilos de Tabla (antes en tables.css) */
+@import './components/_SearchBar.css';
+@import './components/_Container.css';    /* Si tiene estilos propios más allá de inline */
+/* @import './components/_DocumentList.css';*/
+@import './components/_Alert.css';       /* Estilos específicos de Alert (ej: .alert--type-error) */
+@import './components/_Tabs.css';     /* Estilos específicos de Tabs */
+@import './components/_Pagination.css'; /* Estilos específicos de Pagination */
+@import './components//_DatePicker.css'; /* Estilos específicos de DatePicker */
+@import './components/_Breadcrumbs.css'; /* Estilos específicos de Breadcrumbs */
+@import './components/_Tooltip.css';    /* Estilos específicos de Tooltip */
+@import './components/_Badge.css';      /* Estilos específicos de Badge */
+@import './components/_DropdownMenu.css'; /* Estilos específicos de DropdownMenu */
+@import './components/_AutoComplete.css'; /* Estilos específicos de AutoComplete */
+@import './components/_Card.css';        /* Estilos específicos de Card */
+@import './components/_Accordion.css';   /* Estilos específicos de Accordion */
+@import './components/_Avatar.css'; 
+@import './components/_JerarquiaManager.css'; /* Estilos específicos de JerarquiaManager */ 
+@import './components/_ResizablePanel.css'; /* Estilos específicos de ResizablePanel */
+@import './components/_DocumentUploader.css'; /* Estilos específicos de DocumentUploader */
+/* ... añadir más @import para futuros componentes ... */
+
+/* -------------------------------------------------------------------------- */
+/*                                  5. PAGES                                  */
+/* -------------------------------------------------------------------------- */
+/* Estilos específicos para páginas completas. ¡Usar con moderación! */
+/* Intentar componer páginas usando componentes y layout siempre que sea posible. */
+
+@import './pages/_login.css';         /* Estilos específicos de la página de Login (ej: .login-container si no está en layout) */
+@import './pages/_proyect.css';     /* Estilos específicos de páginas de proyectos/dashboard (antes en proyect.css) */
+@import './pages/_MenuOpciones.css'; /* Estilos específicos de la página de menú de opciones (ej: .menu-opciones-container si no está en layout) */
+@import './pages/_empresas.css';     /* Estilos específicos de la página de Empresas (ej: .empresas-container si no está en layout) */
+@import './pages/_tiposnodo.css';    /* Estilos específicos de la página de Tipos Nodos (ej: .tipos-nodos-container si no está en layout) */
+@import './pages/_DetalleNodoForm.css'; 
+/* ... más páginas si es necesario ... */
+
+/* -------------------------------------------------------------------------- */
+/*                                6. UTILITIES                                */
+/* -------------------------------------------------------------------------- */
+/* Clases de utilidad reutilizables (helpers) para espaciado, texto, visibilidad, etc. */
+
+ @import './utilities/utilities.css';  
+ @import './utilities/_spacing.css'; 
+/* @import './utilities/_typography.css'; */
+/* @import './utilities/_display.css'; */
+
+/* -------------------------------------------------------------------------- */
+/*                      ARCHIVOS ANTIGUOS (TEMPORAL)                          */
+/* -------------------------------------------------------------------------- */
+/* Mantener mientras se migra, luego eliminar estas líneas y los archivos. */
+/* @import "./tables.css";     */ /* COMENTADO/ELIMINAR (movido a _DataTable.css) */
+/* @import "./proyect.css";    */ /* COMENTADO/ELIMINAR (movido a _proyectos.css) */
