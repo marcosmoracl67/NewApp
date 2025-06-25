@@ -30,11 +30,14 @@ function Sidebar({ open, setOpen }) {
 
   const renderMenuItems = (items) => (
     <ul className="sidebar-list">
-      {items.map((item) => {
+      {items.map((item, index) => {
         const hasChildren = item.children && item.children.length > 0;
         const isExpanded = expandedItems[item.opcion_id];
         return (
-          <li key={item.opcion_id || item.text} className={`sidebar-item ${location.pathname === item.path ? 'active' : ''}`}>
+          <li
+            key={item.opcion_id !== undefined ? `${item.opcion_id}` : `${item.text}-${index}`}
+            className={`sidebar-item ${location.pathname === item.path ? 'active' : ''}`}
+          >
             <div
               className="sidebar-item-content"
               onClick={item.path ? () => handleNavigate(item.path) : undefined}

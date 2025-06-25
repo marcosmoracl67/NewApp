@@ -46,24 +46,19 @@ const fetchUser = async () => {
 
     setUser(userData);
 
-/*     const acceso = await fetch(`${API_BASE_URL}/api/acceso/${userData.perfil_id}`, {
-      credentials: "include",
-    });
-    const menu = await acceso.json();
-    setMenuItems(menu); */
-
-    // Obtener el ID de perfil => Confirmado en el backend usar "perfil_id"
-    const perfilId =
-      userData.perfil_id;
-
-    if (perfilId !== undefined) {
-      const acceso = await fetch(`${API_BASE_URL}/api/acceso/${perfilId}`, {
+     // Recuperar el menú dinámico del backend
+    try {
+      const menuRes = await fetch(`${API_BASE_URL}/api/menu`, {
         credentials: "include",
       });
-      const menu = await acceso.json();
-      setMenuItems(menu);
-    } else {
-      console.warn("AuthContext: No se encontró 'perfilId' en los datos de usuario", userData);
+      if (menuRes.ok) {
+        const menu = await menuRes.json();
+        setMenuItems(menu);
+      } else {
+        console.warn("AuthContext: Respuesta inesperada al obtener el menú -", menuRes.status);
+      }
+    } catch (menuErr) {
+      console.error("AuthContext: Error recuperando menú:", menuErr);
     }
   } catch (userFetchError) {
     console.error("AuthContext: Error recuperando usuario (paso 1):", userFetchError);
