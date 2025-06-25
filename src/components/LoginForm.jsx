@@ -1,6 +1,7 @@
 // src/components/LoginForm.jsx
 import { useState, useEffect } from "react"; // Asegurar import de React
-import { useAuth } from "../hooks/useAuth"; // Asegurar import deuseAuth";
+import { useAuth } from "../hooks/useAuth"; // Hook de autenticación
+import useForm from "../hooks/useForm"; // Manejo de formulario
 import { useNavigate, Link } from "react-router-dom"; // Usar Link para navegación interna
 import Modal from './Modal';
 import FormInput from "./FormInput"; // Refactorizado
@@ -22,7 +23,8 @@ const LoginForm = () => {
     }
   }, [user, isAuthLoading, navigate]);
 
-  const { values, handleChange } = useAuth({
+  // Manejar los campos del formulario de login
+  const { values, handleChange } = useForm({
     username: "",
     password: "",
   });

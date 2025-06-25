@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 export { AuthContext }; // para que useAuth.js pueda acceder
 
+// URL base de la API backend
+const API_BASE_URL = "http://localhost:3000";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -15,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   // Función principal para obtener datos del usuario autenticado Y su menú
 const fetchUser = async () => {
   try {
-    const res = await fetch("/api/users/me", {
+    const res = await fetch(`${API_BASE_URL}/api/users/me`, {
       credentials: "include",
     });
 
@@ -43,7 +46,7 @@ const fetchUser = async () => {
 
     setUser(userData);
 
-    const acceso = await fetch(`/api/acceso/${userData.perfil_id}`, {
+    const acceso = await fetch(`${API_BASE_URL}/api/acceso/${userData.perfil_id}`, {
       credentials: "include",
     });
     const menu = await acceso.json();
@@ -61,7 +64,7 @@ const fetchUser = async () => {
     console.log(`AuthContext: Intentando login para ${username}...`);
     setIsLoading(true); // Podrías poner un loading específico para login si quieres
     try {
-      const res = await fetch("http://localhost:3000/api/users/login", {
+      const res = await fetch(`${API_BASE_URL}/api/users/login`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -94,7 +97,7 @@ const fetchUser = async () => {
     console.log("AuthContext: Ejecutando logout...");
     setIsLoading(true); // Mostrar loading durante el proceso de logout
     try {
-        await fetch("http://localhost:3000/api/users/logout", {
+        await fetch(`${API_BASE_URL}/api/users/logout`, {
             method: "POST",
             credentials: "include" // Necesario para enviar la cookie a borrar
         });
