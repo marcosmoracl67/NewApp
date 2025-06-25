@@ -51,13 +51,10 @@ const fetchUser = async () => {
     });
     const menu = await acceso.json();
     setMenuItems(menu); */
-    
-    // Obtener el ID de perfil considerando posibles variaciones en el nombre
+
+    // Obtener el ID de perfil => Confirmado en el backend usar "perfil_id"
     const perfilId =
-      userData.perfil_id ??
-      userData.perfilId ??
-      userData.perfilID ??
-      userData.idPerfil;
+      userData.perfil_id;
 
     if (perfilId !== undefined) {
       const acceso = await fetch(`${API_BASE_URL}/api/acceso/${perfilId}`, {
