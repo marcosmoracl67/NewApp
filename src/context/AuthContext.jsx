@@ -46,11 +46,28 @@ const fetchUser = async () => {
 
     setUser(userData);
 
-    const acceso = await fetch(`${API_BASE_URL}/api/acceso/${userData.perfil_id}`, {
+/*     const acceso = await fetch(`${API_BASE_URL}/api/acceso/${userData.perfil_id}`, {
       credentials: "include",
     });
     const menu = await acceso.json();
-    setMenuItems(menu);
+    setMenuItems(menu); */
+    
+    // Obtener el ID de perfil considerando posibles variaciones en el nombre
+    const perfilId =
+      userData.perfil_id ??
+      userData.perfilId ??
+      userData.perfilID ??
+      userData.idPerfil;
+
+    if (perfilId !== undefined) {
+      const acceso = await fetch(`${API_BASE_URL}/api/acceso/${perfilId}`, {
+        credentials: "include",
+      });
+      const menu = await acceso.json();
+      setMenuItems(menu);
+    } else {
+      console.warn("AuthContext: No se encontró 'perfilId' en los datos de usuario", userData);
+    }
   } catch (userFetchError) {
     console.error("AuthContext: Error recuperando usuario (paso 1):", userFetchError);
     setUser(null);
