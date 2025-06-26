@@ -28,18 +28,20 @@
   /* Menú hamburguesa */
   .hamburger-button {
     position: fixed;
-    top: 1rem;
-    left: 1rem;
+    top: 0.5rem;
+    left: 0.5rem;
     z-index: 1100;
+    margin: 0; /* Eliminar margen extra */
   }
   
   .hamburger-icon {
-    font-size: 1.8rem;
+    font-size: 1.35rem; /* 75% del tamaño original */
     background-color: transparent;
     color: var(--txt-color);
     border: none;
     cursor: pointer;
     transition: color 0.3s ease;
+    padding: 0; /* Sin margen interno */
   }
   
   .hamburger-icon:hover {
