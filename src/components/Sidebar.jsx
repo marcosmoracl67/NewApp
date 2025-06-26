@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import UserCard from "./UserCard";
 import { useAuth } from "../hooks/useAuth";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL } from "../config"; // Asegúrate de que la ruta sea correcta
 
 const IconComponent = ({ iconName }) => {
   const safeIconName = iconName || "FaQuestionCircle"; // ✅ Línea agregada
