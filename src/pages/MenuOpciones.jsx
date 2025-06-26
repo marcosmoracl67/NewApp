@@ -218,7 +218,7 @@ const MenuOpciones = () => {
         <div className='toolbar-right'>
           <FormButton
             icon={<FaPlus />}
-            label='Crear Opción'
+            label='Crear Menú'
             onClick={handleAbrirModalCrear}
             size='small'
           />
@@ -258,6 +258,19 @@ const MenuOpciones = () => {
         )}
       </Container>
 
+      {isOpcionModalOpen && (
+        <MenuOpcionFormModal
+          isOpen={isOpcionModalOpen}
+          onClose={handleCerrarModal}
+          onSubmit={handleFormSubmit}
+          initialData={opcionActualParaModal}
+          mode={modoModal}
+          opcionesPadre={opcionesPadre}
+          isLoading={isSubmittingModal}
+        />
+      )}
+
+
       <ConfirmDialog
         isOpen={!!opcionAEliminar}
         title={`¿Eliminar opción "${opcionAEliminar?.nombre || ''}"?`}
@@ -268,24 +281,6 @@ const MenuOpciones = () => {
         onCancel={() => setOpcionAEliminar(null)}
         confirmVariant='default'
       />
-
-      <div className='toolbar-left'>
-          <SearchBar
-            value={filtro}
-            onChange={e => setFiltro(e.target.value)}
-            placeholder='Buscar opción...'
-            aria-label='Buscar opción'
-            className='search-bar'
-          />
-        </div>
-        <div className='toolbar-right'>
-          <FormButton
-            icon={<FaPlus />}
-            label='Crear Opción'
-            onClick={handleAbrirModalCrear}
-            size='small'
-          />
-        </div>
 
       {isPerfilesModalOpen && opcionParaPerfiles && (
         <AsociarPerfilesModal
