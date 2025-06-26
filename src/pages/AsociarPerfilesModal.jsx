@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
-import Modal from './Modal';
-import FormCheckbox from './FormCheckbox';
-import FormButton from './FormButton';
+import Modal from '../components/Modal';
+import FormCheckbox from '../components/FormCheckbox';
+import FormButton from '../components/FormButton';
 import PropTypes from 'prop-types';
 
 const API_BASE_URL = 'http://localhost:3000/api';

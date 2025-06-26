@@ -12,7 +12,7 @@ import Loader from '../components/Loader';
 import Alert from '../components/Alert';
 import ToggleSwitch from '../components/ToggleSwitch';
 import ConfirmDialog from '../components/ConfirmDialog';
-import AsociarPerfilesModal from '../components/AsociarPerfilesModal';
+import AsociarPerfilesModal from './AsociarPerfilesModal';
 
 const ITEMS_PER_PAGE = 10;
 const API_BASE_URL = 'http://localhost:3000/api';
