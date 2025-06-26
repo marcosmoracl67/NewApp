@@ -13,6 +13,7 @@ import Alert from '../components/Alert';
 import ToggleSwitch from '../components/ToggleSwitch';
 import ConfirmDialog from '../components/ConfirmDialog';
 import AsociarPerfilesModal from './AsociarPerfilesModal';
+import MenuOpcionFormModal from './MenuOpcionFormModal';
 import { API_BASE_URL } from '../config';
 
 const ITEMS_PER_PAGE = 10;
@@ -29,6 +30,10 @@ const MenuOpciones = () => {
   const [isFetchingList, setIsFetchingList] = useState(true);
   const [isPerfilesModalOpen, setIsPerfilesModalOpen] = useState(false);
   const [opcionParaPerfiles, setOpcionParaPerfiles] = useState(null);
+  const [isOpcionModalOpen, setIsOpcionModalOpen] = useState(false);
+  const [opcionActualParaModal, setOpcionActualParaModal] = useState(null);
+  const [modoModal, setModoModal] = useState('crear');
+  const [isSubmittingModal, setIsSubmittingModal] = useState(false);
 
   const setLoading = useCallback((id, action, isLoading) => {
     setLoadingStates(prev => ({ ...prev, [`${action}-${id}`]: isLoading }));
@@ -36,7 +41,7 @@ const MenuOpciones = () => {
 
   const fetchOpciones = useCallback(async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/menu-opciones`, { withCredentials: true });
+      const res = await axios.get(`${API_BASE_URL}/api/menu-opciones`, { withCredentials: true });
       const data = res.data.map(op => ({
         id: parseInt(op.id),
         nombre: op.nombre,
@@ -61,7 +66,7 @@ const MenuOpciones = () => {
   const eliminarOpcion = useCallback(async (id) => {
     setLoading(id, 'delete', true);
     try {
-      await axios.delete(`${API_BASE_URL}/menu-opciones/${id}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/menu-opciones/${id}`, { withCredentials: true });
       await fetchOpciones();
     } catch (err) {
       console.error('Error eliminando opción', err);
@@ -70,6 +75,64 @@ const MenuOpciones = () => {
       setOpcionAEliminar(null);
     }
   }, [fetchOpciones, setLoading]);
+
+   const handleFormSubmit = useCallback(async (datosDelModal) => {
+    setIsSubmittingModal(true);
+    const idParaActualizar = (modoModal === 'editar' && opcionActualParaModal)
+      ? opcionActualParaModal.id
+      : null;
+
+    const payload = {
+      nombre: datosDelModal.nombre,
+      ruta: datosDelModal.ruta || null,
+      icono: datosDelModal.icono || null,
+      orden: datosDelModal.orden ?? 0,
+      es_separador: Boolean(datosDelModal.es_separador),
+      visible: Boolean(datosDelModal.visible),
+      padre_id: datosDelModal.padre_id ? parseInt(datosDelModal.padre_id, 10) : null
+    };
+
+    const url = modoModal === 'crear'
+      ? `${API_BASE_URL}/menu-opciones`
+      : `${API_BASE_URL}/menu-opciones/${idParaActualizar}`;
+
+    const method = modoModal === 'crear' ? 'post' : 'put';
+
+    if (modoModal === 'editar' && !idParaActualizar) {
+      setIsSubmittingModal(false);
+      return;
+    }
+
+    try {
+      await axios[method](url, payload, { withCredentials: true });
+      await fetchOpciones();
+      setIsOpcionModalOpen(false);
+    } catch (error) {
+      console.error('Error guardando opción de menú', error);
+      setAlertInfo({ isOpen: true, message: error.response?.data?.error || error.message, type: 'error', title: 'Error' });
+    } finally {
+      setIsSubmittingModal(false);
+    }
+  }, [modoModal, fetchOpciones, opcionActualParaModal]);
+
+  const handleAbrirModalCrear = useCallback(() => {
+    setModoModal('crear');
+    setOpcionActualParaModal(null);
+    setIsOpcionModalOpen(true);
+  }, []);
+
+  const handleAbrirModalEditar = useCallback((opcion) => {
+    setModoModal('editar');
+    setOpcionActualParaModal(opcion);
+    setIsOpcionModalOpen(true);
+  }, []);
+
+  const handleCerrarModal = useCallback(() => {
+    setIsOpcionModalOpen(false);
+    setOpcionActualParaModal(null);
+    setIsSubmittingModal(false);
+  }, []);
+
 
   const handleSort = useCallback((column) => {
     const direction = (sortColumn === column && sortDirection === 'asc') ? 'desc' : 'asc';
@@ -106,7 +169,13 @@ const MenuOpciones = () => {
     ) },
     { key: 'acciones', label: 'Acciones', className: 'col-20', render: (item) => (
       <div className='table-actions'>
-        <FormButton icon={<FaEdit />} size='small' variant='subtle' title='Editar' />
+        <FormButton
+          icon={<FaEdit />}
+          onClick={() => handleAbrirModalEditar(item)}
+          size='small'
+          variant='subtle'
+          title='Editar'
+        />
         <FormButton icon={<FaUsers />} size='small' variant='subtle' title='Perfiles'
           onClick={() => { setOpcionParaPerfiles(item); setIsPerfilesModalOpen(true); }} />
         <FormButton icon={<FaTrashAlt />} size='small' variant='subtle' title='Eliminar'
@@ -114,7 +183,15 @@ const MenuOpciones = () => {
           isLoading={loadingStates[`delete-${item.id}`] || false} />
       </div>
     )}
-  ], [loadingStates]);
+    ], [loadingStates, handleAbrirModalEditar]);
+
+  const opcionesPadre = useMemo(
+    () =>
+      opciones
+        .filter(op => !opcionActualParaModal || op.id !== opcionActualParaModal.id)
+        .map(op => ({ value: String(op.id), label: op.nombre })),
+    [opciones, opcionActualParaModal]
+  );
 
   return (
     <Container as='main' className='page-container' maxWidth='80rem' centered padding='1rem'>
@@ -129,13 +206,23 @@ const MenuOpciones = () => {
       <Titulo as='h2' align='center' margin='0 0 1.5rem 0'>Administración de Opciones de Menú</Titulo>
 
       <Container className='menu-opciones__toolbar' padding='0' background='transparent'>
-        <SearchBar
-          value={filtro}
-          onChange={e => setFiltro(e.target.value)}
-          placeholder='Buscar opción...'
-          aria-label='Buscar opción'
-          className='search-bar'
-        />
+       <div className='toolbar-left'>
+          <SearchBar
+            value={filtro}
+            onChange={e => setFiltro(e.target.value)}
+            placeholder='Buscar opción...'
+            aria-label='Buscar opción'
+            className='search-bar'
+          />
+        </div>
+        <div className='toolbar-right'>
+          <FormButton
+            icon={<FaPlus />}
+            label='Crear Opción'
+            onClick={handleAbrirModalCrear}
+            size='small'
+          />
+        </div>
       </Container>
 
       <Container className='table-container-wrapper' background='var(--background1)' bordered padding='1rem' margin='0 auto'>
@@ -181,6 +268,24 @@ const MenuOpciones = () => {
         onCancel={() => setOpcionAEliminar(null)}
         confirmVariant='default'
       />
+
+      <div className='toolbar-left'>
+          <SearchBar
+            value={filtro}
+            onChange={e => setFiltro(e.target.value)}
+            placeholder='Buscar opción...'
+            aria-label='Buscar opción'
+            className='search-bar'
+          />
+        </div>
+        <div className='toolbar-right'>
+          <FormButton
+            icon={<FaPlus />}
+            label='Crear Opción'
+            onClick={handleAbrirModalCrear}
+            size='small'
+          />
+        </div>
 
       {isPerfilesModalOpen && opcionParaPerfiles && (
         <AsociarPerfilesModal

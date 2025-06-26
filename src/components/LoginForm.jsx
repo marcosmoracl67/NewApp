@@ -108,7 +108,7 @@ const LoginForm = () => {
   return (
     <>
       {/* Contenedor principal de la página de login */}
-      <Container as="div" className="login-page-container" centered>
+      <Container as="div" className="login-page-container" centered background="transparent">
         {/* Tarjeta del formulario */}
         <Container as="form" className="login-form" onSubmit={handleSubmit} bordered centered>
             {/* Título del formulario */}

@@ -84,9 +84,7 @@ const fetchUser = async () => {
   }
 };
 
-
   const login = async (username, password) => {
-    console.log(`AuthContext: Intentando login para ${username}...`);
     setIsLoading(true); // Podrías poner un loading específico para login si quieres
     try {
       const res = await fetch(`${API_BASE_URL}/api/users/login`, {
@@ -105,7 +103,6 @@ const fetchUser = async () => {
 
       // Login OK -> El backend puso la cookie -> Llamar a fetchUser
       await fetchUser(); // fetchUser se encarga de setLoading, setUser y setMenuItems
-      console.log("AuthContext: Login exitoso, fetchUser llamado.");
       // fetchUser ya puso isLoading a false en su finally
       return { success: true };
 
@@ -119,7 +116,6 @@ const fetchUser = async () => {
   // --- logout ---
   // Llama a la API de logout y limpia el estado local
   const logout = async () => {
-    console.log("AuthContext: Ejecutando logout...");
     setIsLoading(true); // Mostrar loading durante el proceso de logout
     try {
         await fetch(`${API_BASE_URL}/api/users/logout`, {
@@ -135,7 +131,6 @@ const fetchUser = async () => {
         setUser(null);
         setMenuItems([]); // <<<<--- Limpiar menú es crucial aquí
         sessionStorage.clear();
-        console.log("AuthContext: Estado local (user, menuItems) y sessionStorage limpiados.");
         setIsLoading(false); // Terminar loading
     }
   };
