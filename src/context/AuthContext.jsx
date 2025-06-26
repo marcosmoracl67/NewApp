@@ -2,8 +2,7 @@ import { createContext, useState, useEffect } from "react";
 export { AuthContext }; // para que useAuth.js pueda acceder
 
 // URL base de la API backend
-const API_BASE_URL = "http://localhost:3000";
-
+import { API_BASE_URL } from "../config";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

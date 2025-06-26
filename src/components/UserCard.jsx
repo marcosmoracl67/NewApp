@@ -2,13 +2,14 @@ import { useAuth } from '../hooks/useAuth';
 import defaultUserImage from "../assets/default-user.png";
 import { useTheme } from "../context/ThemeContext";
 import "../styles/index.css";
+import { API_BASE_URL } from "../config";
 
 const UserCard = () => {
   const { theme, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
 
   const imageUrl = user?.imagen_id
-    ? `http://localhost:3000/api/imagenes/${user.imagen_id}?v=${Date.now()}`
+    ? `${API_BASE_URL}/api/imagenes/${user.imagen_id}?v=${Date.now()}`
     : defaultUserImage;
 
   return (

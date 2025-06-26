@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import UserCard from "./UserCard";
 import { useAuth } from "../hooks/useAuth";
+import { API_BASE_URL } from "../config";
 
 const IconComponent = ({ iconName }) => {
   const safeIconName = iconName || "FaQuestionCircle"; // ✅ Línea agregada
@@ -86,7 +87,7 @@ function Sidebar({ open, setOpen }) {
   useEffect(() => {
     if (user && currentOptionId) {
       // console.log(`Registrando acceso para user ${user.usuario_id} a opcion ${currentOptionId}`);
-      fetch("http://localhost:3000/api/log-acceso", {
+      fetch(`${API_BASE_URL}/api/log-acceso`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // credentials: 'include', // Si es necesario

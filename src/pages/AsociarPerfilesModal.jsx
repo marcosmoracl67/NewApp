@@ -4,7 +4,7 @@ import FormCheckbox from '../components/FormCheckbox';
 import FormButton from '../components/FormButton';
 import PropTypes from 'prop-types';
 
-const API_BASE_URL = 'http://localhost:3000/api';
+import { API_BASE_URL } from '../config';
 
 const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
   const [perfiles, setPerfiles] = useState([]);

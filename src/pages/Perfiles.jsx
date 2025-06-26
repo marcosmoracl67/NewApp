@@ -14,6 +14,7 @@ import Loader from '../components/Loader';
 import Alert from '../components/Alert';
 
 import PerfilFormModal from './PerfilFormModal';
+import { API_BASE_URL } from '../config';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -39,7 +40,8 @@ const Perfiles = () => {
 
   const fetchPerfiles = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/perfiles', { withCredentials: true });
+      // const res = await axios.get('http://localhost:3000/api/perfiles', { withCredentials: true });
+      const res = await axios.get(`${API_BASE_URL}/api/perfiles`, { withCredentials: true });
       setPerfiles(res.data);
     } catch (error) {
       mostrarNotificacion('Error al cargar Perfiles ❌');
@@ -65,8 +67,10 @@ const Perfiles = () => {
     };
 
     const url = modoModal === 'crear'
-      ? 'http://localhost:3000/api/perfiles'
-      : `http://localhost:3000/api/perfiles/${idParaActualizar}`;
+      // ? 'http://localhost:3000/api/perfiles'
+      // : `http://localhost:3000/api/perfiles/${idParaActualizar}`;
+      ? `${API_BASE_URL}/api/perfiles`
+      : `${API_BASE_URL}/api/perfiles/${idParaActualizar}`;
 
     const method = modoModal === 'crear' ? 'post' : 'put';
 
@@ -93,7 +97,8 @@ const Perfiles = () => {
     const numericId = parseInt(id, 10);
     setLoading(numericId, 'delete', true);
     try {
-      await axios.delete(`http://localhost:3000/api/perfiles/${numericId}`, { withCredentials: true });
+      // await axios.delete(`http://localhost:3000/api/perfiles/${numericId}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/perfiles/${numericId}`, { withCredentials: true });
       await fetchPerfiles();
       mostrarNotificacion('Perfil eliminado 🗑️');
     } catch (error) {

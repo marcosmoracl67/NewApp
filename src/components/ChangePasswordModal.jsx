@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "../styles/index.css";
+import { API_BASE_URL } from "../config";
 
 const ChangePasswordModal = ({ usuario, onClose, onSuccess }) => {
   const [nuevaPassword, setNuevaPassword] = useState("");
 
   const guardarPassword = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${usuario.usuario_id}/password`, {
+      const response = await fetch(`${API_BASE_URL}/api/users/${usuario.usuario_id}/password`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

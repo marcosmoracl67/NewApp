@@ -123,7 +123,7 @@ Desarrollar un sistema de **menú dinámico y jerárquico**, que muestre al usua
 
 ## 📄 Documentación Swagger
 
-- URL: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+- URL: `${VITE_API_BASE_URL}/api-docs`
 - Autenticación: botón **Authorize**, usando el token JWT almacenado en la cookie `token`
 
 ### Esquemas definidos (`components.schemas`)
@@ -147,6 +147,6 @@ Desarrollar un sistema de **menú dinámico y jerárquico**, que muestre al usua
 
 1. Ejecutar `npm run dev`
 2. Autenticarse con `POST /api/users/login`
-3. Acceder a [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+3. Acceder a `${VITE_API_BASE_URL}/api-docs`
 4. Autorizar con el token JWT en la cookie
 5. Probar los endpoints directamente desde Swagger UI

@@ -1,6 +1,7 @@
 // --- START OF FILE components/DocumentList.jsx --- (REFACTORIZADO)
 import axios from "axios";
 import { useState } from "react"; // useEffect no se usa si no hay fetch aquí
+import { API_BASE_URL } from "../config";
 import { FaTrashAlt, FaFileDownload } from "react-icons/fa";
 import DataTable from "../components/DataTable";
 import FormattedDate from "../components/FormattedDate";
@@ -33,7 +34,7 @@ const DocumentList = ({ documentos = [], onDelete }) => {
 
         setLoading('download', id, true);
         try {
-          const res = await axios.get(`http://localhost:3000/api/documentos/${id}`, {
+          const res = await axios.get(`${API_BASE_URL}/api/documentos/${id}`, {
             responseType: "blob",
             withCredentials: true
           });
@@ -68,7 +69,7 @@ const DocumentList = ({ documentos = [], onDelete }) => {
 
       setLoading('delete', id, true);
       try {
-          await axios.delete(`http://localhost:3000/api/documentos/${id}`, {
+         await axios.delete(`${API_BASE_URL}/api/documentos/${id}`, {
               withCredentials: true
           });
           mostrarNotificacion("Documento eliminado ✅");

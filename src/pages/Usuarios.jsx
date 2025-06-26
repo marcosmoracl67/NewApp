@@ -15,6 +15,7 @@ import ToggleSwitch from '../components/ToggleSwitch';
 import Alert from '../components/Alert';
 
 import UsuarioFormModal from './UsuarioFormModal';
+import { API_BASE_URL } from '../config';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -41,7 +42,8 @@ const Usuarios = () => {
 
   const fetchUsuarios = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/users', { withCredentials: true });
+    //   const res = await axios.get('http://localhost:3000/api/users', { withCredentials: true });
+      const res = await axios.get(`${API_BASE_URL}/api/users`, { withCredentials: true });
       setUsuarios(res.data);
     } catch (error) {
       mostrarNotificacion('Error al cargar Usuarios ❌');
@@ -53,7 +55,8 @@ const Usuarios = () => {
 
   const fetchPerfiles = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/perfiles', { withCredentials: true });
+      // const res = await axios.get('http://localhost:3000/api/perfiles', { withCredentials: true });
+      const res = await axios.get(`${API_BASE_URL}/api/perfiles`, { withCredentials: true });
       setPerfilesOptions(res.data.map(p => ({ value: String(p.id), label: p.nombre })));
     } catch (error) {
       console.error('Error al cargar Perfiles:', error.message);
@@ -83,8 +86,10 @@ const Usuarios = () => {
     };
 
     const url = modoModal === 'crear'
-      ? 'http://localhost:3000/api/users'
-      : `http://localhost:3000/api/users/${idParaActualizar}`;
+      // ? 'http://localhost:3000/api/users'
+      // : `http://localhost:3000/api/users/${idParaActualizar}`;
+      ? `${API_BASE_URL}/api/users`
+      : `${API_BASE_URL}/api/users/${idParaActualizar}`;
 
     const method = modoModal === 'crear' ? 'post' : 'put';
 
@@ -111,7 +116,8 @@ const Usuarios = () => {
     const numericId = parseInt(id, 10);
     setLoading(numericId, 'delete', true);
     try {
-      await axios.delete(`http://localhost:3000/api/users/${numericId}`, { withCredentials: true });
+      // await axios.delete(`http://localhost:3000/api/users/${numericId}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/users/${numericId}`, { withCredentials: true });
       await fetchUsuarios();
       mostrarNotificacion('Usuario eliminado 🗑️');
     } catch (error) {

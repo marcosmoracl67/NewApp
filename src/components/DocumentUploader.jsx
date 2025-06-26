@@ -19,7 +19,7 @@ import Tooltip from './Tooltip';
 import DropdownMenu from './DropdownMenu';
 import Modal from './Modal';
 
-const API_BASE_URL = 'http://localhost:3000';
+import { API_BASE_URL } from '../config';
 
 const iconByMimeType = {
   // ... (tus mappings existentes de mime types específicos) ...

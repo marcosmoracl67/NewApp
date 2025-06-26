@@ -6,6 +6,7 @@ import DocumentList from "../components/DocumentList";
 import Loader from "./Loader"; // <<< Importar Loader
 import Parrafo from "./Parrafo"; // <<< Importar Parrafo para mensaje de error
 import PropTypes from 'prop-types'; // <-- Importar PropTypes
+import { API_BASE_URL } from "../config";
 
 const DocumentManager = ({ tipo, id, idNodo }) => { 
   const [documentos, setDocumentos] = useState([]);
@@ -28,11 +29,11 @@ const DocumentManager = ({ tipo, id, idNodo }) => {
     try {
       let url;
       if (targetType === "proyecto") {
-        url = `http://localhost:3000/api/documentos/proyecto?proyecto_id=${targetId}`;
+        url = `${API_BASE_URL}/api/documentos/proyecto?proyecto_id=${targetId}`;
       } else if (targetType === "tarea") {
-        url = `http://localhost:3000/api/documentos/tarea?tarea_id=${targetId}`;
-      } else if (targetType === "nodo") { 
-        url = `http://localhost:3000/api/documentos/by-nodo/${targetId}`; 
+        url = `${API_BASE_URL}/api/documentos/tarea?tarea_id=${targetId}`;
+      } else if (targetType === "nodo") {
+        url = `${API_BASE_URL}/api/documentos/by-nodo/${targetId}`;
       } else {
         throw new Error("Tipo de documento no especificado o no válido para carga.");
       }
