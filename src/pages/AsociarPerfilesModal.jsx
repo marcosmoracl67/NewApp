@@ -15,8 +15,8 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
     if (!menuOpcionId) return;
     try {
       const [perfilesRes, asignadosRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/perfiles`, { credentials: 'include' }),
-        fetch(`${API_BASE_URL}/perfiles-menu/${menuOpcionId}`, { credentials: 'include' })
+        fetch(`${API_BASE_URL}/api/perfiles`, { credentials: 'include' }),
+        fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, { credentials: 'include' })
       ]);
       if (perfilesRes.ok) {
         const perfilesData = await perfilesRes.json();
@@ -45,7 +45,7 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
   const guardarCambios = useCallback(async () => {
     setIsLoading(true);
     try {
-      await fetch(`${API_BASE_URL}/perfiles-menu/${menuOpcionId}`, {
+      await fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

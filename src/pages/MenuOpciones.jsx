@@ -203,7 +203,7 @@ const MenuOpciones = () => {
         onClose={() => setAlertInfo(prev => ({ ...prev, isOpen: false }))}
       />
 
-      <Titulo as='h2' align='center' margin='0 0 1.5rem 0'>Administración de Opciones de Menú</Titulo>
+      <Titulo as='h2' align='center' margin='0 0 1.5rem 0'>Menús de la App</Titulo>
 
       <Container className='menu-opciones__toolbar' padding='0' background='transparent'>
        <div className='toolbar-left'>

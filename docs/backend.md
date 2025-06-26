@@ -88,8 +88,8 @@ Desarrollar un sistema de **menú dinámico y jerárquico**, que muestre al usua
 - `DELETE /:perfilId/:menuOpcionId` – Eliminar asignación
 
 #### Tabla: `perfiles_menu_opciones`
-| Campo           | Tipo   | Restricciones                 |
-|-----------------|--------|-------------------------------|
+| Campo           | Tipo   | Restricciones                |
+|-----------------|--------|------------------------------|
 | perfil_id       | INT    | PK, FK a `perfiles.id`       |
 | menu_opcion_id  | INT    | PK, FK a `menu_opciones.id`  |
 | permitido       | BIT    | DEFAULT 1                    |
