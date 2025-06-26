@@ -125,8 +125,6 @@ const LoginForm = () => {
                 onChange={handleChange}
                 required
                 disabled={isSubmitting} // Deshabilitar durante envío
-                // className ya no es necesario aquí
-                // containerClassName="login-form__group" // Opcional si necesitas estilo específico
             />
 
             {/* Campo Contraseña */}

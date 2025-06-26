@@ -7,6 +7,8 @@
   min-height: 100vh; /* Ocupa toda la altura */
   padding: 1rem; /* Espacio por si el modal es muy alto en móvil */
   background-color: var(--background2); /* Fondo de la página */
+    /* Usar el mismo fondo que el body para evitar efecto de tarjeta */
+  background-color: transparent;
 }
 
 /* Estilos específicos para la tarjeta de login */
