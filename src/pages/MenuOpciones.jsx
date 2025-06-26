@@ -93,8 +93,8 @@ const MenuOpciones = () => {
     };
 
     const url = modoModal === 'crear'
-      ? `${API_BASE_URL}/menu-opciones`
-      : `${API_BASE_URL}/menu-opciones/${idParaActualizar}`;
+      ? `${API_BASE_URL}/api/menu-opciones`
+      : `${API_BASE_URL}/api/menu-opciones/${idParaActualizar}`;
 
     const method = modoModal === 'crear' ? 'post' : 'put';
 
