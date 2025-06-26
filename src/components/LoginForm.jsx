@@ -110,7 +110,7 @@ const LoginForm = () => {
       {/* Contenedor principal de la página de login */}
       <Container as="div" className="login-page-container" centered>
         {/* Tarjeta del formulario */}
-        <Container as="form" className="login-form" onSubmit={handleSubmit} bordered>
+        <Container as="form" className="login-form" onSubmit={handleSubmit} bordered centered>
             {/* Título del formulario */}
             <Titulo as="h2" align="center" className="login-form__title" margin="0.5rem 1rem"> 
                 Inicio de Sesión
