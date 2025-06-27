@@ -16,7 +16,9 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
     try {
       const [perfilesRes, asignadosRes] = await Promise.all([
         fetch(`${API_BASE_URL}/api/perfiles`, { credentials: 'include' }),
+        // fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, { credentials: 'include' })
         fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, { credentials: 'include' })
+
       ]);
       if (perfilesRes.ok) {
         const perfilesData = await perfilesRes.json();
