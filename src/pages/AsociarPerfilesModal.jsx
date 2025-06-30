@@ -20,7 +20,7 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
     try {
         const [perfilesRes, asignadosRes] = await Promise.all([
           fetch(`${API_BASE_URL}/api/perfiles`, { credentials: 'include' }),
-          fetch(`${API_BASE_URL}/api/menu-opciones/${menuOpcionId}/perfiles`, { credentials: 'include' })
+          fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, { credentials: 'include' })
         ]);
       if (perfilesRes.ok) {
         const perfilesData = await perfilesRes.json();
@@ -90,14 +90,16 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
 
   const guardarCambios = useCallback(async () => {
     setIsLoading(true);
+    console.log('Menu Opción: ', menuOpcionId, 'Perfiles Asociados:', asociados);
     try {
-      await fetch(`${API_BASE_URL}/api/menu-opciones/${menuOpcionId}/perfiles`, {
+      await fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ perfiles: asociados })
       });
       onClose();
+      
     } catch (err) {
       console.error('Error guardando perfiles', err);
     } finally {
