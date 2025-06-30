@@ -1,0 +1,19 @@
+.asociar-perfiles-container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.asociar-perfiles-table {
+  flex: 1;
+}
+
+.asociar-perfiles-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}

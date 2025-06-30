@@ -73,6 +73,7 @@
 @import './pages/_empresas.css';     /* Estilos específicos de la página de Empresas (ej: .empresas-container si no está en layout) */
 @import './pages/_tiposnodo.css';    /* Estilos específicos de la página de Tipos Nodos (ej: .tipos-nodos-container si no está en layout) */
 @import './pages/_DetalleNodoForm.css'; 
+@import './pages/_AsociarPerfilesModal.css';
 /* ... más páginas si es necesario ... */
 
 /* -------------------------------------------------------------------------- */
