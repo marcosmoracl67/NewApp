@@ -4,6 +4,7 @@ import { FaAngleRight, FaAngleLeft, FaAngleDoubleRight, FaAngleDoubleLeft } from
 import Modal from '../components/Modal';
 import FormCheckbox from '../components/FormCheckbox';
 import FormButton from '../components/FormButton';
+import DataTable from '../components/DataTable';
 
 import { API_BASE_URL } from '../config';
 
