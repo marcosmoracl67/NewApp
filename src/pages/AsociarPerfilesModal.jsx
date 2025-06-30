@@ -92,7 +92,7 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
     setIsLoading(true);
     //console.log('Menu Opción: ', menuOpcionId, 'Perfiles Asociados:', asociados);
     try {
-      await fetch(`${API_BASE_URL}/api/menu-opciones/${menuOpcionId}/perfiles`, {
+      await fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}/perfiles`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

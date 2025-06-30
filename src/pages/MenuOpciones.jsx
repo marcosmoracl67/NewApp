@@ -48,6 +48,7 @@ const MenuOpciones = () => {
         ruta: op.ruta || '',
         icono: op.icono || '',
         orden: op.orden || 0,
+        separador: op.es_separador !== false,
         visible: op.visible !== false
       }));
       setOpciones(data);
@@ -163,10 +164,12 @@ const MenuOpciones = () => {
 
   const columns = useMemo(() => [
     { key: 'nombre', label: 'Nombre', sortable: true, className: 'col-20' },
-    { key: 'ruta', label: 'Ruta', sortable: true, className: 'col-30' },
+    { key: 'ruta', label: 'Ruta', sortable: true, className: 'col-20' },
+    { key: 'orden', label: 'Orden', sortable: true, className: 'col-20' },
     { key: 'visible', label: 'Visible', className: 'col-10', render: (item) => (
-      <ToggleSwitch checked={item.visible} onChange={() => {}} disabled size='small' />
-    ) },
+      <ToggleSwitch checked={item.visible} onChange={() => {}} disabled size='small' /> ) },
+    { key: 'es_separador', label: 'Separador', className: 'col-10', render: (item) => (
+      <ToggleSwitch checked={item.es_separador} onChange={() => {}} disabled size='small' /> ) },
     { key: 'acciones', label: 'Acciones', className: 'col-20', render: (item) => (
       <div className='table-actions'>
         <FormButton
