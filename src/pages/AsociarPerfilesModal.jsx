@@ -90,7 +90,7 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
 
   const guardarCambios = useCallback(async () => {
     setIsLoading(true);
-    console.log('Menu Opción: ', menuOpcionId, 'Perfiles Asociados:', asociados);
+    //console.log('Menu Opción: ', menuOpcionId, 'Perfiles Asociados:', asociados);
     try {
       await fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, {
         method: 'POST',
