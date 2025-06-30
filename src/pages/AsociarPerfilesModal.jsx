@@ -17,11 +17,10 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
   const fetchData = useCallback(async () => {
     if (!menuOpcionId) return;
     try {
-      const [perfilesRes, asignadosRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/api/perfiles`, { credentials: 'include' }),
-        fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, { credentials: 'include' })
-
-      ]);
+        const [perfilesRes, asignadosRes] = await Promise.all([
+          fetch(`${API_BASE_URL}/api/perfiles`, { credentials: 'include' }),
+          fetch(`${API_BASE_URL}/api/menu-opciones/${menuOpcionId}/perfiles`, { credentials: 'include' })
+        ]);
       if (perfilesRes.ok) {
         const perfilesData = await perfilesRes.json();
         const normalizados = perfilesData.map(p => ({
@@ -91,7 +90,7 @@ const AsociarPerfilesModal = ({ isOpen, onClose, menuOpcionId }) => {
   const guardarCambios = useCallback(async () => {
     setIsLoading(true);
     try {
-      await fetch(`${API_BASE_URL}/api/perfiles-menu/${menuOpcionId}`, {
+      await fetch(`${API_BASE_URL}/api/menu-opciones/${menuOpcionId}/perfiles`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
