@@ -80,8 +80,8 @@ El flujo de recuperación envía un código por correo o SMS y se confirma con `
 - `POST /` – Crear opción
 - `PUT /:id` – Actualizar opción
 - `DELETE /:id` – Eliminar opción
-- `POST /:menuOpcionId/perfiles` – Asignar perfiles a una opción
-- `GET /:id/perfiles` – Obtener perfiles asociados a una opción
+- `GET /:menuOpcionId/perfiles` – Obtener perfiles asociados a una opción
+- `POST /:menuOpcionId/perfiles` – Guardar perfiles asociados a una opción
 
 #### Tabla: `menu_opciones`
 | Campo        | Tipo           | Restricciones                  |
@@ -99,7 +99,6 @@ El flujo de recuperación envía un código por correo o SMS y se confirma con `
 #### Endpoints
 - `GET /:perfilId` – Obtener opciones asignadas
 - `POST /:perfilId` – Asignar opciones
-- `POST /:perfilId/:menuOpcionId` – Asignar una opción de menú a un perfil
 - `DELETE /:perfilId/:menuOpcionId` – Eliminar asignación
 
 #### Tabla: `perfiles_menu_opciones`
