@@ -80,8 +80,8 @@ El flujo de recuperación envía un código por correo o SMS y se confirma con `
 - `POST /` – Crear opción
 - `PUT /:id` – Actualizar opción
 - `DELETE /:id` – Eliminar opción
-- `GET /:menuOpcionId/perfiles` – Obtener perfiles asociados a una opción
-- `POST /:menuOpcionId/perfiles` – Guardar perfiles asociados a una opción
+- `POST /:menuOpcionId/perfiles` – Asignar perfiles a una opción
+- `GET /:id/perfiles` – Obtener perfiles asociados a una opción
 
 #### Tabla: `menu_opciones`
 | Campo        | Tipo           | Restricciones                  |
@@ -97,8 +97,10 @@ El flujo de recuperación envía un código por correo o SMS y se confirma con `
 
 ### Permisos por Perfil (`/api/perfiles-menu`)
 #### Endpoints
-- `GET /:perfilId` – Obtener opciones asignadas
-- `POST /:perfilId` – Asignar opciones
+- `GET /:perfilId` – Obtiene la lista de opciones de menú asignadas al perfil indicado
+- `GET /menu-opciones/:menuOpcionId/perfiles` – Obtiene los perfiles asociados a una opción de menú específica.
+- `POST /:perfilId/:menuOpcionId` – Asignar UNA opción de menú a un perfil
+- `POST /menu-opciones/:menuOpcionId/perfiles` – Asignar VARIOS perfiles a una opción de menú (perfiles en un arreglo)
 - `DELETE /:perfilId/:menuOpcionId` – Eliminar asignación
 
 #### Tabla: `perfiles_menu_opciones`
