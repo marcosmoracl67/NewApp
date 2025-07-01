@@ -43,15 +43,21 @@ const MenuOpciones = () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/api/menu-opciones`, { withCredentials: true });
       const data = res.data.map(op => ({
-        id: parseInt(op.id),
+        id: parseInt(op.id, 10),
         nombre: op.nombre,
         ruta: op.ruta || '',
         icono: op.icono || '',
         orden: op.orden || 0,
         es_separador: op.es_separador !== false,
         visible: op.visible !== false,
-        padre_id: op.padre_id ? parseInt(op.padre_id, 10) : null
+        padre_id: op.padre_id ? parseInt(op.padre_id, 10) : null,
+        padre: ''
       }));
+
+      const nombrePorId = {};
+      data.forEach(op => { nombrePorId[op.id] = op.nombre; });
+      data.forEach(op => { op.padre = op.padre_id ? nombrePorId[op.padre_id] || '' : ''; });
+
       setOpciones(data);
     } catch (err) {
       console.error('Error cargando opciones de menú', err);
