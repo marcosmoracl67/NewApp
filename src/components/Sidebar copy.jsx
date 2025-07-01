@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'; // Import React explícitamente
 import { useNavigate, useLocation } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import UserCard from "./UserCard";
-import DropdownMenu from "./DropdownMenu";
 import { useAuth } from "../hooks/useAuth";
 import { API_BASE_URL } from "../config"; // Asegúrate de que la ruta sea correcta
 
@@ -24,6 +23,11 @@ function Sidebar({ open, setOpen }) {
   const location = useLocation();
   const { menuItems, user } = useAuth(); // menuItems viene del contexto
   const [currentOptionId, setCurrentOptionId] = useState(null);
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const toggleExpand = (id) => {
+    setExpandedItems(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const renderMenuItems = (items) => (
     <ul className="sidebar-list">
@@ -34,47 +38,37 @@ function Sidebar({ open, setOpen }) {
           );
         }
         const hasChildren = item.children && item.children.length > 0;
-        const itemKey = item.opcion_id !== undefined ? `${item.opcion_id}` : `${item.text}-${index}`;
-        const isActive = location.pathname === item.path;
-
-        if (hasChildren) {
-          return (
-            <li key={itemKey} className="sidebar-item">
-              <DropdownMenu
-                trigger={
-                  <div className="sidebar-item-content" role="menuitem">
-                    <span className="sidebar-icon">
-                      <IconComponent iconName={item.icon} />
-                    </span>
-                    <span className="sidebar-text">{item.text}</span>
-                    <FaIcons.FaChevronDown />
-                  </div>
-                }
-                placement="right-start"
-                wrapperClassName="sidebar-dropdown-wrapper"
-                menuClassName="sidebar-dropdown-menu"
-                itemClassName="sidebar-dropdown-item"
-                items={item.children.map((child) => ({
-                  label: child.text,
-                  icon: <IconComponent iconName={child.icon} />,
-                  onClick: () => handleNavigate(child.path),
-                }))}
-              />
-            </li>
-          );
-        }
+        const isExpanded = expandedItems[item.opcion_id];
         return (
-          <li key={itemKey} className={`sidebar-item ${isActive ? 'active' : ''}`}>
+          <li
+            key={item.opcion_id !== undefined ? `${item.opcion_id}` : `${item.text}-${index}`}
+            className={`sidebar-item ${location.pathname === item.path ? 'active' : ''}`}
+          >
             <div
               className="sidebar-item-content"
-              onClick={() => handleNavigate(item.path)}              
+              onClick={item.path ? () => handleNavigate(item.path) : undefined}
+              style={{ cursor: item.path ? 'pointer' : 'default' }}
               role="menuitem"
             >
               <span className="sidebar-icon">
                 <IconComponent iconName={item.icon} />
               </span>
               <span className="sidebar-text">{item.text}</span>
+              {hasChildren && (
+                <button
+                  className="submenu-toggle"
+                  onClick={(e) => { e.stopPropagation(); toggleExpand(item.opcion_id); }}
+                  aria-label={isExpanded ? 'Cerrar submenú' : 'Abrir submenú'}
+                >
+                  {isExpanded ? <FaIcons.FaChevronUp /> : <FaIcons.FaChevronDown />}
+                </button>
+              )}
             </div>
+            {hasChildren && (
+              <div className={`sidebar-submenu ${isExpanded ? 'open' : ''}`}>
+                {renderMenuItems(item.children)}
+              </div>
+            )}
           </li>
         );
       })}

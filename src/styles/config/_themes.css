@@ -163,6 +163,8 @@
   --button-hover: rgba(255, 255, 255, 0.1);
   --highlight-nav: #c6bada;
   --sidebar-bg: #eee9ee;
+  --sidebar-divider-color: var(--dropdown-separator-color);
+  --sidebar-divider-margin: 1rem 0;
   --modal-bg: var(--background2); /* <<< CAMBIADO - Ahora usa un color sólido */
   --modal-overlay-bg: rgb(50, 50, 50, 0.9); /* El overlay sí debe ser translúcido */
   --loader-background: var(--highlight); /* Color de fondo del loader */
@@ -385,6 +387,8 @@
     --button-hover: rgba(255, 255, 255, 0.1);
     --highlight-nav: #caa7ff;
     --sidebar-bg: #0b1020;
+    --sidebar-divider-color: var(--dropdown-separator-color);
+    --sidebar-divider-margin: 1rem 0;
     --modal-bg: var(--background2); /* <<< CAMBIADO - Ahora usa un color sólido */
     --modal-overlay-bg: rgb(50, 50, 50, 0.9);
     --loader-background: var(--highlight);

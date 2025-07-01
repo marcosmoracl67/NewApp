@@ -3,7 +3,6 @@ export { AuthContext }; // para que useAuth.js pueda acceder
 
 // URL base de la API backend
 import { API_BASE_URL } from "../config";
-import { buildMenuTree } from "../utils/menuUtils";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -53,17 +52,22 @@ const fetchUser = async () => {
       });
      if (menuRes.ok) {
         const rawMenu = await menuRes.json();
-        const menuTree = buildMenuTree(rawMenu);
         const formatMenu = (items = []) =>
           items.map((it) => ({
-            opcion_id: it.opcion_id ?? it.id ?? it.menu_opcion_id ?? it.id,
+            opcion_id: it.opcion_id ?? it.id ?? it.menu_opcion_id,
             text: it.text ?? it.nombre ?? it.label ?? it.titulo,
             path: it.path ?? it.ruta,
             icon: it.icon ?? it.icono,
             separator: Boolean(it.es_separador),            
-            
+            children: it.children
+              ? formatMenu(it.children)
+              : it.submenu
+              ? formatMenu(it.submenu)
+              : it.opciones
+              ? formatMenu(it.opciones)
+              : [],
           }));
-          setMenuItems(formatMenu(menuTree));
+        setMenuItems(formatMenu(rawMenu));
       } else {
         console.warn(
           "AuthContext: Respuesta inesperada al obtener el menú -",
