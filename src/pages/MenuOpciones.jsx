@@ -48,8 +48,9 @@ const MenuOpciones = () => {
         ruta: op.ruta || '',
         icono: op.icono || '',
         orden: op.orden || 0,
-        separador: op.es_separador !== false,
-        visible: op.visible !== false
+        es_separador: op.es_separador !== false,
+        visible: op.visible !== false,
+        padre_id: op.padre_id ? parseInt(op.padre_id, 10) : null
       }));
       setOpciones(data);
     } catch (err) {
@@ -163,14 +164,15 @@ const MenuOpciones = () => {
   const totalPages = useMemo(() => Math.ceil(sortedOpciones.length / ITEMS_PER_PAGE), [sortedOpciones.length]);
 
   const columns = useMemo(() => [
-    { key: 'nombre', label: 'Nombre', sortable: true, className: 'col-20' },
-    { key: 'ruta', label: 'Ruta', sortable: true, className: 'col-20' },
-    { key: 'orden', label: 'Orden', sortable: true, className: 'col-20' },
+    { key: 'nombre', label: 'Nombre', sortable: true, className: 'col-15' },
+    { key: 'ruta', label: 'Ruta', sortable: true, className: 'col-15' },
+    { key: 'padre', label: 'Padre', sortable: true, className: 'col-15' },
+    { key: 'orden', label: 'Orden', sortable: true, className: 'col-10' },
     { key: 'visible', label: 'Visible', className: 'col-10', render: (item) => (
       <ToggleSwitch checked={item.visible} onChange={() => {}} disabled size='small' /> ) },
     { key: 'es_separador', label: 'Separador', className: 'col-10', render: (item) => (
       <ToggleSwitch checked={item.es_separador} onChange={() => {}} disabled size='small' /> ) },
-    { key: 'acciones', label: 'Acciones', className: 'col-20', render: (item) => (
+    { key: 'acciones', label: 'Acciones', className: 'col-15', render: (item) => (
       <div className='table-actions'>
         <FormButton
           icon={<FaEdit />}
