@@ -1,22 +1,7 @@
-<<<<<<< HEAD
-# README.md
+# NuevoApp - Menú Jerárquico
 
-El menú de la barra lateral se obtiene dinámicamente desde el backend. Al iniciar sesión o recargar la página, `AuthContext` consulta el endpoint `/api/menu` y almacena las opciones recibidas para renderizarlas en `Sidebar`.
+Este proyecto cuenta con un frontend en React y un backend en Node.js que entrega un menú dinámico según el perfil del usuario.
 
-# Copia este archivo a `.env` y ajusta según tu entorno
-VITE_API_BASE_URL=http://localhost:3000
-
-## Configuración
-
-Crea un archivo `.env` con la siguiente variable para indicar la URL base del backend:
-
-```bash
-VITE_API_BASE_URL=http://localhost:3000
-```
-
-## Modo desarrollo
-
-```bash
-npm install
-npm run dev
-```
+1. Copia el archivo `.env.example` a `.env` y ajusta la variable `VITE_API_BASE_URL` con la URL de tu backend.
+2. Instala las dependencias con `npm install`.
+3. Inicia el modo desarrollo ejecutando `npm run dev`.

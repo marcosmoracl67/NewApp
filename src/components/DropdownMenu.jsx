@@ -1,4 +1,3 @@
-// src/components/DropdownMenu.jsx
 import React, { useState, cloneElement, Children, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -15,8 +14,6 @@ import {
     shift, // Evita que se salga de los bordes
 } from '@floating-ui/react';
 
-// Asegúrate que _DropdownMenu.css esté importado vía index.css
-
 const DropdownMenu = ({
     trigger,
     items = [],
@@ -25,18 +22,14 @@ const DropdownMenu = ({
     itemClassName = '',
     wrapperClassName = '',
     closeOnSelect = true,
-    // ...rest se pasará al wrapper div
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Configuración de Floating UI
     const { refs, floatingStyles, context } = useFloating({
         open: isOpen,
         onOpenChange: setIsOpen,
         placement: placement,
-        // Actualizar posición automáticamente
         whileElementsMounted: autoUpdate,
-        // Middlewares para mejorar posicionamiento
         middleware: [
             offset(6), // Espacio de 6px entre trigger y menú
             flip(),    // Cambiar de lado si no cabe
