@@ -124,6 +124,7 @@ const MenuOpcionFormModal = ({ isOpen, onClose, onSubmit, initialData, mode, opc
           name="padre_id"
           value={formData.padre_id}
           onChange={handleChange}
+          placeholder=""
           options={[{ value: '', label: 'Sin padre' }, ...opcionesPadre]}
           containerClassName="u-margin-bottom-sm"
         />
